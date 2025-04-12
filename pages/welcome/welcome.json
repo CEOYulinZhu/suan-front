@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "速算星球",
   "usingComponents": {
     "custom-button": "/components/custom-button/custom-button"
   }

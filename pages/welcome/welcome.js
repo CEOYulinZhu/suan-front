@@ -28,14 +28,9 @@ Page({
   },
 
   navigateToExperience: function () {
-    // 这里可以根据你的需求跳转到主功能页面或者其他体验页面
-    // 例如，跳转到首页
-    // wx.switchTab({
-    //   url: '/pages/index/index' // 假设首页是 TabBar 页面
-    // });
-    // 如果体验页面不是 TabBar 页面，使用 wx.navigateTo 或 wx.redirectTo
-    wx.navigateTo({
-      url: '/pages/index/index' // 确认首页路径正确
+    // 直接体验，跳转到首页（使用switchTab适用于TabBar页面）
+    wx.switchTab({
+      url: '/pages/index/index'
     });
   },
 
