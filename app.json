@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/welcome/welcome",
+    "pages/login/login",
+    "pages/history/history",
     "pages/index/index",
     "pages/ai-tutor/ai-tutor",
     "pages/feedback/feedback",
-    "pages/history/history",
-    "pages/login/login",
     "pages/mistakes/mistakes",
     "pages/notifications/notifications",
     "pages/practice/practice",
@@ -13,8 +14,7 @@
     "pages/register/register",
     "pages/report/report",
     "pages/settings/settings",
-    "pages/user-profile-detail/user-profile-detail",
-    "pages/welcome/welcome"
+    "pages/user-profile-detail/user-profile-detail"
 
   ],
   "window": {
