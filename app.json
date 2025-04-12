@@ -15,12 +15,43 @@
     "pages/report/report",
     "pages/settings/settings",
     "pages/user-profile-detail/user-profile-detail"
-
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Weixin",
     "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#0f69ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/bar/home_32px.png",
+        "selectedIconPath": "assets/bar/home_selected_32px.png"
+      },
+      {
+        "pagePath": "pages/practice/practice",
+        "text": "练习",
+        "iconPath": "assets/bar/practice_32px.png",
+        "selectedIconPath": "assets/bar/practice_selected_32px.png"
+      },
+      {
+        "pagePath": "pages/ai-tutor/ai-tutor",
+        "text": "AI辅导",
+        "iconPath": "assets/bar/aiTutor_32px.png",
+        "selectedIconPath": "assets/bar/aiTutor_selected_32px.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/bar/profile_32px.png",
+        "selectedIconPath": "assets/bar/profile_selected_32px.png"
+      }
+    ]
   },
   "style": "v2",
   "componentFramework": "glass-easel",
