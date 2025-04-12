@@ -1,0 +1,7 @@
+<view class="button-wrapper">
+  <view class="custom-button {{ type }}" 
+        hover-class="button-hover-{{ type }}" 
+        bindtap="handleTap">
+    {{ text }}
+  </view>
+</view> 

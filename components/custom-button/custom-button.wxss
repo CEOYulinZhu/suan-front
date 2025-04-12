@@ -1,0 +1,45 @@
+.button-wrapper {
+  width: 75%; /* 减少宽度百分比 */
+  margin: 30rpx auto; /* 外边距也移到包裹层 */
+}
+
+.custom-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* 按钮宽度占满包裹层 */
+  height: 90rpx;
+  border-radius: 50rpx;
+  padding: 0; /* 重置可能的默认内边距 */
+  font-size: 32rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  line-height: 90rpx; /* 确保文字垂直居中 */
+  box-sizing: border-box;
+  text-align: center; /* 确保文字水平居中 */
+}
+
+.primary {
+  background:linear-gradient(90deg, #268bff 0%, #0f69ff 100%);
+  color: white;
+  border: none; /* 明确无边框 */
+}
+
+/* 使用 hover-class 定义按下效果 */
+.button-hover-primary {
+  background-color: #337ecc;
+}
+
+.secondary {
+  background-color: white;
+  color: #409eff;
+  border: 2rpx solid #409eff; /* 自定义边框 */
+}
+
+/* 使用 hover-class 定义按下效果 */
+.button-hover-secondary {
+  background-color: #f0f7ff;
+  border-color: #409eff; /* 按下时保持边框颜色 */
+  color: #409eff; /* 按下时保持文字颜色 */
+} 
