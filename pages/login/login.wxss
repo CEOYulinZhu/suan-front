@@ -62,9 +62,18 @@
 }
 
 .icon {
-  color: #aaa;
   margin-right: 24rpx;
-  font-size: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+}
+
+/* SVG图标样式 */
+.icon-svg {
+  width: 48rpx;
+  height: 48rpx;
+  color: #aaa;
 }
 
 .input {
