@@ -1,1 +1,53 @@
 /* pages/welcome/welcome.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100rpx 0;
+  box-sizing: border-box;
+  height: 100vh;
+  background-color: #f7f7f7; /* 背景色 */
+}
+
+.logo {
+  width: 300rpx;
+  height: 300rpx;
+  margin-top: 50rpx; /* 增加上边距将Logo下移 */
+  margin-bottom: -30rpx; /* 减小下边距 */
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 32rpx;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 120rpx;
+}
+
+.button-group {
+  width: 100%;
+  margin-bottom: 60rpx;
+}
+
+/* 调整按钮间距，如果自定义按钮组件没处理 */
+.button-group custom-button:first-child {
+  /* 如果需要，可以在这里添加顶部外边距 */
+}
+
+.button-group custom-button:last-child {
+  /* 如果需要，可以在这里调整外边距 */
+}
+
+.experience-link {
+  font-size: 28rpx;
+  color: #999;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.experience-link:active {
+  color: #666;
+}

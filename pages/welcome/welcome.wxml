@@ -1,2 +1,17 @@
 <!--pages/welcome/welcome.wxml-->
-<text>pages/welcome/welcome.wxml</text>
+<view class="container">
+  <image class="logo" src="/assets/logo/logo.png"></image>
+  <view class="description">
+    <text>开启你的速算之旅，</text>
+    <text>让学习变得更智能、更有趣。</text>
+  </view>
+
+  <view class="button-group">
+    <custom-button text="登录" type="primary" bindbuttontap="navigateToLogin"></custom-button>
+    <custom-button text="注册" type="secondary" bindbuttontap="navigateToRegister"></custom-button>
+  </view>
+
+  <view class="experience-link" bindtap="navigateToExperience">
+    直接体验
+  </view>
+</view>
