@@ -8,3 +8,13 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+  /* 保留或添加其他全局 page 样式 */
+  height: 100%; /* 例如，确保页面高度充满 */
+  background-color: #f7f7f7; /* 可以设置一个默认背景色 */
+} 
+
