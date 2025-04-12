@@ -13,7 +13,7 @@
       <view class="input-item">
         <view class="input-with-icon">
           <view class="icon">
-            <text class="iconfont icon-user"></text>
+            <image class="icon-svg" src="/assets/icons/UserOutline_32px.svg"></image>
           </view>
           <input 
             class="input" 
@@ -29,7 +29,7 @@
       <view class="input-item">
         <view class="input-with-icon">
           <view class="icon">
-            <text class="iconfont icon-lock"></text>
+            <image class="icon-svg" src="/assets/icons/LockOutline_32px.svg"></image>
           </view>
           <input 
             class="input" 
@@ -46,7 +46,7 @@
       <view class="input-item">
         <view class="input-with-icon">
           <view class="icon">
-            <text class="iconfont icon-lock"></text>
+            <image class="icon-svg" src="/assets/icons/LockOutline_32px.svg"></image>
           </view>
           <input 
             class="input" 
