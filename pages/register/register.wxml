@@ -1,2 +1,81 @@
 <!--pages/register/register.wxml-->
-<text>pages/register/register.wxml</text>
+<view class="register-container">
+  <!-- 头部区域 -->
+  <view class="header-section">
+    <view class="welcome-text">创建您的账号</view>
+    <view class="subtitle-text">加入速算星球，开始学习之旅</view>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="register-form-wrapper">
+    <view class="form-content">
+      <!-- 用户名输入 -->
+      <view class="input-item">
+        <view class="input-with-icon">
+          <view class="icon">
+            <text class="iconfont icon-user"></text>
+          </view>
+          <input 
+            class="input" 
+            placeholder="用户名 (至少4个字符)" 
+            bindinput="usernameInput"
+            value="{{username}}"
+          />
+        </view>
+        <view class="error-message" wx:if="{{usernameError}}">{{usernameError}}</view>
+      </view>
+
+      <!-- 密码输入 -->
+      <view class="input-item">
+        <view class="input-with-icon">
+          <view class="icon">
+            <text class="iconfont icon-lock"></text>
+          </view>
+          <input 
+            class="input" 
+            placeholder="密码 (至少6个字符)" 
+            password 
+            bindinput="passwordInput"
+            value="{{password}}"
+          />
+        </view>
+        <view class="error-message" wx:if="{{passwordError}}">{{passwordError}}</view>
+      </view>
+
+      <!-- 确认密码输入 -->
+      <view class="input-item">
+        <view class="input-with-icon">
+          <view class="icon">
+            <text class="iconfont icon-lock"></text>
+          </view>
+          <input 
+            class="input" 
+            placeholder="确认密码" 
+            password 
+            bindinput="confirmPasswordInput"
+            value="{{confirmPassword}}"
+          />
+        </view>
+        <view class="error-message" wx:if="{{confirmPasswordError}}">{{confirmPasswordError}}</view>
+      </view>
+
+      <!-- 注册按钮 -->
+      <view class="button-container">
+        <custom-button text="立即注册" bindtap="register" type="primary"></custom-button>
+      </view>
+
+      <!-- 用户协议 -->
+      <view class="agreement-text">
+        注册即表示您同意 
+        <text class="link" bindtap="viewTerms">服务条款</text> 和 
+        <text class="link" bindtap="viewPrivacy">隐私政策</text>
+      </view>
+    </view>
+
+    <!-- 登录链接 -->
+    <view class="login-link">
+      <text>已有账号？</text>
+      <text class="login-text" bindtap="goToLogin">立即登录</text>
+    </view>
+  </view>
+</view>

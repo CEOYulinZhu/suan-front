@@ -1,1 +1,130 @@
 /* pages/register/register.wxss */
+
+
+/* 主容器样式 */
+.register-container {
+  min-height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 48rpx;
+  box-sizing: border-box;
+}
+
+/* 头部区域样式 */
+.header-section {
+  padding: 80rpx 0 64rpx;
+  text-align: left;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.welcome-text {
+  font-size: 52rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+  color: #333;
+}
+
+.subtitle-text {
+  font-size: 30rpx;
+  color: #888;
+}
+
+/* 表单包装区域 */
+.register-form-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: fadeIn 0.7s ease-out;
+}
+
+.form-content {
+  flex: 1;
+}
+
+/* 输入项样式 */
+.input-item {
+  margin-bottom: 48rpx;
+  border-bottom: 1px solid #eee;
+  transition: border-color 0.3s ease;
+}
+
+.input-item:focus-within {
+  border-bottom-color: #0f69ff;
+}
+
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.icon {
+  color: #aaa;
+  margin-right: 24rpx;
+  font-size: 36rpx;
+}
+
+.input {
+  flex: 1;
+  font-size: 32rpx;
+  padding: 8rpx 0;
+}
+
+/* 错误消息样式 */
+.error-message {
+  color: #ff4d4f;
+  font-size: 24rpx;
+  margin-top: 8rpx;
+  margin-bottom: 8rpx;
+}
+
+/* 按钮容器 */
+.button-container {
+  margin: 40rpx auto 32rpx;
+  width: 100%;
+}
+
+/* 协议文本 */
+.agreement-text {
+  text-align: center;
+  font-size: 24rpx;
+  color: #aaa;
+  margin-top: 32rpx;
+  margin-bottom: 48rpx;
+  line-height: 1.5;
+}
+
+.link {
+  color: #888;
+  text-decoration: underline;
+}
+
+/* 登录链接 */
+.login-link {
+  text-align: center;
+  color: #888;
+  margin-top: 32rpx;
+  margin-bottom: 80rpx;
+  font-size: 28rpx;
+  animation: fadeIn 1s ease-out;
+}
+
+.login-text {
+  color: #0f69ff;
+  font-weight: 500;
+  margin-left: 8rpx;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
