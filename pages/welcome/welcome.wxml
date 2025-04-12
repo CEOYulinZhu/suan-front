@@ -1,9 +1,12 @@
 <!--pages/welcome/welcome.wxml-->
 <view class="container">
-  <image class="logo" src="/assets/logo/logo.png"></image>
+  <view class="logo-container">
+    <image class="logo" src="/assets/logo/logo.png"></image>
+  </view>
+  
   <view class="description">
-    <text>开启你的速算之旅，</text>
-    <text>让学习变得更智能、更有趣。</text>
+    <text class="desc-line">开启你的速算之旅，</text>
+    <text class="desc-line">让学习变得更智能、更有趣。</text>
   </view>
 
   <view class="button-group">
