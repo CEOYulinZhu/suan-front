@@ -1,2 +1,60 @@
-<!--pages/user-profile-detail/user-profile-detail.wxml-->
-<text>pages/user-profile-detail/user-profile-detail.wxml</text>
+<view class="pagecontainer">
+  <view class="uppersection">
+    <view class="avatarcontainer">
+      <image class="avatar" bindtap="changeAvatar" wx:if="{{avatarUrl}}" src="{{avatarUrl}}"></image>
+      <view class="defaultavatar" wx:else bindtap="changeAvatar">
+        <icon type="person" size="80"></icon>
+      </view>
+    </view>
+    <button class="changeavatarbtn" bindtap="changeAvatar">
+      <image src="../../assets/icons/AvatarOutline_32px.svg" class="function-icon"></image>
+      更换头像
+    </button>
+  </view>
+  <view class="lowersection">
+    <view class="infocontainer">
+      <view class="infoitem">
+        <view class="label">
+          <image src="../../assets/icons/UserOutline_32px.svg" class="function-icon" ></image>
+          <icon type="contacts" size="20"></icon>
+          <text>姓名</text>
+        </view>
+        <input type="text" class="value" wx:if="{{isEditing}}" value="{{name}}" />
+        <view class="value" wx:else>{{name}}</view>
+      </view>
+      <view class="infoitem">
+        <view class="label">
+          <image src="../../assets/icons/ClassOutline_32px.svg" class="function-icon"></image>
+          <icon type="edit" size="20"></icon>
+          <text>班级</text>
+        </view>
+        <input type="text" class="value" wx:if="{{isEditing}}" value="{{class}}" />
+        <view class="value" wx:else>{{class}}</view>
+      </view>
+      <view class="infoitem">
+        <view class="label">
+          <image src="../../assets/icons/MessageOutline_32px.svg" class="function-icon"></image>
+          <icon type="chatbubble" size="20"></icon>
+          <text>手机号</text>
+        </view>
+        <input type="text" class="value" wx:if="{{isEditing}}" value="{{phone}}" />
+        <view class="value" wx:else>{{phone}}</view>
+      </view>
+      <view class="infoitem">
+        <view class="label">
+          <image src="../../assets/icons/EmailOutline_32px.svg" class="function-icon"></image>
+          <icon type="mail" size="20"></icon>
+          <text>邮箱</text>
+        </view>
+        <input type="text" class="value" wx:if="{{isEditing}}" value="{{email}}" />
+        <view class="value" wx:else>{{email}}</view>
+      </view>
+      <view class="edit-buttons" wx:if="{{isEditing}}">
+        <button class="cancel-btn" bindtap="cancelEdit">取消</button>
+        <button class="null-btn"></button>
+        <button class="save-btn" bindtap="saveEdit">保存</button>
+      </view>
+      <button class="editbtn" wx:else bindtap="editProfile">编辑资料</button>
+    </view>
+  </view>
+</view>
