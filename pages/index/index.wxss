@@ -1,1 +1,261 @@
 /* pages/index/index.wxss */
+.root{
+  padding: 40rpx 40rpx 140rpx;
+}
+
+.userWelcome{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48rpx;
+}
+
+.welcomeText{
+  font-size: 48rpx;
+  margin-bottom: 16rpx;
+  color: rgb(34, 129, 255);
+  font-weight: bold;
+}
+
+.goodText{
+  font-size: 26rpx;
+  color: rgb(102, 102, 102);
+}
+
+.userWelcomeRight{
+  display: inline-block;
+  position: relative;
+}
+
+.user{
+  height: 96rpx;
+  width: 96rpx;
+  border-radius: 48rpx;
+  background-color: rgb(34, 129, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.userIcon{
+  height: 48rpx;
+  width: 48rpx;
+  filter: brightness(0) saturate(100%) invert(100%) contrast(100%);
+}
+
+.emailNum{
+  width: 30rpx;
+  height: 30rpx;
+  top: -15rpx;
+  right: -20rpx;
+  position: absolute;
+  background-color: red;
+  color: white;
+  text-align: center;
+  line-height: 30rpx;
+  border-radius: 50%;
+  font-size: 24rpx;
+}
+
+.progress{
+  height: 210rpx;
+  background-color: rgb(34, 129, 255);
+  border-radius: 40rpx;
+  display: flex;
+  flex-direction: column;  /* 竖直排列 */
+  justify-content: center; /* 垂直居中 */
+  color: white;
+  padding: 20rpx 30rpx 20rpx 30rpx;
+  margin-bottom: 40rpx;
+  box-shadow: 0rpx 6rpx 20rpx rgba(0,0,0,0.03);
+}
+
+.progressTop{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+  font-weight: 500;
+  font-size: 27rpx;
+}
+
+.progressBetween{
+  height: 20rpx;
+  border-radius: 30rpx;
+  background-color: rgb(90,162,255);
+}
+
+.progressBetween-fill{
+  height: 100%;
+  max-width: 100%;
+  border-radius: 30rpx;
+  background-color: white;
+}
+
+.progressBottom{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16rpx;
+  font-size: 27rpx;
+}
+
+.entrance{
+  height: 580rpx;
+  background-color: rgb(255,255,255);
+  border-radius: 40rpx;
+  padding: 56rpx;
+  margin-bottom: 48rpx;
+  box-shadow: 0rpx 6rpx 20rpx rgba(0,0,0,0.03);
+}
+
+.titleText{
+  font-size: 34rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.entranceButton {
+  display: grid;
+  grid-gap: 32rpx;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0 32rpx 32rpx 32rpx;
+}
+
+.iconSquare {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32rpx;
+  border-radius: 32rpx;
+  background-color: #ffffff;
+  transition: all 120ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iconSquare.active {
+  background-color: #e6f1ff;
+  transform: scale(0.96);
+}
+
+.iconCircle {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background-color: #f0f7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(22, 119, 255, 0.15);
+  transition: all 120ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iconCircle.circle-active {
+  background-color: #1677ff;
+}
+
+.entranceIcons {
+  width: 64rpx;
+  height: 64rpx;
+  transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(1500%) hue-rotate(200deg);
+}
+
+.entranceIcons.icon-active {
+  filter: brightness(0) saturate(100%) invert(100%) hue-rotate(180deg) opacity(0.9);
+}
+
+.icon-text {
+  transition: all 0.2s ease;
+}
+
+/* 图标基础样式 */
+.entranceIcons {
+  width: 64rpx;
+  height: 64rpx;
+  transition: all 0.3s ease;
+  filter: 
+    brightness(0) saturate(100%)  /* 转为黑色 */
+    invert(39%) sepia(98%) saturate(1500%) hue-rotate(200deg); /* 原始蓝色效果 */
+}
+
+/* 点击时图标变白色 */
+.entranceIcons.icon-active {
+  filter: 
+    brightness(0) saturate(100%)  /* 转为黑色 */
+    invert(100%)                  /* 反转为白色 */
+    hue-rotate(180deg)            /* 修正色相 */
+    opacity(0.9);                 /* 轻微透明 */
+}
+
+.recent{
+  height: 450rpx;
+  background-color: rgb(255,255,255);
+  border-radius: 40rpx;
+  padding: 56rpx;
+  box-shadow: 0rpx 6rpx 20rpx rgba(0,0,0,0.03);
+}
+
+.more{
+  color: rgb(153, 153, 153);
+  font-size: 28rpx;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+}
+
+.rightIcon{
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.recentItems{
+  display: flex;
+  align-items: center;
+  padding: 24rpx 16rpx;
+  border-bottom: 2rpx solid rgb(245, 245, 245);
+}
+
+.recentIconsCircle{
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 36rpx;
+  background-color: rgb(240, 247, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.recentIcons{
+  width: 28rpx;
+  height: 28rpx;
+  filter: brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(1500%) hue-rotate(200deg);
+}
+
+.recentMessages{
+  flex: 1 1 0%;
+  font-size: 28rpx;
+}
+
+.recentTimes{
+  font-size: 24rpx;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8rpx;
+  color: rgb(153, 153, 153);
+}
+
+.divider{
+  margin: 0rpx 16rpx;
+}
+
+.scores{
+  font-size: 28rpx;
+  font-weight: bold;
+  color: rgba(22, 119, 255);
+  margin-left: 24rpx;
+}

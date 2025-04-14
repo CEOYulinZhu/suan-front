@@ -11,6 +11,7 @@
     "postcss": true,
     "minified": true,
     "enhance": true,
+    "checkSiteMap": false,
     "showShadowRootInWxmlPanel": true,
     "packNpmRelationList": [],
     "babelSetting": {
