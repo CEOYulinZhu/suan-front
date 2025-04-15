@@ -6,10 +6,10 @@
         <icon type="person" size="80"></icon>
       </view>
     </view>
-    <button class="changeavatarbtn" bindtap="changeAvatar">
+    <view class="changeavatarbtn" bindtap="changeAvatar">
       <image src="../../assets/icons/AvatarOutline_32px.svg" class="function-icon"></image>
       更换头像
-    </button>
+    </view>
   </view>
   <view class="lowersection">
     <view class="infocontainer">
@@ -50,11 +50,10 @@
         <view class="value" wx:else>{{email}}</view>
       </view>
       <view class="edit-buttons" wx:if="{{isEditing}}">
-        <button class="cancel-btn" bindtap="cancelEdit">取消</button>
-        <button class="null-btn"></button>
-        <button class="save-btn" bindtap="saveEdit">保存</button>
+        <view class="cancel-btn" bindtap="cancelEdit">取消</view>
+        <view class="save-btn" bindtap="saveEdit">保存</view>
       </view>
-      <button class="editbtn" wx:else bindtap="editProfile">编辑资料</button>
+      <view class="editbtn" wx:else bindtap="editProfile">编辑资料</view>
     </view>
   </view>
 </view>

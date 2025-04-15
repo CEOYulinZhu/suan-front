@@ -5,7 +5,7 @@
     <view class="user-header">
       <view class="user-img" catchtap="handleUserImgClick" data-index="0"
       style="width: {{userImgSize}}rpx; height: {{userImgSize}}rpx; border-radius: {{userImgSize / 2}}rpx; overflow: hidden; background-color: #fff; margin-left: {{userImgMarginLeft}}rpx;">
-        <image src="../../assets/bar/profile_32px.png" class="avatar"></image>
+        <image class="avatar"  src="{{user.avatarUrl}}"></image>
       </view>
       <view class="user-name-class">
         <view class="name">{{user.name}}</view>
@@ -30,7 +30,7 @@
   <!-- 第二部分：功能跳转 -->
   <view class="function-section">
     <view class="function-item" bindtap="goToPersonalInfo">
-      <image src="../../assets/icons/UserOutline_32px.svg" class="function-icon" style="color: #87ceeb;"></image>
+      <image src="/assets/icons/UserOutline_32px.svg" class="function-icon" style="color: #87ceeb;"></image>
       <view class="function-label">个人资料</view>
       <view class="arrow-icon">
         <image src="../../assets/icons/RightOutline_32px.svg" class="function-icon"></image>

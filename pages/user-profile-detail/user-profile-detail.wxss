@@ -13,10 +13,9 @@
   width: 160rpx;
   height: 160rpx;
   border-radius: 50%;
-  box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 40rpx rgba(22, 119, 255, 0.308);
   margin-top: 50rpx;
   margin-bottom: 40rpx;
-  border: 3px solid rgba(255, 255, 255, 0.9);
 }
 .avatar {
   width: 96%;
@@ -33,11 +32,13 @@
   align-items: center;
 }
 .changeavatarbtn {
-  padding: 15rpx 0rpx;
+  padding: 12rpx 32rpx;
   background-color: rgba(22, 119, 255, 0.06);
   color: rgb(22, 119, 255);
-  border-radius: 20rpx;
+  border-radius: 32rpx;
   font-size: 30rpx;
+  align-items: center;
+  display: flex;
 }
 .lowersection {
   margin: 40rpx 20rpx;
@@ -46,7 +47,7 @@
 }
 .infocontainer {
   background-color: #fff;
-  border-radius: 10rpx;
+  border-radius: 32rpx;
   box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.1);
   padding: 20rpx;
 }
@@ -80,16 +81,19 @@
   font-size: 28rpx;
 }
 .editbtn {
-  margin-top: 50rpx;
-  margin-bottom: 30rpx;
-  padding: 10rpx 20rpx;
+  position: relative;
+  margin-top: 70rpx;
+  margin-bottom: 60rpx;
+  padding: 14rpx 24rpx;
   background-color: #1677ff; /* 深蓝色按钮 */
   box-shadow: rgba(22, 119, 255, 0.2) 0px 4px 12px;
   color: #fff; /* 白色字体 */
   border: none;
   border-radius: 20rpx;
   font-size: 30rpx;
-  width: 100%;
+  width: 90%;
+  height: 100%;
+  text-align: center;
 }
 .edit-buttons {
   display: flex;
@@ -97,7 +101,8 @@
   margin-top: 10rpx;
 }
 .cancel-btn {
-  padding: 5rpx;
+  margin-left: 90rpx;
+  padding: 15rpx 60rpx;
   background-color: #e0e0e0;
   color: #333;
   border: none;
@@ -106,13 +111,9 @@
   margin-top: 40rpx;
   margin-bottom: 30rpx;
 }
-.null-btn {
-  padding: 5rpx;
-  background-color: #fff;
-  border: none;
-}
 .save-btn {
-  padding: 5rpx;
+  margin-right: 90rpx;
+  padding: 15rpx 60rpx;
   background-color: #007AFF;
   color: #fff;
   border: none;

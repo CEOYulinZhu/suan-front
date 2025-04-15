@@ -6,6 +6,7 @@ Page({
    */
   data: {
     user: {
+      avatarUrl: '/assets/bar/profile_32px.png',
       name: '小明',
       class: '三年级二班',
       cumulativePractice: 120,
