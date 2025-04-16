@@ -1,1 +1,111 @@
 /* pages/practice/practice.wxss */
+/* 选择练习模式区域样式 */
+/* 选择练习模式区域样式 */
+/* 选择练习模式区域样式 */
+
+
+.container {
+    padding: 40rpx;
+    background-color: #f5f5f5;
+  }
+  
+  /* 选择练习模式部分样式 */
+  .practice-mode-section {
+    background-color: #fff;
+    border-radius: 10rpx;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    font-size: 32rpx;
+    margin-bottom: 10rpx;
+  }
+
+    .recommend{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+
+  .section-desc {
+    font-size: 28rpx;
+    color: #666;
+    margin-bottom: 15rpx;
+  }
+  .practice-mode-list {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr); /* 设置两行，平均分配高度 */
+    grid-template-columns: repeat(2, 1fr); /* 设置两列，平均分配宽度 */
+    padding: 0rpx 20rpx;
+    gap: 20rpx; /* 元素间距 */
+    place-items: center;
+  }
+  .mode-item {
+    width:280rpx;
+    height: 200rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30rpx;
+    border-radius: 10rpx;
+    margin-bottom: 10rpx;
+    box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+  }
+  .mode-icon {
+   background-color: black;
+  }
+  .modeicons{
+    height: 50rpx;
+    width: 50rpx;
+    filter: invert(100%) grayscale(100%);
+  }
+  .mode-title {
+    font-size: 32rpx;
+    margin-bottom: 5rpx;
+  }
+  .mode-desc {
+    position: relative;
+    font-size: 28rpx;
+    color: #999;
+  }
+  .recommend-tag {
+      position: absolute;
+    top: 40rpx;
+    right: 10rpx;
+  }
+  
+  /* 每日练习部分样式 */
+  .daily-practice-section {
+    background-color: #fff;
+    border-radius: 10rpx;
+    padding: 80rpx;
+    margin-bottom: 20rpx;
+  }
+  .start-daily-practice-btn {
+    width: 100%;
+    padding: 15rpx;
+    border: none;
+    border-radius: 5rpx;
+    font-size: 32rpx;
+  }
+  
+  /* 个性化学习计划部分样式 */
+  .personalized-study-plan-section {
+    background-color: #fff;
+    border-radius: 10rpx;
+    padding: 20rpx;
+  }
+  .plan-item {
+    border: 1px solid #ccc;
+    border-radius: 5rpx;
+    padding: 15rpx;
+    margin-bottom: 10rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .plan-item-content {
+    font-size: 30rpx;
+  }

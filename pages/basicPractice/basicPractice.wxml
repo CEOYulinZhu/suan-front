@@ -1,0 +1,64 @@
+<!--pages/basicPractice/basicPractice.wxml-->
+<view class="basic-practice-container">
+  <!-- 顶部操作区域 -->
+  <view class="header-actions">
+    <button bindtap="showExitConfirmDialog" class="back-button">
+      <icon type="arrowleft" size="16"></icon>
+    </button>
+    <view class="title"> </view>
+  </view>
+  <!-- 题目进度 -->
+  <view class="progress-bar">
+    <view class="progress-text">第 {{currentQuestionIndex + 1}} 题 / 共 {{totalQuestions}} 题</view>
+    <view class="progress" style="width: {{(currentQuestionIndex + 1) / totalQuestions * 100}}%;"></view>
+  </view>
+  <!-- 题目内容 -->
+  <view class="question-card">
+    <view class="question">
+      <text class="question-text">{{questionContent}}</text>
+    </view>
+    <view class="answer-input-box">
+      <input type="number" bindinput="inputAnswer" placeholder="请输入答案" class="custom-input"></input>
+    </view>
+    <view class="submit-btn" bindtap="submitAnswer">提交答案</view>
+  </view>
+  <!-- 练习统计 -->
+  <view class="practice-statistics">
+    <view class="stat-title">练习统计</view>
+    <view class="stat-item">
+      <view class="stat-icon">📄</view>
+      <view class="stat-label">已完成题目</view>
+      <view class="stat-value">{{completedQuestions}} / {{totalQuestions}}</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-icon">✅</view>
+      <view class="stat-label">正确题数</view>
+      <view class="stat-value">{{correctQuestions}} 题</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-icon">❌</view>
+      <view class="stat-label">错误题数</view>
+      <view class="stat-value">{{wrongQuestions}} 题</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-icon">✅</view>
+      <view class="stat-label">正确率</view>
+      <view class="stat-value">{{accuracyRate}}%</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-icon">⏱️</view>
+      <view class="stat-label">用时</view>
+      <view class="stat-value">{{totalTime}} 秒</view>
+    </view>
+  </view>
+  <!-- 确认退出对话框 -->
+  <view class="exit-confirm-dialog" hidden="{{!isExitConfirmDialogVisible}}">
+    <view class="confirm-content">
+      <view class="confirm-title">确定要结束本次练习吗？</view>
+      <view class="confirm-buttons">
+        <button bindtap="cancelExit" class="cancel-button">取消</button>
+        <button bindtap="confirmExit" class="confirm-button">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

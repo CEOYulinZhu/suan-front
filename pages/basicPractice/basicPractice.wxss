@@ -1,0 +1,168 @@
+/* pages/basicPractice/basicPractice.wxss */
+.basic-practice-container {
+    padding: 20rpx;
+    background-color: #f5f5f5;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 20rpx;
+}
+
+.back-button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
+
+.title {
+    font-size: 28rpx;
+    font-weight: bold;
+}
+
+.progress-bar {
+    text-align: center;
+    margin-bottom: 15rpx;
+}
+
+.progress-text {
+    color: #666;
+    font-size: 24rpx;
+    margin-bottom: 5rpx;
+}
+
+.progress {
+    height: 4rpx;
+    background-color: #e0e0e0;
+    margin-top: 0;
+}
+
+.question-card {
+    background-color: #fff;
+    border-radius: 20rpx;
+    padding: 30rpx;
+    margin-bottom: 20rpx;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    margin-bottom: 20rpx;
+    text-align: center;
+}
+
+.question-text {
+    font-size: 40rpx;
+    color: #333;
+}
+
+.answer-input-box {
+    margin-bottom: 20rpx;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 18rpx;
+    border: 1px solid #e0e0e0;
+    border-radius: 10rpx;
+    font-size: 30rpx;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.submit-btn {
+    background-color: #007AFF;
+    color: white;
+    padding: 15rpx;
+    text-align: center;
+    border-radius: 25rpx;
+    font-size: 32rpx;
+    width: 100%;
+    max-width: 300rpx;
+    margin: 0 auto;
+}
+
+.practice-statistics {
+    background-color: #fff;
+    border-radius: 20rpx;
+    padding: 30rpx;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stat-title {
+    font-size: 28rpx;
+    color: #333;
+    margin-bottom: 15rpx;
+    border-left: 4rpx solid #007AFF;
+    padding-left: 10rpx;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10rpx;
+    padding-bottom: 10rpx;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-icon {
+    margin-right: 10rpx;
+    font-size: 30rpx;
+}
+
+.stat-label {
+    flex: 1;
+    color: #666;
+    font-size: 30rpx;
+}
+
+.stat-value {
+    color: #999;
+    font-size: 30rpx;
+}
+
+.exit-confirm-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 5rpx;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20rpx;
+    z-index: 1000;
+}
+
+.confirm-content {
+    text-align: center;
+}
+
+.confirm-title {
+    margin-bottom: 10rpx;
+    font-size: 28rpx;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cancel-button {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 10rpx 20rpx;
+    border-radius: 5rpx;
+}
+
+.confirm-button {
+    background-color: #007AFF;
+    color: white;
+    padding: 10rpx 20rpx;
+    border-radius: 5rpx;
+}
