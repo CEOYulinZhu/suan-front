@@ -1,5 +1,4 @@
 .button-wrapper {
-  width: 75%; /* 减少宽度百分比 */
   margin: 30rpx auto; /* 外边距也移到包裹层 */
 }
 

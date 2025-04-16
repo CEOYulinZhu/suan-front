@@ -1,4 +1,4 @@
-<view class="button-wrapper">
+<view class="button-wrapper" style="width: {{ width }};">
   <view class="custom-button {{ type }}" 
         hover-class="button-hover-{{ type }}" 
         bindtap="handleTap">
