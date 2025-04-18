@@ -1,0 +1,23 @@
+<view class="notification-detail-container">
+  <view class="message-item">
+    <view class="message-header">
+      <!-- 根据 type 动态设置图标路径，这里假设两种类型对应不同图标 -->
+      <image class="icon" src="{{type ==='system'? '/assets/icons/SysteNoticeOutline_32px.svg' : '/assets/icons/MessageNoticeOutline_32px.svg'}}" />
+      <text class="message-title">{{title}}</text>
+    </view>
+    <text class="time">{{time}}</text>
+    <text class="message-content">{{message}}</text>
+  </view>
+  <view class="history-message">
+    <text class="history-title">{{historyTitle}}</text>
+    <view class="history-item" wx:for="{{historyMessages}}" wx:key="index">
+      <view class="history-contents">
+        <view class="history-img">
+          <image class="history-icon" src="/assets/icons/HistoryMessageOutline_32px.svg"></image>
+        </view>
+        <text class="history-content">{{item.content}}</text>
+        <text class="history-time">{{item.time}}</text>
+      </view>
+    </view>
+  </view>
+</view>

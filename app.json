@@ -8,6 +8,7 @@
     "pages/feedback/feedback",
     "pages/mistakes/mistakes",
     "pages/notifications/notifications",
+    "pages/notification-detail/notification-detail",
     "pages/practice/practice",
     "pages/practice-detail/practice-detail",
     "pages/profile/profile",
