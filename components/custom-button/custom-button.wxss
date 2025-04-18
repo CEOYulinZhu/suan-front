@@ -50,5 +50,6 @@
 }
 
 .primary-icon{
-  filter: brightness(1000%);
+  /* filter: brightness(1000%); */
+  filter: invert(1) brightness(1000%);
 }
