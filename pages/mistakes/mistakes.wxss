@@ -24,7 +24,6 @@
 
 .diviler{
   font-size: 50rpx;
-  height: 76rpx;
   color:rgb(22, 119, 225);
 }
 
