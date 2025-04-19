@@ -15,6 +15,8 @@
     "pages/register/register",
     "pages/report/report",
     "pages/settings/settings",
+    "pages/user-agreement/user-agreement",
+    "pages/privacy-policy/privacy-policy",
     "pages/user-profile-detail/user-profile-detail",
     "pages/basicPractice/basicPractice"
   ],
