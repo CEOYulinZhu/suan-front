@@ -1,2 +1,52 @@
-<!--pages/feedback/feedback.wxml-->
-<text>pages/feedback/feedback.wxml</text>
+<view class="back">
+<view class="feedback-container">
+  <view class="header">
+    <view class="{{currentTab === 'feedback'? 'active' : 'non-active'}}" bindtap="navigateToFeedback">意见反馈</view>
+    <view class="{{currentTab === 'faq'? 'active' : 'non-active'}}" bindtap="navigateToFAQ">常见问题</view>
+  </view>
+  <view class="content" wx:if="{{currentTab === 'feedback'}}">
+    <view class="section">
+      <view class="question">
+        <image src="../../assets/icons/MessageOutline_32px.svg" class="function-icon" style="color: #87ceeb;"></image>
+        <view class="title">问题反馈</view>
+      </view>
+      <textarea class="textarea" placeholder="请描述您遇到的问题或建议..." bindinput="handleTextareaInput" maxlength="300" 
+        value="{{feedbackContent}}"></textarea>
+      <view class="counter">{{textareaLength}}/300</view>
+    </view>
+    <view class="section">
+      <input class="phone-number" placeholder="留下您的联系方式（选填）" value="{{inputContent}}"/>
+    </view>
+    <view class="section">
+      <view class="label">应用评分</view>
+      <view class="rating">
+        <view class="star" wx:for="{{5}}" wx:key="index" bindtap="rateApp" data-rate="{{index + 1}}">
+          <image src="{{index < rating? '/assets/icons/FullStarOutline_32px.svg' : '/assets/icons/EmptyStarOutline_32px.svg'}}" mode="scaleToFill"></image>
+        </view>
+      </view>
+    </view>
+    <view class="submit {{textareaLength > 0? 'active' : ''}}" bindtap="submitFeedback" disabled="{{textareaLength === 0}}">提交反馈</view>
+  </view>
+
+  <view class="content" wx:if="{{currentTab === 'faq'}}">
+    <view class="question">
+      <image src="/assets/icons/QuestionCircleOutline_32px.svg" class="function-icon" style="color: #87ceeb;"></image>
+      <view class="title">常见问题</view>
+    </view>
+    <view class="section">
+      <view class="question" wx:for="{{faqList}}" wx:key="index">
+        <view class="faq-list">
+          <view class="q">
+            <view class="question-circle blue">Q</view>
+            <text class="question-text">{{item.question}}</text>
+          </view>
+          <view class="a">
+            <view class="answer-circle gray">A</view>
+            <text class="answer-text">{{item.answer}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</view>
