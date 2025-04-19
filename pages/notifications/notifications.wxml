@@ -15,7 +15,7 @@
   </view>
 
   <view class="notification-list">
-    <view class="notification-item" wx:for="{{filteredNotifications}}" wx:key="id" 
+    <view wx:for="{{filteredNotifications}}" wx:key="id" 
           class="{{item.isUnread? 'unread-bg' :'read-bg'}}" 
           bindtouchstart="handleTouchStart"
           bindtouchmove="handleTouchMove"

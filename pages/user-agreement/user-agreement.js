@@ -61,6 +61,6 @@ Page({
     updateDate: '2025年4月12日'
   },
   onLoad: function () {
-    console.log(this.data.sections)
+    
   }
 })
