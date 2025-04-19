@@ -15,7 +15,9 @@
     "pages/report/report",
     "pages/settings/settings",
     "pages/user-profile-detail/user-profile-detail",
-    "pages/basicPractice/basicPractice"
+    "pages/basicPractice/basicPractice",
+    "pages/timedChallenge/timedChallenge",
+    "pages/levelPractice/levelPractice"
   ],
   "window": {
     "navigationBarTextStyle": "black",
