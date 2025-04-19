@@ -1,0 +1,15 @@
+<view class="back">
+<view class="agreement-container">
+  <view class="title">{{title}}</view>
+  <view class="detail">{{head}}</view>
+  <view class="section" wx:for="{{sections}}" wx:key="index">
+    <view class="section-title">{{item.title}}</view>
+    <view class="section-details">
+      <view class="detail" wx:for="{{item.details}}" wx:key="detailIndex">
+        {{item}}
+      </view>
+    </view>
+  </view>
+  <view class="update-date">最后更新日期：{{updateDate}}</view>
+</view>
+</view>

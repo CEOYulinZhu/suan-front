@@ -1,28 +1,11 @@
-// pages/mistakes/mistakes.js
+// pages/privacy-policy/privacy-policy.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    user:[
-      {
-        date: '2024-02-20',
-        question: '12 + 15',
-        useranswer: 28,
-        successanswer: 27,
-        analyse: '计算时要注意进位，可以先算个位再算十位。个位：2+5=7，十位：1+1=2，所以结果是27。',
-        type:['加法','进位']
-      },
-      {
-        date: '2024-02-20',
-        question: '45 - 17',
-        useranswer: 32,
-        successanswer: 28,
-        analyse: '减法计算时要注意借位，可以先算个位再算十位。个位：5-7需要借位，变成15-7=8，十位：4-1-1=2，所以结果是28。',
-        type:['减法','借位']
-      }
-    ]
+
   },
 
   /**
