@@ -17,6 +17,9 @@ Page({
         title: '进入计时挑战',
         icon: 'none'
       });
+      wx.navigateTo({
+        url: '/pages/timedChallenge/timedChallenge'  // 这里根据实际页面路径填写
+      });
       // 后续可添加跳转到计时挑战页面等实际逻辑
     },
     // 选择错题训练
@@ -32,6 +35,9 @@ Page({
       wx.showToast({
         title: '进入闯关模式',
         icon: 'none'
+      });
+      wx.navigateTo({
+        url: '/pages/levelPractice/levelPractice'
       });
       // 后续可添加跳转到闯关模式页面等实际逻辑
     },

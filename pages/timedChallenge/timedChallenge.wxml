@@ -1,0 +1,59 @@
+<!--pages/timedChallenge/timedChallenge.wxml-->
+<text>pages/timedChallenge/timedChallenge.wxml</text>
+<view class="container">
+  <!-- 初始页面 -->
+  <view wx:if="{{!isCountdown &&!isAnswering &&!isFinished}}">
+    <view class="title">计时挑战</view>
+    <view class="description">计时挑战模式将在有限时间内，测试你的计算速度和准确性</view>
+    <button class="start-btn" bindtap="startChallenge">开始挑战</button>
+  </view>
+
+  <!-- 倒计时页面 -->
+  <view wx:elif="{{isCountdown &&!isAnswering &&!isFinished}}">
+    <view class="countdown-icon"><icon type="clock" size="40"></icon></view>
+    <view class="countdown-number">{{countdown}}</view>
+    <view class="countdown-text">准备开始...</view>
+  </view>
+
+  <!-- 答题页面 -->
+  <view wx:elif="{{isAnswering &&!isFinished}}">
+    <view class="time-bar">
+      <view class="time-progress" style="width: {{timeProgress}}%"></view>
+    </view>
+    <view class="remaining-time">{{remainingTime}} 秒</view>
+    <view class="question">{{currentQuestion}}</view>
+    <input class="answer-input" bindinput="inputAnswer" value="{{answer}}" />
+    <button class="submit-btn" bindtap="submitAnswer">提交答案</button>
+
+    <view class="real-time-statistics">
+      <view class="stat-item">已完成题目：{{completedQuestions}} 题</view>
+      <view class="stat-item">正确题数：{{correctQuestions}} 题</view>
+      <view class="stat-item">错误题数：{{wrongQuestions}} 题</view>
+      <view class="stat-item">正确率：{{accuracyRate}}%</view>
+      <view class="stat-item">平均用时：{{averageTime}} 秒/题</view>
+    </view>
+  </view>
+
+  <!-- 结果页面 -->
+  <view wx:else>
+    <view class="finish-icon"><icon type="success" size="40"></icon></view>
+    <view class="finish-text">挑战完成!</view>
+    <view class="summary">总题数: {{completedQuestions}} | 正确: {{correctQuestions}} | 正确率: {{accuracyRate}}%</view>
+    <view class="average-time">你的平均用时</view>
+    <view class="time-value">{{averageTime}} 秒/题</view>
+    <view class="speed-rating">{{speedRating}}</view>
+
+    <button class="retry-btn" bindtap="retryChallenge">再次挑战</button>
+    <button class="return-btn" bindtap="returnToSelect">返回选择</button>
+
+    <view class="answer-details">
+      <view class="details-title">答题详情</view>
+      <view class="detail-item" wx:for="{{answerDetail}}" wx:key="index">
+        <view class="question-text">{{item.question}}</view>
+        <view class="result-text" style="color: {{item.isCorrect? 'green' :'red'}}">
+          {{item.isCorrect? item.answer +'√'+ item.time +'秒' : item.answer +'× ('+ item.correctAnswer +')'+ item.time +'秒'}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

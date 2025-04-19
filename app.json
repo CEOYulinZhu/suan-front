@@ -19,7 +19,9 @@
     "pages/user-agreement/user-agreement",
     "pages/privacy-policy/privacy-policy",
     "pages/user-profile-detail/user-profile-detail",
-    "pages/basicPractice/basicPractice"
+    "pages/basicPractice/basicPractice",
+    "pages/timedChallenge/timedChallenge",
+    "pages/levelPractice/levelPractice"
   ],
   "window": {
     "navigationBarTextStyle": "black",

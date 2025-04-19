@@ -1,0 +1,151 @@
+<!--pages/levelPractice/levelPractice.wxml-->
+<view class="container">
+  <!-- 关卡选择、指南、成就区域 -->
+  <view class="level-select-guide-achievement" wx:if="{{!isAnswering &&!isResult}}">
+    <view class="level-select">
+      <view class="header">
+        <text>选择关卡</text>
+        <text class="passed">已通关: {{passed}}/{{total}}</text>
+      </view>
+      <view class="progress">完成进度: {{progress}}%</view>
+      <view class="grid">
+        <view class="item" wx:for="{{levels}}" wx:key="id" data-id="{{index}}" bindtap="handleLevelTap">
+          <view class="num {{item.locked? 'locked' : ''}} {{item.passed? 'passed' : ''}}">
+            {{item.num}}
+            <icon type="success" size="20" wx:if="{{item.passed}}" color="#007AFF"></icon>
+          </view>
+          <view class="type">{{item.type}}</view>
+          <view class="stars">
+            <icon type="star" color="#ffd700" wx:if="{{item.star >=1}}" size="18"></icon>
+            <icon type="star" color="#ffd700" wx:if="{{item.star >=2}}" size="18"></icon>
+            <icon type="star" color="#ffd700" wx:if="{{item.star >=3}}" size="18"></icon>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="guide">
+      <view class="guide-item">
+        <icon type="star" color="#ffd700" size="20"></icon>
+        <text>一星评价：答题正确率达到70%以上即可获得</text>
+      </view>
+      <view class="guide-item">
+        <icon type="star" color="#ffd700" size="20"></icon>
+        <icon type="star" color="#ffd700" size="20"></icon>
+        <text>二星评价：答题正确率达到90%以上可获得</text>
+      </view>
+      <view class="guide-item">
+        <icon type="star" color="#ffd700" size="20"></icon>
+        <icon type="star" color="#ffd700" size="20"></icon>
+        <icon type="star" color="#ffd700" size="20"></icon>
+        <text>三星评价：正确率达到90%且平均答题时间少于5秒</text>
+      </view>
+      <view class="guide-item">
+        <icon type="lock" color="#007AFF" size="20"></icon>
+        <text>解锁规则：完成前一个关卡即可解锁下一个关卡，挑战更高难度</text>
+      </view>
+    </view>
+
+    <view class="achievement">
+      <view class="item">
+        <icon type="arrowright" color="#ffd700" size="20"></icon>
+        <text>闯关大师</text>
+        <text class="progress-tag">进行中 {{passed}}/{{total}}</text>
+      </view>
+      <view class="item">
+        <icon type="star" color="#ffd700" size="20"></icon>
+        <text>三星收集</text>
+        <text class="progress-tag">0/{{total *3}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 答题界面 -->
+  <view class="answer-wrap" wx:if="{{isAnswering &&!isResult}}">
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{progressWidth}}%"></view>
+    </view>
+    <view class="question">
+      <text>第{{currentIndex +1}}题 / 共 {{currentLevel.questionNum}} 题</text>
+      <text class="math-question">{{currentQuestion}}</text>
+      <input type="number" value="{{inputValue}}" bindinput="inputAnswer" placeholder="请输入答案"></input>
+      <view class="btn-group">
+        <button class="submit-btn" bindtap="checkAnswer">提交答案</button>
+        <button class="giveup-btn" bindtap="showGiveupModal">放弃挑战</button>
+      </view>
+    </view>
+    <view class="progress-summary">
+      <view class="item">已答对 {{correctNum}} 题</view>
+      <view class="item">已答错 {{wrongNum}} 题</view>
+      <view class="item">正确率 {{accuracyRate}}%</view>
+    </view>
+  </view>
+
+  <!-- 挑战完成界面 -->
+  <view class="result-wrap" wx:if="{{isResult}}">
+    <view class="result-header">
+      <text>第{{currentLevel.num}}关 挑战完成! | 正确: {{correctNum}}/{{currentLevel.questionNum}} | 正确率: {{accuracyRate}}%</text>
+    </view>
+    <view class="reward-modal-container" wx:if="{{showRewardModal}}">
+      <view class="reward-modal">
+        <view class="modal-content">
+          <view class="title">恭喜获得奖励</view>
+          <icon type="gift" color="#ffd700" size="40"></icon>
+          <text>金币×{{currentLevel.reward}}</text>
+          <button class="claim-btn" bindtap="claimReward">领取奖励</button>
+        </view>
+      </view>
+    </view>
+    <button class="replay-btn" bindtap="replayChallenge">再次挑战</button>
+    <button class="back-btn" bindtap="backToLevel">返回关卡选择</button>
+    <view class="wrong-list">
+      <text>错误题目</text>
+      <view class="wrong-item" wx:for="{{wrongList}}" wx:key="id">
+        <text>{{item.question}}?</text>
+        <text>× ({{item.answer}})</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 关卡详情弹窗 -->
+  <view class="modal" wx:if="{{showModal}}">
+    <view class="modal-content">
+      <view class="title">第{{currentLevel.num}}关</view>
+      <view class="info">
+        <text>类型:</text>
+        <text class="blue">{{currentLevel.type}}</text>
+      </view>
+      <view class="info">
+        <text>难度:</text>
+        <icon type="star" color="#ffd700" size="20"></icon>
+        <icon type="star" color="#ffd700" size="20"></icon>
+      </view>
+      <view class="info">
+        <text>题目数量:</text>
+        <text class="blue">{{currentLevel.questionNum}}题</text>
+      </view>
+      <view class="info">
+        <text>通关奖励:</text>
+        <text class="blue">金币×{{currentLevel.reward}}</text>
+      </view>
+      <view class="btn-group">
+        <button class="start-btn" bindtap="startChallenge">开始挑战</button>
+        <button class="cancel-btn" bindtap="hideModal">返回</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 放弃确认弹窗 -->
+  <view class="giveup-confirm-modal-container" wx:if="{{showGiveupModal}}">
+    <view class="giveup-confirm-modal">
+      <view class="modal-content">
+        <view class="modal-title">确定要放弃本次挑战吗?</view>
+        <text>你将失去当前的进度</text>
+        <view class="modal-btns">
+          <button class="confirm-btn" bindtap="confirmGiveUp">确定放弃</button>
+          <button class="cancel-btn" bindtap="cancelGiveUp">继续挑战</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
