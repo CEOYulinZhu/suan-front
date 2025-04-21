@@ -1,2 +1,75 @@
 <!--pages/practice-detail/practice-detail.wxml-->
-<text>pages/practice-detail/practice-detail.wxml</text>
+<view class="root">
+  <!--大标题-->
+  <view class="message">
+    <view class="messageTitle">
+      <view>
+        <image src="{{selectList.iconPath}}" class="titleIcon"></image>
+      </view>
+      <view>{{selectList.type}}</view>
+    </view>
+    <view class="titleText">
+      <view>日期</view>
+      <view>{{selectList.date}} {{selectList.time}}</view>
+    </view>
+    <view class="titleText">
+      <view>难度</view>
+      <view>{{selectList.difficulty}}</view>
+    </view>
+    <view class="titleText">
+      <view>题目类型</view>
+      <view>{{selectList.questionType}}</view>
+    </view>
+    <view class="progress">
+      <view class="progressFill" style="width: {{selectList.correctness}};"></view>
+    </view>
+    <view class="correctness">
+      <view>正确率</view>
+      <view>{{selectList.correctness}}</view>
+    </view>
+  </view>
+
+  <!--练习统计-->
+  <view class="title">练习统计</view>
+  <view class="stats">
+    <view class="statsItems"
+          wx:for="{{selectList.statsLsit}}"
+          wx:key="index"
+    >
+      <view class="itemContent">{{item.value}}</view>
+      <view class="itemTitle">{{item.type}}</view>
+    </view>
+  </view>
+
+  <!--答题详情-->
+  <view class="title">答题详情</view>
+  <view class="questions">
+    <view class="questionItems"
+          wx:for="{{selectList.questionList}}"
+          wx:key="index"
+    >
+      <view class="questionsNum">{{index + 1}}</view>
+      <view class="questionsContent">
+        <view class="questionsTopic">{{item.question}}</view>
+        <view class="questionsAnswer">
+          <view class="{{!item.type ? 'answerError' : ''}} answerRight">{{item.userAnswer}}</view>
+          <view wx:if="{{!item.type}}">正确答案: {{item.correctAnswer}}</view>
+        </view>
+      </view>
+      <view wx:if="{{item.type}}" class="questionsIconsBlack">
+        <view class="questionsIcons">✓</view>
+      </view>
+      <view wx:if="{{!item.type}}" class="questionsIconsBlackError">
+        <view class="questionsIconsError">✕</view>
+      </view>
+    </view>
+  </view>
+
+  <!--底部链接-->
+  <view class="bottomLink">
+    <view class="toPractice {{isPracticeActive ? 'active' : ''}}" bindtap="toPractice">继续练习</view>
+    <view class="toHistory {{isHistoryActive ? 'active' : ''}}" bindtap="toHistory">返回历史</view>
+  </view>
+
+  
+</view>

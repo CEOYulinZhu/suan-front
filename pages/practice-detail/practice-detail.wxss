@@ -1,1 +1,227 @@
 /* pages/practice-detail/practice-detail.wxss */
+.root{
+  padding: 32rpx 32rpx 100rpx 32rpx;
+}
+
+.message{
+  background: linear-gradient(135deg, rgb(22, 119, 255) 0%, rgb(64, 150, 255) 100%);
+  color: white; 
+  margin-bottom: 32rpx;
+  border-radius: 24rpx;
+  box-shadow: rgba(0, 0, 0, 0.05) 0rpx 4rpx 16rpx;
+  padding: 56rpx 56rpx;
+}
+
+.messageTitle{
+  font-size: 40rpx;
+  font-weight: 500;
+  margin-bottom: 32rpx;
+  display: flex;
+  align-items: center;
+}
+
+.titleIcon{
+  height: 48rpx;
+  width: 48rpx;
+  margin-right: 16rpx;
+  filter: invert(1) brightness(1000%);
+  display: flex;
+  align-items: center;
+}
+
+.titleText{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+  font-size: 26rpx;
+}
+
+.progress{
+  width: 100%;
+  height: 16rpx;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 8rpx;
+  margin-top: 32rpx;
+}
+
+.progressFill{
+  height: 100%;
+  background-color: white;
+  border-radius: 8rpx;
+}
+
+.correctness{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  font-size: 26rpx;
+}
+
+.title{
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-bottom: 32rpx;
+  color: rgb(51, 51, 51);
+}
+
+.stats{
+  margin-bottom: 32rpx;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 一行三列 */
+  gap: 24rpx; /* 子元素间距 */
+}
+
+.statsItems{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 24rpx;
+  padding: 32rpx;
+}
+
+.itemContent{
+  font-size: 40rpx;
+  font-weight: bold;
+  color: rgb(22, 119, 255);
+  margin-bottom: 16rpx;
+}
+
+.itemTitle{
+  font-size: 26rpx;
+  color: rgb(102, 102, 102);
+}
+
+.questions{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  display: inline-flex;
+  gap: 16rpx;
+}
+
+.questionItems{
+  margin-bottom: 16rpx;
+  padding: 32rpx;
+  background: white;
+  border-radius: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.questionsNum{
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 24rpx;
+  background: rgb(240, 247, 255);
+  color: rgb(22, 119, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: 500;
+  margin-right: 24rpx;
+}
+
+.questionsContent{
+  flex: 1 1 0%;
+}
+
+.questionsTopic{
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+}
+
+.questionsAnswer{
+  display: flex;
+  font-size: 28rpx;
+  font-weight: 300;
+  gap: 16rpx;
+}
+
+.answerRight{
+  color: rgb(82, 196, 26);
+}
+
+.answerError{
+  color: rgb(255, 77, 79);
+}
+
+.questionsIconsBlack{
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 40rpx;
+  margin-left: 24rpx;
+  background-color: rgb(246, 255, 237);
+}
+
+.questionsIcons{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(82, 196, 26);
+  font-size: 40rpx;
+}
+
+.questionsIconsBlackError{
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 40rpx;
+  background-color: rgb(255, 241, 240);
+  margin-left: 24rpx;
+}
+
+.questionsIconsError{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 77, 79);
+  font-size: 40rpx;
+}
+
+.bottomLink{
+  display: flex;
+  gap: 24rpx;
+  margin-top: 16rpx;
+}
+
+.toPractice{
+  width: 50%;
+  background-color: #1677ff;
+  padding: 8rpx 24rpx;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8rpx;
+  box-shadow: rgba(0, 0, 0, 0.05) 0rpx 4rpx 16rpx;
+}
+
+.toHistory{
+  width: 50%;
+  background-color: white;
+  padding: 18rpx 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8rpx;
+  box-shadow: rgba(0, 0, 0, 0.05) 0rpx 4rpx 16rpx;
+}
+
+/* 新增激活状态样式 */
+.toPractice.active {
+  background-color: #0d5bd9; /* 比原色深一些的蓝色 */
+  transition: background-color 0.4s ease;
+}
+
+.toHistory.active {
+  background-color: #e6e6e6; /* 灰色背景 */
+  transition: background-color 0.4s ease;
+}
+
