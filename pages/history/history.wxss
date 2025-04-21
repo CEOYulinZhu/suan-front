@@ -1,1 +1,257 @@
 /* pages/history/history.wxss */
+.tabBar {
+  position: fixed;
+  top: 0; /* 紧贴原生导航栏 */
+  left: 0;
+  right: 0;
+  height: 88rpx;
+  background: white;
+  z-index: 999;
+  border-top: 6rpx solid rgb(250, 250, 250);
+  border-bottom: 6rpx solid rgb(250, 250, 250);
+}
+
+.tabBarContent {
+  display: flex;
+  height: 100%;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: auto;
+}
+
+/* 隐藏滚动条（关键） */
+.tabBarContent ::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.tabBarItem {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 24rpx;
+}
+
+.tabText {
+  font-size: 30rpx;
+}
+
+.tabBarItem.active .tabText {
+  color: #1677ff;
+}
+
+.underline {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 4rpx;
+  background: transparent;
+  transition: none;
+}
+
+.tabBarItem.active .underline {
+  width: 100%; /* 与文字同宽 */
+  background: #1677ff; /* 与文字同色 */
+}
+
+.content {
+  margin-top: 88rpx;
+}
+
+.choose{
+  padding: 24rpx 32rpx;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 32rpx;
+  box-sizing: rgba(0, 0, 0, 0.05) 0rpx 2rpx 8rpx;
+}
+
+.chooseTitle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.chooseTitleLeft{
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.chooseTitleIcon{
+  height: 30rpx;
+  width: 30rpx;
+  vertical-align: -0.125em;
+  margin-right: 12rpx;
+  filter: brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(1500%) hue-rotate(200deg);
+}
+
+.chooseTitleRight{
+  color: rgb(22, 119, 255);
+  font-size: 26rpx;
+}
+
+.chooseSmallTitle{
+  font-size: 28rpx;
+  color: rgb(102, 102, 102);
+  margin-bottom: 16rpx;
+}
+
+.chooseTypes{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+}
+
+.chooseTypes > view {
+  background-color: #666666;
+  color: white;
+  font-size: 26rpx;
+  padding: 8rpx 24rpx;
+  border-radius: 200rpx;
+}
+
+.chooseTypes > view.active {
+  background-color: #1677ff;
+}
+
+.history{
+  padding: 32rpx 32rpx 100rpx 32rpx;
+}
+
+.historyItems{
+  background-color: rgb(255, 255, 255);
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 4rpx 16rpx;
+}
+
+.itemsTop{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.itemsTitle{
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.historyItemsIconsBlack{
+  margin-right: 16rpx;
+  height: 64rpx;
+  width: 64rpx;
+  background-color: rgb(240, 247, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 32rpx;
+}
+
+.historyItemsIcons{
+  height: 32rpx;
+  width: 32rpx;
+  filter: brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(1500%) hue-rotate(200deg);
+}
+
+.itemsTimes{
+  font-size: 26rpx;
+  color: rgb(153, 153, 153);
+}
+
+.itemsContents{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.itemsContentsTitles{
+  color: rgb(102, 102, 102);
+}
+
+.historyStar{
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.historyStarIcon{
+  height: 28rpx;
+  width: 28rpx;
+}
+
+.itemsTypes{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24rpx;
+  margin-top: 24rpx;
+  border-top: 3rpx solid rgb(250, 250, 250);
+}
+
+.itemsTypesText {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+.itemsTypesText > view {
+  background-color: #666666;
+  color: white;
+  font-size: 22rpx;
+  line-height: 1;
+  padding: 4rpx 8rpx;
+  border-radius: 200rpx;
+}
+
+.toPracticeDetail{
+  color: rgb(22, 119, 255);
+  font-size: 28rpx;
+}
+
+.empty {
+  padding: 32rpx;
+}
+
+.emptyTop{
+  margin: 120rpx 0rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48rpx 0rpx;
+}
+
+.emptyIcon {
+  width: 96rpx;
+  height: 96rpx;
+  margin-bottom: 40rpx;
+  filter: brightness(0) saturate(100%) invert(85%) sepia(10%) saturate(0%) hue-rotate(0deg);
+}
+
+.empty-text {
+  font-size: 30rpx;
+  color: rgb(153, 153, 153);
+}
+
+.empty-btn {
+  background-color: #1677ff;
+  color: white;
+  padding: 16rpx 48rpx;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
