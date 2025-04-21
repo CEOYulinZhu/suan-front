@@ -1,5 +1,4 @@
 {
-  "entryPagePath":"pages/feedback/feedback",
   "pages": [
     "pages/welcome/welcome",
     "pages/login/login",
