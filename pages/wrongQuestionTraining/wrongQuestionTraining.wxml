@@ -1,0 +1,144 @@
+<view class="container">
+    <view class="question-select" wx:if="{{!isPractice}}">
+    <!-- 横向分类筛选器 -->
+    <scroll-view class="category-scroll" scroll-x>
+        <view 
+        class="category-item {{currentCategory === 'all' ? 'active' : ''}}" 
+        data-category="all" 
+        bindtap="handleCategoryChange"
+        >
+        全部
+        </view>
+        <view 
+        class="category-item {{currentCategory === '加法' ? 'active' : ''}}" 
+        data-category="加法" 
+        bindtap="handleCategoryChange"
+        >
+        加法
+        </view>
+        <view 
+        class="category-item {{currentCategory === '减法' ? 'active' : ''}}" 
+        data-category="减法" 
+        bindtap="handleCategoryChange"
+        >
+        减法
+        </view>
+        <view 
+        class="category-item {{currentCategory === '乘法' ? 'active' : ''}}" 
+        data-category="乘法" 
+        bindtap="handleCategoryChange"
+        >
+        乘法
+        </view>
+        <view 
+        class="category-item {{currentCategory === '除法' ? 'active' : ''}}" 
+        data-category="除法" 
+        bindtap="handleCategoryChange"
+        >
+        除法
+        </view>
+        <view 
+        class="category-item {{currentCategory === '混合' ? 'active' : ''}}" 
+        data-category="混合" 
+        bindtap="handleCategoryChange"
+        >
+        混合
+        </view>
+    </scroll-view>
+
+    <!-- 全选/清空按钮 -->
+    <view class="select-buttons">
+        <view class="left">已选择:<span>{{selectedCount}}题</span></view>
+        <view class="right">
+            <view bindtap="selectAll" class="buttons">全选</view>
+            <view bindtap="clearAll" class="buttons">清空</view>
+        </view>
+    </view>
+
+    <!-- 题目列表 -->
+    <block wx:for="{{questions}}" wx:key="id" class="question-box">
+    <view 
+        class="question-item {{ item.selected  ? 'selected' : ''}}" 
+        bindtap="handleQuestionClick" 
+        data-id="{{item.id}}"
+    >
+
+
+        <text>{{item.question}}</text>
+        <text class="category-label">{{item.category}}</text>
+        <text>错误{{item.errors}}次 {{item.date}}</text>
+    </view>
+    </block>
+
+
+    <!-- 开始训练按钮 -->
+    <button bindtap="startTraining" class="start-btn">
+        开始专项训练 ({{selectedCount}}题)
+    </button>
+    </view>
+    <view class="test-container"  wx:if="{{isPractice}}">
+  <view class="progress-bar">
+    <view class="progress-fill" style="width: {{currentQuestionIndex * (100 / selectedCount)}}%"></view>
+  </view>
+  
+  <view class="test">
+    <view class="test-text">第{{currentQuestionIndex}}题/剩余{{selectedCount - currentQuestionIndex}}题</view>
+
+    <view class="current-question" wx:if="{{!isComplete}}">
+      <text class="question-text">{{currentQuestion.question}}</text>
+      <input 
+        class="answer-input" 
+        type="number" 
+        placeholder="请输入答案" 
+        value="{{userAnswers[currentQuestion.id] || ''}}" 
+        bindinput="onAnswerInput"
+      />
+    </view>
+
+    <view class="result-tip" wx:if="{{showResult}}">
+      <text class="{{resultType}}">{{resultMessage}}</text>
+      <text wx:if="{{!isComplete}}">正确答案：{{currentQuestion.correctAnswer}}</text>
+    </view>
+
+    <image 
+      wx:if="{{isComplete}}" 
+      src="/assets/gif/celebration.gif" 
+      mode="widthFix" 
+      class="gif-image"
+    ></image>
+    <view wx:if="{{isComplete}}" class="complete-tip">
+      <text>全部题目完成！</text>
+    </view>
+
+    <view class="button-group">
+      <button 
+        class="next-btn" 
+        wx:if="{{!isComplete}}" 
+        bindtap="checkAnswer"
+      >
+        {{isChecking ? '出题...' : '提交答案'}}
+      </button>
+    </view>
+  </view>
+
+  <view class="test-detail">
+    <view class="test-detai2">
+      <view class="detail-title">
+        <text>当前进度</text>
+      </view>
+      <view class="detail-label">
+        <text class="detail-sum">总进度</text>
+        <text>{{currentQuestionIndex}}/{{selectedCount}}</text>
+      </view>
+      <view class="detail-label">
+        <text>本次正确</text>
+        <text class="detail-value">{{correctCount}}题</text>
+      </view>
+      <view class="detail-label">
+        <text>本次错误</text>
+        <text class="detail-value">{{errorCount}}题</text>
+      </view>
+    </view>
+  </view>
+</view>
+</view>

@@ -50,7 +50,7 @@
       <text>每日练习</text>
     </view>
     <view class="section-desc">已完成今日 0/10 题，坚持练习获得额外奖励！</view>
-    <button bindtap="startDailyPractice" class="start-daily-practice-btn" style="background-color: #007AFF; color: white;">开始每日练习</button>
+    <button bindtap="startDailyPractice" class="start-daily-practice-btn" style="background-color: #007AFF; color: white;" >开始每日练习</button>
   </view>
 
   <!-- 个性化学习计划部分 -->
@@ -61,10 +61,10 @@
     </view>
     <view class="section-desc">根据您的学习情况，我们为您推荐以下专题训练</view>
     <view class="plan-item">
-      <view class="plan-item-content">加法运算专项</view>
+      <view class="plan-item-content"  bindtap="custom" data-value="false">加法运算专项</view>
     </view>
     <view class="plan-item">
-      <view class="plan-item-content">连加连减专项</view>
+      <view class="plan-item-content" bindtap="custom" data-value="ture" >连加连减专项</view>
     </view>
   </view>
 </view>

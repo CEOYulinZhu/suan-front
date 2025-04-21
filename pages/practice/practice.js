@@ -28,6 +28,9 @@ Page({
         title: '进入错题训练',
         icon: 'none'
       });
+      wx.navigateTo({
+        url: '/pages/wrongQuestionTraining/wrongQuestionTraining'
+      });
       // 后续可添加跳转到错题训练页面等实际逻辑
     },
     // 选择闯关模式
@@ -47,6 +50,22 @@ Page({
         title: '开始每日练习',
         icon: 'none'
       });
+      wx.navigateTo({
+        url: '/pages/practice-daily/practice-daily'
+      });
       // 后续可添加加载每日练习题目等实际逻辑
-    }
+    },
+    custom: function(e) {
+        const value=e.currentTarget.dataset.value;
+
+        wx.showToast({
+          title: '个性化',
+          icon: 'none'
+        });
+        wx.navigateTo({
+          url: `/pages/customPractice/customPractice?value=${value}`
+        });
+        // 后续可添加加载每日练习题目等实际逻辑
+      },
+    
   });

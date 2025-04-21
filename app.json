@@ -21,7 +21,10 @@
     "pages/user-profile-detail/user-profile-detail",
     "pages/basicPractice/basicPractice",
     "pages/timedChallenge/timedChallenge",
-    "pages/levelPractice/levelPractice"
+    "pages/levelPractice/levelPractice",
+    "pages/practice-daily/practice-daily",
+    "pages/customPractice/customPractice",
+    "pages/wrongQuestionTraining/wrongQuestionTraining"
   ],
   "window": {
     "navigationBarTextStyle": "black",

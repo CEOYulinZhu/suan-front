@@ -1,0 +1,162 @@
+<!--pages/customPractice/customPractice.wxml-->
+<view class="container">
+    <!-- 练习部分 -->
+    <view wx:if="{{practice}}" class="test-container">
+        <view class="progress-bar">
+            <view class="progress-fill" style="width: {{currentQuestionIndex%count*10}}%"></view>
+        </view>
+        <view class="test">
+                <view class="test-text" wx:if="{{currentQuestionIndex!=count}}">第{{currentQuestionIndex+1}}题/剩余{{count-currentQuestionIndex-1}}题</view>
+
+            
+            <view class="current-question" wx:if="{{MultipleAdditions && currentQuestionIndex < count}}">
+                <text class="question-text">{{currentQuestion.num1}} {{currentQuestion.operator}} {{currentQuestion.num2}} {{currentQuestion.operator2}} {{currentQuestion.num3}}= </text>
+                <input 
+                class="answer-input" 
+                type="number" 
+                placeholder="请输入答案" 
+                value="{{currentQuestion.userAnswer}}" 
+                bindinput="onAnswerInput"
+                />
+            </view>
+
+        <view class="result-tip" wx:if="{{showResult}}">
+            <text class="{{resultType}}">{{resultMessage}}</text>
+            <text wx:if="{{!isComplete}}">正确答案：{{currentQuestion.correctAnswer}}</text>
+        </view>
+                <image 
+                wx:if="{{isComplete}}" 
+                src="/assets/gif/celebration.gif" 
+                mode="widthFix" 
+                class="gif-image"
+                ></image>
+                <view wx:if="{{isComplete}}" class="complete-tip">
+                    <text>全部题目完成！</text>
+                    
+                </view>
+            <view class="button-group">
+                <button 
+                class="next-btn" 
+                wx:if="{{!isComplete}}" 
+                bindtap="checkAnswer"
+                >
+                {{isChecking ? '出题...' : '提交答案'}}
+                </button>
+
+                
+                 <view class="next-time" bindtap="nextTime"  wx:if="{{currentQuestionIndex!=count}}">
+                    暂时离开
+                </view>
+                <view class="next-day" bindtap="nextTime"  wx:if="{{currentQuestionIndex===count}}">
+                    返回
+                </view>
+            </view>
+        </view>        
+        <view class="test-detail">
+            <view class="test-detai2">
+                <view class="detail-title">
+                <text >当前进度</text>
+                </view>
+                <view class="detail-label">
+                <text lass="detail-sum">总进度</text>
+                <text >{{currentQuestionIndex}}/{{count}}</text>
+                </view>
+                <view class="detail-label">
+                <text>本次正确</text>
+                <text class="detail-value">{{correctCount}}题</text>
+                </view>
+                <view class="detail-label">
+                <text>本次错误</text>
+                <text class="detail-value">{{errorCount}}题</text>
+            
+                </view>
+            </view>
+            
+        </view>
+
+        
+    </view>
+    
+    <!-- 自定义部分 -->
+    <view class="custom" wx:if="{{!practice}}">
+        <view class="title">
+            <image src="../../assets/icons/SetOutline_32px.svg" class="function-icon" style="color: #87ceeb;"></image>
+            <view class="function-label">练习设置</view>
+        </view>
+        <!-- 运算选择 -->
+        <view class="setting-item">
+            <view class="item-label">运算类型</view>
+            <checkbox-group class="operation-type" bindchange="selectTypes">
+            <!-- 加法 -->
+            <label class="op-btn {{defaultAdd ? 'active' : ''}}">
+            <checkbox value="add" checked="{{defaultAdd}}" hidden/>加法
+            </label>
+            <!-- 减法 -->
+            <label class="op-btn {{defaultSubtract? 'active' : ''}}">
+            <checkbox value="subtract" checked="{{defaultSubtract}}" hidden/>减法
+            </label>
+            <!-- 乘法 -->
+            <label class="op-btn {{defaultMultiply ? 'active' : ''}}">
+            <checkbox value="multiply" hidden/>乘法
+            </label>
+            <!-- 除法 -->
+            <label class="op-btn {{defaultDivide ? 'active' : ''}}">
+            <checkbox value="divide" hidden/>除法
+            </label>
+            <!-- 混合加减 -->
+            <label class="op-btn {{defaultMix ? 'active' : ''}}">
+            <checkbox value="mix" hidden/>混合加减
+            </label>
+            </checkbox-group>
+        </view>
+        <!-- 题目数量选择 -->
+        <text class="counterTitile">题目数量</text>
+        <view class="counter">
+            <button bindtap="decrement" class="change-button">-</button>
+            <text class="counterSelect">{{count}}</text>
+            <button bindtap="increment" class="change-button">+</button>
+        </view>
+            
+        <!-- 位数选择 -->
+        <text class="counterTitile">数字范围</text>
+        <view class="digit-select">
+            <radio-group bindchange="handlDeigitChange" value="1-10">
+            <label class="radio-label">
+                <radio value="1-10" /> 个位数 (1-10)
+            </label>
+            <label class="radio-label">
+                <radio value="1-100" /> 两位数 (1-100)
+            </label>
+            <label class="radio-label">
+                <radio value="1-1000" /> 三位数 (1-1000)
+            </label>
+        </radio-group>
+        </view>
+        
+        <!-- 更多选项 -->
+        <view class="moreCustom">
+            <view class="switch-item">
+                <text>允许负数结果</text>
+                <switch checked="{{allowNegative}}"></switch>
+            </view>
+            <view class="switch-item">
+                <text>启用计时器</text>
+                <switch checked="{{enableTimer}}" bindchange="handleTimerSwitch"></switch>
+            </view>
+            <view class="counter" wx:if="{{enableTimer}}">
+                <button bindtap="addTime" class="change-button">-</button>
+            <text class="counterSelect">{{setTime}}</text>
+            <button bindtap="incTime" class="change-button">+</button>
+        </view>
+        </view>
+
+
+
+
+    </view>
+
+    <!-- 底部按钮 -->
+    <view wx:if="{{!practice}}">
+        <view class="start-practice" bindtap="practice">开始练习</view>
+    </view>    
+</view>
