@@ -80,7 +80,7 @@ Page({
   toPracticeDetail(e) {
     const index = e.currentTarget.dataset.index;
     wx.navigateTo({
-      url: '/pages/practice-detail/practice-detail?type=${index}',
+      url: `/pages/practice-detail/practice-detail?type=${index}`,
     })
   },
 
