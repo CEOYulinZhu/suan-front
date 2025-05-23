@@ -67,6 +67,7 @@ Page({
   switchTab: function(e) {
     const tab = e.currentTarget.dataset.tab;
     this.setData({
+      activeTab: tab,
       currentPage: tab
     });
   },

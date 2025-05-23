@@ -12,8 +12,15 @@
   height: calc(100vh - 50px); /* 调整页面高度，减去导航栏高度 */
   background-color: #fff;
   border-radius: 12px;
-  overflow: auto;
-  padding: 15px;
+  overflow: hidden;
+  padding: -10px;
+  box-sizing: border-box;
+}
+.page-content {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -43,6 +50,7 @@
 .nav-item.active {
   color: #1890ff;
   border-bottom: 2px solid #1890ff;
+  font-weight: bold;
 }
 
 .nav-item:not(.active) {
@@ -178,7 +186,7 @@
 
 /* 可视化学习页面 */
 .visualization-container {
-  background-color: #fff;
+  background-color: rgba(255, 254, 254, 0.932);
   border-radius: 12px;
   overflow: hidden;
   text-align: center;
@@ -703,8 +711,18 @@
 }
 
 .btn-continue {
+  width: 50px; /* 调整按钮宽度 */
+  height: 30px; /* 调整按钮高度 */
   background-color: #1890ff;
   color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-start {
