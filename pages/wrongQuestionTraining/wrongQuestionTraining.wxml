@@ -1,5 +1,8 @@
 <view class="container">
     <view class="question-select" wx:if="{{!isPractice}}">
+    <view class="detail-title">
+        <text>错题分类</text>
+    </view>
     <!-- 横向分类筛选器 -->
     <scroll-view class="category-scroll" scroll-x>
         <view 
@@ -56,25 +59,36 @@
     </view>
 
     <!-- 题目列表 -->
-    <block wx:for="{{questions}}" wx:key="id" class="question-box">
-    <view 
-        class="question-item {{ item.selected  ? 'selected' : ''}}" 
-        bindtap="handleQuestionClick" 
-        data-id="{{item.id}}"
-    >
+     <block wx:for="{{questions}}" wx:key="id" class="question-box">
+    <view class="question-item">
+        <view class="circle" bindtap="handleQuestionClick" data-id="{{item.id}}"
+        >
+        <!-- 勾勾文本 -->
+            <text wx:if="{{ item.selected ? 'selected' : ''}}" class="checkmark">✅</text>
+        </view>
 
-
-        <text>{{item.question}}</text>
-        <text class="category-label">{{item.category}}</text>
-        <text>错误{{item.errors}}次 {{item.date}}</text>
+            <!-- 右侧内容区域 -->
+        <view class="right-content">
+        <!-- 右侧上部框 -->
+        <view class="right-top-box">{{item.question}}</view>
+        <!-- 右侧下部虚线框 -->
+        <view class="right-bottom-box">
+            <!-- 虚线框内部内容 -->
+            <view class="dashed-box"></view>
+            <text class="category-label">{{item.category}}</text>
+            <text>错误{{item.errors}}次 {{item.date}}</text>
+        </view>
+        </view>
+       
+        
     </view>
     </block>
 
 
-    <!-- 开始训练按钮 -->
-    <button bindtap="startTraining" class="start-btn">
-        开始专项训练 ({{selectedCount}}题)
-    </button>
+        <!-- 开始训练按钮 -->
+        <view bindtap="startTraining" class="start-btn">
+            开始专项训练 ({{selectedCount}}题)  
+        </view>
     </view>
     <view class="test-container"  wx:if="{{isPractice}}">
   <view class="progress-bar">

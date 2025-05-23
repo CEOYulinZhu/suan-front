@@ -18,6 +18,7 @@
     height: 80rpx;
     overflow-x: auto;
     white-space: nowrap;
+    margin-top: 20rpx;
     margin-bottom: 40rpx;
   }
   
@@ -72,7 +73,7 @@
   .question-item {
     display: flex;
     align-items: center;
-    padding: 32rpx;
+    padding: 10rpx;
     background-color: white;
     border-radius: 20rpx;
     margin-bottom: 24rpx;
@@ -81,11 +82,6 @@
   }
 
   
-  .question-item.selected {
-    background-color:#BBFFFF;
-    transform: scale(1.02);
-    box-shadow: 0 4rpx 16rpx #AEEEEE;
-  }
   
   .category-label {
     display: inline-block;
@@ -98,12 +94,17 @@
   }
   
   .start-btn {
+    width: 100%;
+    height: 50px;
     margin-top: 60rpx;
-    font-size: 34rpx;
+    font-size: 45rpx;
     color: white;
+    justify-content: center;
+    display: flex;
+    align-items: center;
     background-color: #ff9900;
     border: none;
-    border-radius: 40rpx;
+    border-radius: 20rpx;
     box-shadow: 0 8rpx 24rpx rgba(255, 153, 0, 0.2);
   }
 
@@ -235,4 +236,58 @@
   
   .detail-value {
     color: #333;
+  }
+
+  /* 圆圈样式 */
+.circle {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border: 2px solid #e7f1ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .circle:hover {
+    background-color: #E6F7FF;
+  }
+  
+  .circle.selected {
+    background-color: #1677ff;
+    border-color: #1677ff;
+  }
+  
+  /* 勾勾样式 */
+  .checkmark {
+    color: white;   
+    font-size: 33px;
+    margin-top: -3px ;
+  }
+  
+  
+  /* 右侧内容区域样式 */
+  .right-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 右侧上部框样式 */
+  .right-top-box {
+    height: 15px;
+    border: 1px ;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* 右侧下部虚线框样式 */
+  .right-bottom-box {
+    flex: 1;
+    border: 1px ;
+    padding: 5px;
   }

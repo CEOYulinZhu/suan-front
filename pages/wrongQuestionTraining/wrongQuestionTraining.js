@@ -15,9 +15,10 @@ Page({
       questions: [], // 过滤后的题目列表（用于渲染）
       selectedIds: [], // 存储已选题目ID（唯一标识，避免索引问题）
       selectedCount: 0 ,// 已选题目数量
+      isChecked: false,//园框
 
-      isPractice:false,
-      currentQuestionIndex: 1,
+    isPractice:false,
+    currentQuestionIndex: 1,
     correctCount: 0,
     errorCount: 0,
     showResult: false,
@@ -222,6 +223,13 @@ handleQuestionClick(event) {
         }
       }, 1000);
     }, 1000);
+  },
+
+   // 切换勾勾状态
+   toggleCheck() {
+    this.setData({
+      isChecked: !this.data.isChecked
+    });
   },
 
   });
