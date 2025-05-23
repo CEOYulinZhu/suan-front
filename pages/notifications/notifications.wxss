@@ -62,14 +62,14 @@
   background-color: #e6f7ff; /* 淡蓝色背景 */
   display: flex;
   align-items: center;
-  padding: 15px;
+  padding-left: 15px;
 }
 
 .read-bg {
   background-color: white; /* 淡蓝色背景 */
   display: flex;
   align-items: center;
-  padding: 15px;
+  padding-left: 15px;
 }
 
 .red-dot {
@@ -83,6 +83,8 @@
 }
 
 .icon {
+  margin-top: 15px;
+  margin-bottom: 15px;
   width: 100%;
   height: 100%;
   position: relative;
@@ -94,6 +96,7 @@
 
 .title {
   font-size: 16px;
+  margin-top: 15px;
   margin-bottom: 5px;
   overflow:hidden;
   white-space:nowrap;
@@ -108,6 +111,7 @@
 }
 
 .desc {
+  margin-bottom: 15px;
   font-size: 14px;
   color: #666;
   overflow:hidden;
@@ -143,10 +147,9 @@
 
 .delete-btn{
   position: relative;
-  padding: 20rpx 30rpx;
+  padding: 27px 40rpx;
   background-color: red;
   color: white;
-  border-radius: 20rpx;
 }
 
 .no-message-tip {
