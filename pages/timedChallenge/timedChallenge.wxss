@@ -1,7 +1,11 @@
 /* pages/timedChallenge/timedChallenge.wxss */
 /* 计时挑战相关样式 */
 .container {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(-90px + 100vh);
   }
   
   .title {
@@ -17,14 +21,23 @@
   
   .start-btn,
   .submit-btn,
-  .retry-btn,
-  .return-btn {
+  .retry-btn{
     display: block;
     width: 150px;
     margin: 0 auto;
     padding: 10px;
     background-color: #007AFF;
     color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  .return-btn {
+    display: block;
+    width: 150px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #e7eaee;
+    color: rgb(17, 16, 16);
     border: none;
     border-radius: 5px;
   }
@@ -71,7 +84,11 @@
     border-radius: 5px;
     box-sizing: border-box;
   }
-  
+  .modefhead{
+    align-items: center;
+    height: 50rpx;
+    width: 100%;
+  }
   .real-time-statistics {
     margin-top: 20px;
   }
@@ -79,6 +96,7 @@
   .stat-item {
     margin-bottom: 10px;
   }
+  
   
   .finish-text {
     text-align: center;
@@ -132,4 +150,14 @@
   .result-text {
     flex: 1;
     text-align: right;
+  }
+  .finish-icon {
+    margin: 20rpx auto;
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    background-color: #e6f4ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }

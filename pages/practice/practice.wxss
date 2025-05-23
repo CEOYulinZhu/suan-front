@@ -17,10 +17,12 @@
     margin-bottom: 20rpx;
   }
   .section-header {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-    font-size: 32rpx;
-    margin-bottom: 10rpx;
+    gap: 8px;
   }
 
     .recommend{
@@ -54,7 +56,20 @@
     box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
   }
   .mode-icon {
-   background-color: black;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 32px;
+  }
+  .modehead{
+    height: 50rpx;
+    width: 50rpx;
+    
   }
   .modeicons{
     height: 50rpx;
@@ -68,7 +83,7 @@
   .mode-desc {
     position: relative;
     font-size: 28rpx;
-    color: #999;
+    color: rgb(251, 253, 255);
   }
   .recommend-tag {
       position: absolute;
@@ -79,7 +94,7 @@
   /* 每日练习部分样式 */
   .daily-practice-section {
     background-color: #fff;
-    border-radius: 10rpx;
+    border-radius: 20rpx;
     padding: 80rpx;
     margin-bottom: 20rpx;
   }
@@ -87,15 +102,16 @@
     width: 100%;
     padding: 15rpx;
     border: none;
-    border-radius: 5rpx;
+    border-radius: 20rpx;
     font-size: 32rpx;
   }
   
   /* 个性化学习计划部分样式 */
   .personalized-study-plan-section {
     background-color: #fff;
-    border-radius: 10rpx;
-    padding: 20rpx;
+    border-radius: 20rpx;
+    padding: 80rpx;
+    margin-bottom: 20rpx;
   }
   .plan-item {
     border: 1px solid #ccc;

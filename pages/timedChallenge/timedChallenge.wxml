@@ -1,9 +1,9 @@
 <!--pages/timedChallenge/timedChallenge.wxml-->
-<text>pages/timedChallenge/timedChallenge.wxml</text>
 <view class="container">
   <!-- 初始页面 -->
   <view wx:if="{{!isCountdown &&!isAnswering &&!isFinished}}">
-    <view class="title">计时挑战</view>
+    <icon type="list" size="20"></icon>
+      <image src="/assets/icons/timedchallengelogeOutline_32px.svg" class="modefhead"></image>
     <view class="description">计时挑战模式将在有限时间内，测试你的计算速度和准确性</view>
     <button class="start-btn" bindtap="startChallenge">开始挑战</button>
   </view>
