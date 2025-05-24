@@ -2,17 +2,17 @@
   <!-- 声音效果开关 -->
   <view class="setting-item">
     <view class="label">声音效果</view>
-    <switch class="switch" bindchange="handleSoundEffectChange" checked="{{soundEffectChecked}}"></switch>
+    <switch class="switch" bindchange="handleSoundEffectChange" color="#2196F3" checked="{{soundEffectChecked}}" ></switch>
   </view>
   <!-- 震动反馈开关 -->
   <view class="setting-item">
     <view class="label">震动反馈</view>
-    <switch class="switch" bindchange="handleVibrationFeedbackChange" checked="{{vibrationFeedbackChecked}}"></switch>
+    <switch class="switch" bindchange="handleVibrationFeedbackChange" color="#2196F3" checked="{{vibrationFeedbackChecked}}"></switch>
   </view>
   <!-- 每日提醒开关 -->
   <view class="setting-item">
     <view class="label">每日提醒</view>
-    <switch class="switch" bindchange="handleDailyReminderChange" checked="{{dailyReminderChecked}}"></switch>
+    <switch class="switch" bindchange="handleDailyReminderChange" color="#2196F3" checked="{{dailyReminderChecked}}"></switch>
   </view>
 
   <view class="section-title">练习设置</view>

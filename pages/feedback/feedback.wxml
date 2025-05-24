@@ -1,8 +1,22 @@
 <view class="back">
 <view class="feedback-container">
   <view class="header">
-    <view class="{{currentTab === 'feedback'? 'active' : 'non-active'}}" bindtap="navigateToFeedback">意见反馈</view>
-    <view class="{{currentTab === 'faq'? 'active' : 'non-active'}}" bindtap="navigateToFAQ">常见问题</view>
+  <view class="{{currentTab === 'feedback'? 'active' : 'non-active'}}" bindtap="navigateToFeedback">
+    <!-- 意见反馈图标：选中时显示激活态，非选中时显示非激活态 -->
+    <image 
+      src="{{currentTab === 'feedback' ? '../../assets/icons/MessageOutline_32px.svg' : '../../assets/icons/NoactiveMessageOutline_32px.svg'}}" 
+      class="head-picture"  
+    ></image>
+    意见反馈
+  </view>
+  <view class="{{currentTab === 'faq'? 'active' : 'non-active'}}" bindtap="navigateToFAQ">
+    <!-- 常见问题图标：选中时显示激活态，非选中时显示非激活态 -->
+    <image 
+      src="{{currentTab === 'faq' ? '/assets/icons/QuestionCircleOutline_32px.svg' : '/assets/icons/NoactiveQuestionOutline_32px.svg'}}" 
+      class="head-picture">
+    </image>
+      常见问题
+    </view>
   </view>
   <view class="content" wx:if="{{currentTab === 'feedback'}}">
     <view class="section">

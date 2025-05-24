@@ -27,6 +27,7 @@
 .switch {
   transform: scale(0.8);
 }
+
 .navigate-arrow {
   width: 20px;
   height: 20px;

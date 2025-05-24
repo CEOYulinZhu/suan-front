@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl: '/assets/bar/profile_32px.png',
+    avatarUrl: '/assets/bar/headpicture.png',
     name: '小明',
     class: '三年级二班',
     phone: '138****1234',

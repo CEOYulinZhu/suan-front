@@ -26,6 +26,12 @@
   justify-content: center;
   transition: 0.3s;
 }
+.head-picture {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+
 .non-active{
   flex: 110%;
   padding: 12px 0px;
@@ -41,6 +47,8 @@
   justify-content: center;
   transition: 0.3s;
 }
+
+
 .content {
   padding: 40rpx;
   background: white;
@@ -69,6 +77,8 @@
   display: flex;
 }
 .star {
+  margin-top: 15rpx;
+  margin-left: 15rpx;
   width: 48rpx; /* 加大星星宽度 */
   height: 48rpx; /* 加大星星高度 */
   cursor: pointer;
