@@ -24,12 +24,7 @@
             <text class="{{resultType}}">{{resultMessage}}</text>
             <text wx:if="{{!isComplete}}">正确答案：{{currentQuestion.correctAnswer}}</text>
         </view>
-                <image 
-                wx:if="{{isComplete}}" 
-                src="/assets/gif/celebration.gif" 
-                mode="widthFix" 
-                class="gif-image"
-                ></image>
+               
                 <view wx:if="{{isComplete}}" class="complete-tip">
                     <text>全部题目完成！</text>
                     
@@ -55,7 +50,7 @@
         <view class="test-detail">
             <view class="test-detai2">
                 <view class="detail-title">
-                <text >当前进度</text>
+                <text >练习统计</text>
                 </view>
                 <view class="detail-label">
                 <text lass="detail-sum">总进度</text>
@@ -121,16 +116,16 @@
         <text class="counterTitile">数字范围</text>
         <view class="digit-select">
             <radio-group bindchange="handlDeigitChange" value="1-10">
-            <label class="radio-label">
-                <radio value="1-10" /> 个位数 (1-10)
-            </label>
-            <label class="radio-label">
-                <radio value="1-100" /> 两位数 (1-100)
-            </label>
-            <label class="radio-label">
-                <radio value="1-1000" /> 三位数 (1-1000)
-            </label>
-        </radio-group>
+                <label class="radio-label">
+                    <radio color="blue" value="1-10" /> 个位数 (1-10)
+                </label>
+                <label class="radio-label">
+                    <radio  color="blue" value="1-100" /> 两位数 (1-100)
+                </label>
+                <label class="radio-label">
+                    <radio  color="blue" value="1-1000" /> 三位数 (1-1000)
+                </label>
+            </radio-group>
         </view>
         
         <!-- 更多选项 -->

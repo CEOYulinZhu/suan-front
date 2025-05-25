@@ -10,8 +10,17 @@ Page({
         { id: 6, question: '27 × 3 = ?', category: '乘法', errors: 2, date: '2025-04-10', correctAnswer: 81 },
         { id: 7, question: '84 ÷ 6 = ?', category: '除法', errors: 3, date: '2025-04-15', correctAnswer: 14 },
         { id: 8, question: '96 ÷ 8 = ?', category: '除法', errors: 1, date: '2025-04-20', correctAnswer: 12 },
-        { id: 9, question: '18 + 5 × 3 = ?', category: '混合', errors: 4, date: '2025-04-05', correctAnswer: 33 },
-        { id: 10, question: '50 - 24 ÷ 3 = ?', category: '混合', errors: 2, date: '2025-04-09', correctAnswer: 38 }],
+        { id: 9, question: '18 + 5 × 3 = ?', category: '混合运算', errors: 4, date: '2025-04-05', correctAnswer: 33 },
+        { id: 10, question: '50 - 24 ÷ 3 = ?', category: '混合运算', errors: 2, date: '2025-04-09', correctAnswer: 38 }],
+        categoryColor: [
+            { category: '加法', color: '#1677ff' },
+            { category: '减法', color: '#52c41a' },
+            { category: '乘法', color: '#fa8c16' },
+            { category: '除法', color: '#eb2f96' },
+            { category: '混合运算', color: '#722ed1' }
+          ],
+          categoryColorMap: {} ,
+
       questions: [], // 过滤后的题目列表（用于渲染）
       selectedIds: [], // 存储已选题目ID（唯一标识，避免索引问题）
       selectedCount: 0 ,// 已选题目数量
@@ -28,31 +37,35 @@ Page({
     isChecking: false,
     currentQuestion: {},
     userAnswers: {}, // 存储用户的答案
-
+    
+    showEndModal: false,
+    answerRecords: [], // 新增：答题记录数组
     },
   
     onLoad() {
-      // 初始化时加载所有题目
-      this.setData({
-        questions: this.data.allQuestions,
-      });
       this.updateSelectedStatus();
-
+      //题目类型map
+      const colorMap = this.data.categoryColor.reduce((acc, item) => {
+        acc[item.category] = item.color;
+        return acc;
+      }, {});
+       // 初始化时加载所有题目
+       this.setData({
+        questions: this.data.allQuestions,
+        categoryColorMap: colorMap
+      });
     },
 
  
   // 根据 selectedIds 更新 questions 中各项的 selected 字段
   updateSelectedStatus() {
-    const updatedQuestions = this.data.questions.map(item => {
-      return {
+    const { selectedIds, questions } = this.data;
+    const updatedQuestions = questions.map(item => ({
         ...item,
-        selected: this.data.selectedIds.indexOf(item.id) !== -1
-      }
-    });
-    this.setData({
-      questions: updatedQuestions
-    });
-  },
+        selected: selectedIds.includes(item.id) // 直接判断ID是否在已选列表
+    }));
+    this.setData({ questions: updatedQuestions });
+},
 // 题目点击事件处理函数
 handleQuestionClick(event) {
     // 获取点击的题目ID，并转换为数字类型
@@ -84,41 +97,43 @@ handleQuestionClick(event) {
     // 分类切换处理
     handleCategoryChange(e) {
         const category = e.currentTarget.dataset.category;
-        let filteredQuestions;
-        if (category === 'all') {
-          filteredQuestions = this.data.allQuestions;
-        } else {
-          filteredQuestions = this.data.allQuestions.filter(item => item.category === category);
-        }
-        // 保留当前分类中存在的已选题目ID
-        const retainedIds = filteredQuestions.map(item => item.id).filter(id => this.data.selectedIds.includes(id));
+        let filteredQuestions = category === 'all' 
+            ? this.data.allQuestions 
+            : this.data.allQuestions.filter(item => item.category === category);
+        
         this.setData({
-          currentCategory: category,
-          questions: filteredQuestions,
-          selectedIds: retainedIds,
-          selectedCount: retainedIds.length
+            currentCategory: category,
+            questions: filteredQuestions,
+            selectedCount: this.data.selectedIds.length, // 全局已选数量
+            selectedIds: this.data.selectedIds, // 保留所有已选ID（关键：不丢失选中状态）
+            totalQuestions: this.data.allQuestions.length
+        }, () => {
+            // 分类切换后，重新计算每个题目的选中状态（同步 selectedIds 和 questions.selected）
+            this.updateSelectedStatus();
         });
-      },
+        this.toggleCheck();
+    },
     
        // 全选功能
-    selectAll() {
-      this.setData({
-        selectedIds: this.data.questions.map(item => item.id),
-        selectedCount: this.data.questions.length
-      });
-      const { selectedIds } = this.data;
-      console.log(selectedIds);
-      this.updateSelectedStatus();
-    },
+       selectAll() {
+        const currentCategoryQuestions = this.data.questions; // 当前分类题目
+        const currentIds = currentCategoryQuestions.map(item => item.id);
+        const newSelectedIds = [...new Set([...this.data.selectedIds, ...currentIds])]; // 去重合并
+        this.setData({ 
+          selectedIds: newSelectedIds, 
+          selectedCount: newSelectedIds.length 
+        });
+        this.updateSelectedStatus(); // 同步状态
+      },
   
     // 清空功能
     clearAll() {
-      this.setData({
-        selectedIds: [],
-        selectedCount: 0
-      });
-      this.updateSelectedStatus();
-    },
+        this.setData({ 
+          selectedIds: [], 
+          selectedCount: 0 
+        });
+        this.updateSelectedStatus();
+      },
 
   
     // 开始训练（可在此处添加跳转逻辑）
@@ -173,21 +188,31 @@ handleQuestionClick(event) {
       });
       return;
     }
-
+  
     this.setData({ isChecking: true });
     setTimeout(() => {
       const questionId = this.data.selectedIds[currentQuestionIndex - 1];
       const userAnswer = this.data.userAnswers[questionId];
       const currentQuestion = this.getSelectedQuestion(currentQuestionIndex);
       let isCorrect = false;
-
+  
       if (userAnswer !== null && userAnswer !== undefined && userAnswer !== '') {
         const userAnswerValue = parseFloat(userAnswer);
         if (!isNaN(userAnswerValue)) {
           isCorrect = userAnswerValue === currentQuestion.correctAnswer;
         }
       }
-
+  
+      // 记录答题情况到answerRecords
+      const record = {
+        id: currentQuestion.id,
+        question: currentQuestion.question,
+        userAnswer: userAnswer,
+        correctAnswer: currentQuestion.correctAnswer,
+        isCorrect: isCorrect
+      };
+      this.data.answerRecords.push(record);
+  
       if (isCorrect) {
         this.setData({
           correctCount: this.data.correctCount + 1,
@@ -201,12 +226,13 @@ handleQuestionClick(event) {
           resultType: 'error'
         });
       }
-
+  
       this.setData({
         showResult: true,
-        isChecking: false
+        isChecking: false,
+        answerRecords: this.data.answerRecords // 更新答题记录
       });
-
+  
       setTimeout(() => {
         if (currentQuestionIndex < selectedCount) {
           this.setData({
@@ -217,18 +243,73 @@ handleQuestionClick(event) {
         } else {
           this.setData({
             isComplete: true,
-            resultMessage: '恭喜你已完成所有题目！',
+            resultMessage: '专项训练完成！',
             resultType: 'success'
           });
         }
       }, 1000);
     }, 1000);
+    isCorrect = userAnswerValue === currentQuestion.correctAnswer;
   },
 
    // 切换勾勾状态
    toggleCheck() {
     this.setData({
       isChecked: !this.data.isChecked
+    });
+  },
+ // 显示结束确认模态框
+ showEndModal() {
+    this.setData({ showEndModal: true });
+  },
+
+  // 隐藏模态框（取消）
+  hideEndModal() {
+    this.setData({ showEndModal: false });
+  },
+
+  // 显示结束确认模态框（原生）
+  showEndModal() {
+    wx.showModal({
+      title: '提示',
+      content: '确定要结束本次练习吗？',
+      confirmText: '确定',
+      cancelText: '取消',
+      success: (res) => {
+        if (res.confirm) {
+          // 确认结束，执行清空和返回
+          this.endPractice();
+        }
+      }
+    });
+  },
+   // 结束练习逻辑
+   endPractice() {
+    // 清空已选题目和训练数据
+    this.setData({
+      selectedIds: [],
+      selectedCount: 0,
+      isPractice: false, // 切换回题目选择页
+      currentQuestionIndex: 1,
+      correctCount: 0,
+      errorCount: 0,
+      userAnswers: {},
+      isComplete: false,
+      showResult: false,
+    });
+    // 重新加载题目数据（触发 onLoad 初始化）
+    this.onLoad();
+  },
+  handleReturnToWrongQuestions() {
+    // 重定向到错题本页面（当前页面）
+    wx.redirectTo({
+      url: '/pages/wrongQuestionTraining/wrongQuestionTraining' // 当前页面路径
+    });
+  },
+  handleReturnToPractice()  {
+    // 重定向到错题本页面（当前页面）
+    wx.switchTab({
+      url: '/pages/practice/practice' // 当前页面路径
     });
   },
 

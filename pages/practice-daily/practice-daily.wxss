@@ -130,7 +130,16 @@
     display: flex;
     justify-content: space-between;
     padding: 15rpx 0;
+    font-size: 25rpx;
     border-bottom: 1rpx solid #eee;
+    width: 100%;
+  }
+  .reward-item2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 15rpx 0;
+    font-size: 25rpx;
+  
     width: 100%;
   }
   /* 日历样式 */
@@ -292,15 +301,15 @@
      flex-direction: center;
      margin-bottom: 20px;
   }
-  .next-btn {
+  /* .next-btn {
     max-width: 40%;
     height: 80rpx;
-    background-color: #409eff;
+    background-color:#ff4d4f;
     color: white;
     font-size: 32rpx;
     border-radius: 40rpx;
     transition: opacity 0.3s ease;
-  }
+  } */
   .next-time{
     min-width: 40%;
     height: 80rpx;
@@ -322,13 +331,26 @@
     margin: 30rpx 180rpx 1rpx;
   }
 
-  .complete-tip {
-    width: 100%;
-    font-size: 32rpx;
-    color: #666;
-    text-align: center;
-    margin-top: 20rpx;
+  .complete-tip1 {
+    padding:  40rpx;
+    justify-content: center;
+    align-items: center;
   }
+  .complete-tip {
+    padding:  40rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .complete-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .isCompleteOutlin{
+    max-width: 100rpx;
+    max-height: 100rpx;
+}
 
 
 
@@ -365,3 +387,25 @@
   .detail-value {
     color: #333;
   }
+  .button-group{
+    display: flex;
+    justify-content: center;
+}
+.end-practic-button{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .next-btn{
+    width: 200rpx;
+    height: 80rpx;
+    border-radius: 48rpx;
+    background-color:crimson;
+    display: flex;
+    justify-content: center;
+      align-items: center;
+    color: #FFFFFF    ;
+  }
+  

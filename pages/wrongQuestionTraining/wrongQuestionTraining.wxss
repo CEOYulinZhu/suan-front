@@ -84,20 +84,25 @@
   
   
   .category-label {
-    display: inline-block;
+ 
     padding: 4rpx 12rpx;
-    font-size: 28rpx;
+    font-size: 25rpx;
     color: white;
-    background-color: #4a90e2;
+    text-align: center;
+    /* background-color: #4a90e2; */
     border-radius: 20rpx;
     margin-right: 16rpx;
   }
+
+
+
+
   
   .start-btn {
     width: 100%;
     height: 50px;
     margin-top: 60rpx;
-    font-size: 45rpx;
+    font-size: 35rpx;
     color: white;
     justify-content: center;
     display: flex;
@@ -128,7 +133,7 @@
   
   .progress-fill {
     height: 100%;
-    background-color: #ff5252;
+    background-color: #FF9800;
     border-radius: 5rpx;
   }
   
@@ -186,7 +191,7 @@
   }
   .complete-tip {
     width: 100%;
-    font-size: 32rpx;
+    font-size: 28rpx;
     color: #666;
     text-align: center;
     margin-top: 20rpx;
@@ -212,6 +217,13 @@
     margin-top: 10px;
 
 }
+.test-detail2{
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin-top: 10px;
+    padding-bottom: 10rpx;
+}
 .test-detai2{
     margin:15px;
     width: 90%;
@@ -234,6 +246,16 @@
     color: #666;
   }
   
+  .detail-label2 {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    margin-left: 12px;
+    font-size: 28rpx;
+
+  }
+  
   .detail-value {
     color: #333;
   }
@@ -243,7 +265,7 @@
     width: 30px;
     height: 30px;
     margin-right: 10px;
-    border: 2px solid #e7f1ff;
+    border:  solid #e7f1ff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -253,20 +275,19 @@
     overflow: hidden;
   }
   
-  .circle:hover {
+  /* .circle:hover {
     background-color: #E6F7FF;
-  }
+  } */
   
   .circle.selected {
     background-color: #1677ff;
-    border-color: #1677ff;
   }
   
   /* 勾勾样式 */
   .checkmark {
-    color: white;   
-    font-size: 33px;
-    margin-top: -3px ;
+  height: 100rpx;
+   width: 100rpx;
+   filter: invert(100%) grayscale(100%);
   }
   
   
@@ -279,6 +300,8 @@
   
   /* 右侧上部框样式 */
   .right-top-box {
+    color: #999;
+    font-size: 30rpx;
     height: 15px;
     border: 1px ;
     margin-left: 10px;
@@ -287,7 +310,63 @@
   
   /* 右侧下部虚线框样式 */
   .right-bottom-box {
+    color: #999;
     flex: 1;
     border: 1px ;
     padding: 5px;
   }
+.button-group{
+    display: flex;
+    justify-content: center;
+}
+
+  .next-btn{
+      width: 200rpx;
+      height: 80rpx;
+      border-radius: 48rpx;
+      background-color:#FF9800;
+      display: flex;
+      justify-content: center;
+        align-items: center;
+      color: #FFFFFF	;
+  }
+  .end-practic-button{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .isComplete-button-group{
+
+    justify-content: center;
+  }
+  .return-wrongQuestion-button{
+      margin-top: 30rpx;
+      min-height: 80rpx;
+      color: #FFFFFF	;
+      background-color:#FF9800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .return-practic-button{
+    margin-top: 30rpx;
+    margin-bottom: 50rpx;
+    min-height: 80rpx;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.isCompleteOutlin{
+    max-width: 100rpx;
+    max-height: 100rpx;
+}
+.container-Outlin{
+    padding:  40rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

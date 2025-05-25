@@ -55,17 +55,16 @@
             <text class="{{resultType}}">{{resultMessage}}</text>
             <text wx:if="{{!isComplete}}">正确答案：{{currentQuestion.correctAnswer}}</text>
         </view>
-                <image 
-                wx:if="{{isComplete}}" 
-                src="/assets/gif/celebration.gif" 
-                mode="widthFix" 
-                class="gif-image"
-                ></image>
-                <view wx:if="{{isComplete}}" class="complete-tip">
-                    <text>全部题目完成！</text>
+               
+                <view wx:if="{{isComplete}}" class="complete-tip1">
+                    <view class="complete-tip">
+                        <image class="isCompleteOutlin"  src="/assets/icons/isCompleteOutline_32px.svg" ></image>
+                    </view>
                     
+                    <text class="complete-text">每日练习已完成！</text>
                 </view>
-            <view class="button-group">
+            <!-- <view class="button-group">
+
                 <button 
                 class="next-btn" 
                 wx:if="{{!isComplete}}" 
@@ -80,8 +79,17 @@
                 <view class="next-day" bindtap="nextTime"  wx:if="{{currentQuestionIndex===10}}">
                     返回
                 </view>
-            </view>
-        </view>        
+            </view> -->
+            <view class="button-group"    wx:if="{{!isComplete}}"  >
+                <view 
+                    class="next-btn" 
+                    bindtap="checkAnswer"
+                >
+                    {{isChecking ? '出题...' : '提交答案'}}
+                </view>
+                <view class="end-practic-button" bindtap="nextTime">暂时离开</view>
+                </view>
+            </view>        
         <view class="test-detail">
             <view class="test-detai2">
                 <view class="detail-title">
@@ -149,7 +157,7 @@
             <text class="reward-days">连续15天</text>
             <text class="reward-points">金币 +200 + 解锁特殊题库</text>
         </view>
-        <view class="reward-item">
+        <view class="reward-item2">
             <text class="reward-days">连续30天</text>
             <text class="reward-points">金币 +500 + 限定徽章</text>
         </view>

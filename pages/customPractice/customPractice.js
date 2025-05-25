@@ -150,14 +150,14 @@ Page({
     if (MultipleAdditions=='ture') {
  
         for (let i = 0; i < 20; i++) {
-            let num1, num2, num3, operator, operator2;
+            let num1, num2, num3, operator;
             
             do {
               num1 = Math.floor(Math.random() * 1000);
               num2 = Math.floor(Math.random() * 1000);
               num3 = Math.floor(Math.random() * 1000);
               operator = operators[Math.floor(Math.random() * 2)];
-              operator2 = operators[Math.floor(Math.random() * 2)];
+              
               // 验证结果范围
               const isValid = 
                 (operator === '+' && num1 + num2 <= 999) || 
@@ -172,7 +172,6 @@ Page({
               num2,
               num3,
               operator,
-              operator2,
               correctAnswer: operator === '+' ? num1 + num2 + num3 : num1 - num2 - num3,
               userAnswer: '' // 初始化用户答案为空（关键重置字段）
             });
