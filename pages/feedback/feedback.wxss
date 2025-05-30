@@ -1,1 +1,211 @@
-/* pages/ai-tutor/ai-tutor.wxss */
+.back{
+  padding-bottom: 40rpx;
+  background: rgb(245, 245, 245);
+}
+.feedback-container {
+  padding: 20rpx;
+}
+.header {
+  display: flex;
+  margin: 24rpx;
+  gap: 24rpx;
+}
+
+.active {
+  flex: 110%;
+  padding: 12px 0px;
+  text-align: center;
+  background-color: rgb(230, 244, 255);
+  color: rgb(22, 119, 255);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+.head-picture {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+
+.non-active{
+  flex: 110%;
+  padding: 12px 0px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  color: rgb(51, 51, 51);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+
+.content {
+  padding: 40rpx;
+  background: white;
+  border-radius: 24rpx;
+}
+.section {
+  margin-bottom: 20rpx;
+}
+.title {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.counter {
+  text-align: right;
+  color: #999;
+  margin-top: 5rpx;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5rpx;
+}
+.rating {
+  display: flex;
+}
+.star {
+  margin-top: 15rpx;
+  margin-left: 15rpx;
+  width: 48rpx; /* 加大星星宽度 */
+  height: 48rpx; /* 加大星星高度 */
+  cursor: pointer;
+}
+.star image {
+  display: block; /* 确保图片正常显示 */
+  width: 100%;
+  height: 100%;
+}
+.submit {
+  padding-top: 25rpx;
+  width: 100%;
+  height: 80rpx;
+  color: white;
+  text-align: center;
+  border: none;
+  font-size: 40rpx;
+  margin-top: 50rpx;
+  margin-bottom: 20rpx;
+  border-radius: 50rpx;
+}
+.submit.active {
+  background-color: #0066ff; /* 深蓝色 */
+}
+.submit:not(.active) {
+  background-color: #80bdff; /* 浅蓝色 */
+}
+.question {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(26, 26, 26);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+}
+.q {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.a {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.question-circle{
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  margin-right: 10rpx;
+  align-items: center;
+}
+.blue {
+  margin-left: 5rpx;
+  width: 55rpx;
+  height: 55rpx;
+  background-color: #007AFF;
+  color: white;
+}
+.answer-circle{
+  width: 134rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gray {
+  margin: 5rpx;
+  padding: 4rpx;
+  background-color: rgb(145, 143, 143);
+  color: rgb(43, 42, 42);
+}
+.question-text {
+  margin-left: 30rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.answer-text {
+  font-size: 30rpx;
+  color: rgb(77, 77, 77);
+  line-height: 1.6;
+  margin-left: 30rpx;
+  padding-top: 6rpx;
+  display: flex;
+  align-items: flex-start;
+}
+.function-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+.question{
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+.textarea{
+  width: 575rpx;
+  margin-bottom: 20rpx;
+  background: rgb(247, 247, 247);
+  border-radius: 12px;
+  padding: 8px 12px;
+  min-height: 180px;
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 2px 4px inset;
+  border: 1px solid rgb(235, 235, 235);
+  transition: 0.3s;
+}
+.phone-number{
+  margin-top: 40rpx;
+  margin-bottom: 20px;
+  background: rgb(247, 247, 247);
+  border-radius: 12px;
+  padding: 24rpx;
+  height: 50rpx;
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 2px 4px inset;
+  border: 1px solid rgb(235, 235, 235);
+  transition: 0.3s;
+}
+.faq-list{
+  margin-bottom: 20px;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgb(249, 250, 252);
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 2px 8px;
+  transition: 0.3s;
+  border-left: 3px solid rgb(22, 119, 255);
+}

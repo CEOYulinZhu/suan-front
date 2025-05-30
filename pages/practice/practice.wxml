@@ -1,2 +1,73 @@
-<!--pages/practice/practice.wxml-->
-<text>pages/practice/practice.wxml</text>
+
+<view class="container">
+  <!-- 选择练习模式部分 -->
+  <view class="practice-mode-section">
+    <view class="section-header">
+      <icon type="list" size="20"></icon>
+      <image src="/assets/icons/PracticemodOutline_32px.svg" class="modehead"></image>
+      <text>选择练习模式</text>
+    </view>
+    <view class="recommend">
+        <view class="section-desc">根据您的学习需求选择合适的练习模式</view>
+        <view class="recommend-tag" style="background-color: red; color: white; font-size: 10px; border-radius: 5px; padding: 2px 5px;">推荐</view>
+    </view>
+    <view class="practice-mode-list">
+      <view class="mode-item" bindtap="selectBasicPractice" style="background-color: #007AFF; color: white;">
+        <view class="mode-icon">
+          <image src="/assets/icons/BasicpacticeOutline_32px.svg" class="modeicons"></image>
+        </view>
+        <view class="mode-title">基础练习</view>
+        <view class="mode-desc">自由答题，时间不限</view>
+      </view>
+      <view class="mode-item" bindtap="selectTimedChallenge" style="background-color: #4CD964; color: white;">
+        <view class="mode-icon">
+            <image src="/assets/icons/TimedchallengeOutline_32px.svg" class="modeicons"></image>
+        </view>
+        <view class="mode-title">计时挑战</view>
+        <view class="mode-desc">限时回答，提高速度</view>
+    
+      </view>
+      <view class="mode-item" bindtap="selectWrongQuestionTraining" style="background-color: #FF9500; color: white;">
+        <view class="mode-icon">
+            <image src="/assets/icons/WrongchangeOutline_32px.svg" class="modeicons"></image>
+        </view>
+        <view class="mode-title">错题训练</view>
+        <view class="mode-desc">针对性解决薄弱点</view>
+      </view>
+      <view class="mode-item" bindtap="selectLevelMode" style="background-color: #FF3B30; color: white;">
+        <view class="mode-icon">
+            <image src="/assets/icons/LevelpracticeOutline_32px.svg" class="modeicons"></image>
+        </view>
+        <view class="mode-title">闯关模式</view>
+        <view class="mode-desc">逐级挑战，收集成就</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 每日练习部分 -->
+  <view class="daily-practice-section">
+    <view class="section-header">
+      <icon type="edit" size="20"></icon>
+      <image src="/assets/icons/EventpracticeOutline_32px.svg" class="modehead"></image>
+      <text>每日练习</text>
+    </view>
+    <view class="section-desc">已完成今日 0/10 题，坚持练习获得额外奖励！</view>
+    <button bindtap="startDailyPractice" class="start-daily-practice-btn" style="background-color: #007AFF; color: white;" >开始每日练习</button>
+  </view>
+
+  <!-- 个性化学习计划部分 -->
+  <view class="personalized-study-plan-section">
+    <view class="section-header">
+      <icon type="star" size="20"></icon>
+      <image src="/assets/icons/LikestudyOutline_32px.svg" class="modehead"></image>
+      <text>个性化学习计划</text>
+    </view>
+    <view class="section-desc">根据您的学习情况，我们为您推荐以下专题训练</view>
+    <view class="plan-item">
+      <view class="plan-item-content"  bindtap="custom" data-value="false">加法运算专项</view>
+    </view>
+    <view class="plan-item">
+      <view class="plan-item-content" bindtap="custom" data-value="ture" >连加连减专项</view>
+    </view>
+  </view>
+</view>

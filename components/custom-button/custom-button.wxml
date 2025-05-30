@@ -1,7 +1,9 @@
-<view class="button-wrapper">
+<view class="button-wrapper" style="width: {{ width }};">
   <view class="custom-button {{ type }}" 
         hover-class="button-hover-{{ type }}" 
         bindtap="handleTap">
+    <image src="{{iconPath}}" class="{{type === 'primary' ? 'primary-icon': ''}}  icon" 
+           wx:if="{{iconPath !== ''}}"></image>
     {{ text }}
   </view>
 </view> 

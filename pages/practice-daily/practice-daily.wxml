@@ -1,0 +1,167 @@
+<!--pages/practice-daily/practice-daily.wxml-->
+
+
+<view class="container">
+ 
+    <!-- 连续打卡记录 -->
+    <view class="check-in" wx:if="{{showCheck}}">
+        <view class="check-in-icon">🔥{{checkInDays}}</view>
+        <view class="check-in-days">
+            <text class="check-in-days-titile"> 连续打卡</text>
+            <text class="check-in-days-text">坚持每天练习获得奖励</text>
+        </view>
+        
+    </view>
+    
+    <!-- 今日进度 -->
+    <view class="progress-section" wx:if="{{showProgres}}">
+        <view class="progress-header">
+            <text class="progress-title">今日进度</text>
+            <navigator url="/pages/check-in-records/check-in-records" class="records-link">
+                <text class="records-icon">📋</text>
+                <text class="records-text" bindtap="toggleCalendar">打卡记录</text>
+            </navigator>
+        </view>
+        <view class="progress-bar">
+            <view class="progress-fill" style="width: {{currentQuestionIndex*10}}%"></view>
+        </view>
+        <view class="progress-info">
+            <text class="progress-count">{{currentQuestionIndex}}/{{total}}</text>
+            <text class="progress-desc">还需完成 {{total-currentQuestionIndex}} 题</text>
+        </view>
+        <button class="continue-practice" bindtap="showPractice">继续练习</button>
+    </view>   
+
+    <!-- 练习内容区域 -->
+    <view class="test-container" wx:if="{{showPractice}}">
+        <view class="progress-bar">
+            <view class="progress-fill" style="width: {{currentQuestionIndex*10}}%"></view>
+        </view>
+        <view class="test">
+                <view class="test-text">第{{currentQuestionIndex}}题/剩余{{total-currentQuestionIndex}}题</view>
+
+            <view class="current-question" wx:if="{{currentQuestionIndex!=10}}"> 
+                <text class="question-text">{{currentQuestion.num1}} {{currentQuestion.operator}} {{currentQuestion.num2}} = </text>
+                <input 
+                class="answer-input" 
+                type="number" 
+                placeholder="请输入答案" 
+                value="{{currentQuestion.userAnswer}}" 
+                bindinput="onAnswerInput"
+                />
+            </view>
+
+        <view class="result-tip" wx:if="{{showResult}}">
+            <text class="{{resultType}}">{{resultMessage}}</text>
+            <text wx:if="{{!isComplete}}">正确答案：{{currentQuestion.correctAnswer}}</text>
+        </view>
+               
+                <view wx:if="{{isComplete}}" class="complete-tip1">
+                    <view class="complete-tip">
+                        <image class="isCompleteOutlin"  src="/assets/icons/isCompleteOutline_32px.svg" ></image>
+                    </view>
+                    
+                    <text class="complete-text">每日练习已完成！</text>
+                </view>
+            <!-- <view class="button-group">
+
+                <button 
+                class="next-btn" 
+                wx:if="{{!isComplete}}" 
+                bindtap="checkAnswer"
+                >
+                {{isChecking ? '出题...' : '提交答案'}}
+                </button>
+
+                <view class="next-time" bindtap="nextTime"  wx:if="{{currentQuestionIndex!=10}}">
+                    暂时离开
+                </view>
+                <view class="next-day" bindtap="nextTime"  wx:if="{{currentQuestionIndex===10}}">
+                    返回
+                </view>
+            </view> -->
+            <view class="button-group"    wx:if="{{!isComplete}}"  >
+                <view 
+                    class="next-btn" 
+                    bindtap="checkAnswer"
+                >
+                    {{isChecking ? '出题...' : '提交答案'}}
+                </view>
+                <view class="end-practic-button" bindtap="nextTime">暂时离开</view>
+                </view>
+            </view>        
+        <view class="test-detail">
+            <view class="test-detai2">
+                <view class="detail-title">
+                <text >当前进度</text>
+                </view>
+                <view class="detail-label">
+                <text lass="detail-sum">总进度</text>
+                <text >{{currentQuestionIndex}}/{{total}}</text>
+                </view>
+                <view class="detail-label">
+                <text>本次正确</text>
+                <text class="detail-value">{{correctCount}}题</text>
+                </view>
+                <view class="detail-label">
+                <text>本次错误</text>
+                <text class="detail-value">{{errorCount}}题</text>
+            
+                </view>
+            </view>
+            
+        </view>
+    </view>
+
+    <!-- 日历 -->
+    <view class="calendar-section" wx:if="{{showCalendar}}">
+        <text class="calendar-title">打卡日历</text>
+        <view class="calendar-header">
+            <text class="calendar-nav" bindtap="prevMonth">《</text>
+            <text class="calendar-nav" bindtap="prevMonth">〈</text>
+            <text class="calendar-month">{{currentMonth}}</text>
+            <text class="calendar-nav" bindtap="nextMonth">〉</text>
+            <text class="calendar-nav" bindtap="nextMonth">》</text>
+        </view>
+        <view class="calendar-weekdays">
+            <text>日</text>
+            <text>一</text>
+            <text>二</text>
+            <text>三</text>
+            <text>四</text>
+            <text>五</text>
+            <text>六</text>
+        </view>
+        <view class="calendar-days">
+                <block wx:for="{{calendarDays}}" wx:key="index">
+                <view class="calendar-day {{item.month === 'current' ? '' : 'gray'}} {{item.checked ? 'checked' : ''}} {{item.isToday ? 'is-today' : ''}}">
+                    <text>{{item.day}}</text>
+                </view>
+                </block>
+        </view>
+    </view>
+    
+
+     <!-- 打卡奖励 -->
+    <view class="rewards-section"  wx:if="{{showRewards}}">
+        <text class="rewards-title">打卡奖励</text>
+        <view class="reward-item">
+            <text class="reward-days">连续3天</text>
+            <text class="reward-points">金币 +30</text>
+        </view>
+        <view class="reward-item">
+            <text class="reward-days">连续7天</text>
+            <text class="reward-points">金币 +100</text>
+        </view>
+        <view class="reward-item">
+            <text class="reward-days">连续15天</text>
+            <text class="reward-points">金币 +200 + 解锁特殊题库</text>
+        </view>
+        <view class="reward-item2">
+            <text class="reward-days">连续30天</text>
+            <text class="reward-points">金币 +500 + 限定徽章</text>
+        </view>
+    </view>
+
+
+</view>

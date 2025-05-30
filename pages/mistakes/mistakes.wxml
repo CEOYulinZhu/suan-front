@@ -1,2 +1,48 @@
 <!--pages/mistakes/mistakes.wxml-->
-<text>pages/mistakes/mistakes.wxml</text>
+<view class="root">
+  <view 
+  wx:for="{{user}}"
+  wx:key="index"
+  class="mitakesItem"
+  >
+    <view class="dateTitle">
+      <view class="diviler">•</view>
+      <view>{{item.date}}</view>
+    </view>
+
+    <view class="content">
+      <view class="question">
+        <view>{{item.question}} = ?</view>
+        <view class="questionType">问题</view>
+      </view>
+
+      <view class="contrast">
+        <view class="anwerRight">
+          <view class="icons">
+            <image src="/assets/icons/FailOutline_32px.svg" class="failIcon"></image>
+          </view>
+          <view>你的答案是：{{item.useranswer}}</view>
+        </view>
+        <view class="anwerError">
+          <view>
+            <image src="/assets/icons/SuccessOutline_32px.svg" class="successIcon"></image>
+          </view>
+          <view>正确答案是：{{item.successanswer}}</view>
+        </view>
+      </view>
+
+      <view class="analyse">
+        <view class="analyseTitle">分析</view>
+        <view>{{item.analyse}}</view>
+      </view>
+
+      <view class="type">
+        <view wx:for="{{item.type}}" wx:key="index2" class="typeItem">{{item}}</view>
+      </view>
+
+      <view>
+        <custom-button text="重新练习此类题目" type="secondary" width="100%"></custom-button>
+      </view>
+    </view>
+  </view>
+</view>

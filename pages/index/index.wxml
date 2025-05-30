@@ -1,2 +1,87 @@
 <!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<view class="root">
+
+  <view class="userWelcome"> 
+    <view>
+      <view class="welcomeText">你好，{{userName}}！</view>
+      <view class="goodText">今天也要加油学习哦~</view>
+    </view>
+
+    <view class="userWelcomeRight" bindtap="toProfile">
+      <view class="user">
+        <image src="/assets/icons/UserOutline_32px.svg" class="userIcon"></image>
+      </view>
+      <view wx:if="{{emailNum}}" class="emailNum">{{emailNum}}</view>
+    </view>
+  </view>
+
+  <view class="progress">
+    <view class="progressTop">
+      <view>今日学习任务</view>
+      <view>{{progress}}</view>
+    </view>
+
+    <view class="progressBetween">
+      <view class="progressBetween-fill" style="width: {{progress}};"></view>
+    </view>
+
+    <view class="progressBottom">
+      <view>已完成{{finishWorkNum}}次练习</view>
+      <view>目标{{workGoalNum}}次</view>
+    </view>
+  </view>
+
+  <view class="entrance">
+    <view class="titleText">快速入口</view>
+    <view class="entranceButton">
+      <view 
+        wx:for="{{iconList}}" 
+        wx:key="index"
+        class="iconSquare {{clickState[index] ? 'active' : ''}}"
+        bindtouchstart="handleTouchStart" 
+        bindtouchend="handleTouchEnd"
+        bindtap="handleIconTap"
+        data-index="{{index}}"
+      >
+        <view class="iconCircle {{clickState[index] ? 'circle-active' : ''}}">
+          <image 
+            src="{{item.iconPath}}" 
+            class="entranceIcons {{clickState[index] ? 'icon-active' : ''}}"
+          ></image>
+        </view>
+        <view class="icon-text">{{item.title}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="recent">
+    <view class="titleText">
+      <view>最近练习</view>
+      <view class="more" bindtap="toHistory">
+        <view>查看全部</view>
+        <image src="/assets/icons/RightOutline_32px.svg" class="rightIcon"></image>
+      </view>
+    </view>
+    <view
+      wx:for="{{historyList}}"
+      wx:key="index"
+      class="recentItems"
+      bindtap="toPracticeDetail"
+      data-index="{{index}}"
+    >
+      <view class="recentIconsCircle">
+        <image src="{{item.iconPath}}" class="recentIcons"></image>
+      </view>
+      <view class="recentMessages">
+        <view>{{item.title}}</view>
+        <view class="recentTimes">
+          <view>{{item.date}}</view>
+          <view class="divider">•</view>
+          <view>{{item.time}}</view>
+        </view>
+      </view>
+      <view class="scores">{{item.scores}}分</view>
+    </view>
+  </view>
+
+</view>

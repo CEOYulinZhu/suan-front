@@ -1,2 +1,60 @@
-<!--pages/notifications/notifications.wxml-->
-<text>pages/notifications/notifications.wxml</text>
+<view class="notifications-container">
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'all'? 'active' : ''}}" bindtap="filteredNotifications" data-type="all">
+      全部
+      <view class="badge" wx:if="{{unreadCount.all > 0}}">{{unreadCount.all}}</view>
+    </view>
+    <view class="tab-item {{activeTab ==='system'? 'active' : ''}}" bindtap="filteredNotifications" data-type="system">
+      系统通知
+      <view class="badge" wx:if="{{unreadCount.system > 0}}">{{unreadCount.system}}</view>
+    </view>
+    <view class="tab-item {{activeTab ==='reminder'? 'active' : ''}}" bindtap="filteredNotifications" data-type="reminder">
+      消息提醒
+      <view class="badge" wx:if="{{unreadCount.reminder > 0}}">{{unreadCount.reminder}}</view>
+    </view>
+  </view>
+
+  <view class="notification-list">
+    <view wx:for="{{filteredNotifications}}" wx:key="id" 
+          class="{{item.isUnread? 'unread-bg' :'read-bg'}}" 
+          bindtouchstart="handleTouchStart"
+          bindtouchmove="handleTouchMove"
+          bindtouchend="handleTouchEnd"
+          bindtap="handleNotificationTap" 
+          data-notification-id="{{item.id}}">
+        <view class="red-dot" wx:if="{{item.isUnread}}"></view>
+        <view class="icon-wrapper">
+            <image src="{{item.iconPath}}" class="icon" wx:if="{{item.type ==='system' && item.isUnread}}"></image>
+            <image src="{{item.iconPath}}" class="icon" wx:elif="{{item.type ==='reminder' && item.isUnread}}"></image>
+            <image src="{{item.iconPath}}" class="icon" wx:else></image>
+        </view>
+        <view class="content-wrapper">
+            <view class="title">{{item.title}}</view>
+            <view class="time">{{item.time}}</view>
+            <view class="desc">{{item.desc}}</view>
+        </view>
+        <navigator url="###" class="arrow-icon">
+            <image src="/assets/icons/RightOutline_32px.svg" class="function-icon"></image>
+        </navigator>
+        <!-- 添加删除按钮视图 -->
+        <view class="delete-btn" wx:if="{{isDeleteVisible[item.id]}}" bindtap="deleteNotification" data-notification-id="{{item.id}}">
+            删除
+        </view>
+    </view>
+  </view>
+
+  <!-- 统一的暂无消息提示 -->
+<view class="no-message-tip" wx:if="{{filteredNotifications.length === 0}}">
+    <view class="icon-wrapper">
+        <image src="/assets/icons/NoMessageOutline_32px.svg" class="empty-icon"></image> 
+    </view>
+    <view class="text-wrapper">
+        <view class="text-wrapper.title">暂无消息通知</view>
+        <view class="text-wrapper.desc">现在没有任何通知，所有新消息将显示在这里</view>
+    </view>
+</view>
+
+  <view class="tail" wx:if="{{!allRead && filteredNotifications.length !== 0}}" bindtap="markAllAsRead">
+    <text class="read-all" >全部已读</text>
+  </view>
+</view>

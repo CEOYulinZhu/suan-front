@@ -1,0 +1,372 @@
+.container{
+    width: 90%;
+    padding: 32rpx;
+    margin:10rpx 5% ;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+}
+.question-select {
+    width: 100%;
+    padding: 32rpx;
+    border-radius: 30rpx;
+    background-color: #ffff;
+  }
+  
+  .category-scroll {
+    display: flex;
+    height: 80rpx;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-top: 20rpx;
+    margin-bottom: 40rpx;
+  }
+  
+  .category-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 60rpx;
+    padding: 0 40rpx;
+    font-size: 32rpx;
+    color: #333;
+    border-radius: 30rpx;
+    margin-right: 24rpx;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .category-item.active {
+    color: white;
+    background-color: #ff9900;
+    box-shadow: 0 4rpx 12rpx rgba(255, 153, 0, 0.2);
+  }
+  
+  .select-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40rpx;
+  }
+  .left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .right {
+    display: flex;
+    gap: 10px; /* 按钮之间的间距 */
+  }
+  .buttons{
+      padding: 5px 15px;
+      justify-self: left;
+      max-width: 25%;
+      border: 2rpx solid #ccc;
+      cursor: pointer;
+  }
+  
+  .select-buttons view {
+    font-size: 32rpx;
+    color: #666;
+  }
+
+  .question-item {
+    display: flex;
+    align-items: center;
+    padding: 10rpx;
+    background-color: white;
+    border-radius: 20rpx;
+    margin-bottom: 24rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+  }
+
+  
+  
+  .category-label {
+ 
+    padding: 4rpx 12rpx;
+    font-size: 25rpx;
+    color: white;
+    text-align: center;
+    /* background-color: #4a90e2; */
+    border-radius: 20rpx;
+    margin-right: 16rpx;
+  }
+
+
+
+
+  
+  .start-btn {
+    width: 100%;
+    height: 50px;
+    margin-top: 60rpx;
+    font-size: 35rpx;
+    color: white;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-color: #ff9900;
+    border: none;
+    border-radius: 20rpx;
+    box-shadow: 0 8rpx 24rpx rgba(255, 153, 0, 0.2);
+  }
+
+/* 训练部分 */
+.test-container{
+    width: 100%;
+    padding: 32rpx;
+    border-radius: 30rpx;
+
+}
+
+  .progress-bar {
+    height: 15rpx;
+    background-color: #eee;
+    border-radius: 5rpx;
+    margin-bottom: 15rpx;
+    overflow: hidden;
+    margin-top: 30px;
+  }
+  
+  
+  .progress-fill {
+    height: 100%;
+    background-color: #FF9800;
+    border-radius: 5rpx;
+  }
+  
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20rpx;
+  }
+  
+  .progress-count {
+    font-size: 28rpx;
+    font-weight: bold;
+  }
+  
+  .progress-desc {
+    font-size: 24rpx;
+    color: #666;
+  }
+  .test{
+    width: 100%;
+    background-color: #ffffff;
+    min-height: 200px;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+.test-text{
+    text-align: center;
+    color: #999;
+    margin-top: 10px;
+}
+.current-question {
+    background: white;
+    padding: 40rpx;
+  }
+  .question-text {
+    font-size: 40rpx;
+    color: #333;
+    display: block;
+    text-align: center;
+    margin-bottom: 30rpx;
+  }
+  .answer-input {
+    width: 90%;
+    height: 80rpx;
+    border: 2rpx solid #e0e0e0;
+    border-radius: 15px;
+    font-size: 36rpx;
+    padding: 0 20rpx;
+    text-align: center;
+  }
+  
+  .result-tip {
+    margin: 30rpx 0 40rpx;
+    text-align: center;
+  }
+  .complete-tip {
+    width: 100%;
+    font-size: 28rpx;
+    color: #666;
+    text-align: center;
+    margin-top: 20rpx;
+  }
+  .continue-practice {
+    width: 100%;
+    height: 80rpx;
+    background-color: #ff5252;
+    color: white;
+    border: none;
+    border-radius: 40rpx;
+    font-size: 32rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.test-detail{
+    width: 100%;
+    background-color: #ffffff;
+    min-height: 150px;
+    border-radius: 15px;
+    margin-top: 10px;
+
+}
+.test-detail2{
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin-top: 10px;
+    padding-bottom: 10rpx;
+}
+.test-detai2{
+    margin:15px;
+    width: 90%;
+}
+.detail-title{
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+  .detail-label {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    margin-left: 12px;
+    font-size: 28rpx;
+    color: #666;
+  }
+  
+  .detail-label2 {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    margin-left: 12px;
+    font-size: 28rpx;
+
+  }
+  
+  .detail-value {
+    color: #333;
+  }
+
+  /* 圆圈样式 */
+.circle {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border:  solid #e7f1ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  
+  /* .circle:hover {
+    background-color: #E6F7FF;
+  } */
+  
+  .circle.selected {
+    background-color: #1677ff;
+  }
+  
+  /* 勾勾样式 */
+  .checkmark {
+  height: 100rpx;
+   width: 100rpx;
+   filter: invert(100%) grayscale(100%);
+  }
+  
+  
+  /* 右侧内容区域样式 */
+  .right-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 右侧上部框样式 */
+  .right-top-box {
+    color: #999;
+    font-size: 30rpx;
+    height: 15px;
+    border: 1px ;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* 右侧下部虚线框样式 */
+  .right-bottom-box {
+    color: #999;
+    flex: 1;
+    border: 1px ;
+    padding: 5px;
+  }
+.button-group{
+    display: flex;
+    justify-content: center;
+}
+
+  .next-btn{
+      width: 200rpx;
+      height: 80rpx;
+      border-radius: 48rpx;
+      background-color:#FF9800;
+      display: flex;
+      justify-content: center;
+        align-items: center;
+      color: #FFFFFF	;
+  }
+  .end-practic-button{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .isComplete-button-group{
+
+    justify-content: center;
+  }
+  .return-wrongQuestion-button{
+      margin-top: 30rpx;
+      min-height: 80rpx;
+      color: #FFFFFF	;
+      background-color:#FF9800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .return-practic-button{
+    margin-top: 30rpx;
+    margin-bottom: 50rpx;
+    min-height: 80rpx;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.isCompleteOutlin{
+    max-width: 100rpx;
+    max-height: 100rpx;
+}
+.container-Outlin{
+    padding:  40rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

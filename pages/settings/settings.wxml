@@ -1,2 +1,120 @@
-<!--pages/settings/settings.wxml-->
-<text>pages/settings/settings.wxml</text>
+<view class="settings-container">
+  <!-- 声音效果开关 -->
+  <view class="setting-item">
+    <view class="label">声音效果</view>
+    <switch class="switch" bindchange="handleSoundEffectChange" color="#2196F3" checked="{{soundEffectChecked}}" ></switch>
+  </view>
+  <!-- 震动反馈开关 -->
+  <view class="setting-item">
+    <view class="label">震动反馈</view>
+    <switch class="switch" bindchange="handleVibrationFeedbackChange" color="#2196F3" checked="{{vibrationFeedbackChecked}}"></switch>
+  </view>
+  <!-- 每日提醒开关 -->
+  <view class="setting-item">
+    <view class="label">每日提醒</view>
+    <switch class="switch" bindchange="handleDailyReminderChange" color="#2196F3" checked="{{dailyReminderChecked}}"></switch>
+  </view>
+
+  <view class="section-title">练习设置</view>
+  <!-- 答题时间 -->
+  <view class="setting-item" bindtap="handleAnswerTimeTap">
+    <view class="label">答题时间</view>
+    <view class="value">{{answerTime}}秒</view>
+    <view class="arrow-icon">
+      <image src="../../assets/icons/RightOutline_32px.svg" class="function-icon"></image>
+    </view>
+  </view>
+  <!-- 每组题目数量 -->
+  <view class="setting-item" bindtap="handleQuestionNumTap">
+    <view class="label">每组题目数量</view>
+    <view class="value">{{questionNum}}题</view>
+    <view class="arrow-icon">
+      <image src="../../assets/icons/RightOutline_32px.svg" class="function-icon"></image>
+    </view>
+  </view>
+  <!-- 默认难度等级 -->
+  <view class="setting-item" bindtap="handleDifficultyTap">
+    <view class="label">默认难度等级</view>
+    <view class="value">{{defaultDifficulty}}</view>
+    <view class="arrow-icon">
+      <image src="../../assets/icons/RightOutline_32px.svg" class="function-icon"></image>
+    </view>
+  </view>
+
+  <!-- 答题时间选择模态框 -->
+  <view class="modal" wx:if="{{showAnswerTimeModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <view class="btn" bindtap="hideModal">取消</view>
+        <view class="title">选择答题时间</view>
+        <view class="btn" bindtap="confirmAnswerTime">确定</view>
+      </view>
+      <view class="modal-body">
+        <picker-view value="{{answerTimeSelectedIndex}}" bindchange="answerTimePickerChange">
+          <picker-view-column>
+            <view wx:for="{{answerTimeOptions}}" wx:key="index">{{item.time}}秒</view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 每组题目数量选择模态框 -->
+  <view class="modal" wx:if="{{showQuestionNumModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <view class="btn" bindtap="hideModal">取消</view>
+        <view class="title">选择每组题目数量</view>
+        <view class="btn" bindtap="confirmQuestionNum">确定</view>
+      </view>
+      <view class="modal-body">
+        <picker-view value="{{questionNumSelectedIndex}}" bindchange="questionNumPickerChange">
+          <picker-view-column>
+            <view wx:for="{{questionNumOptions}}" wx:key="index">{{item.num}}题</view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 默认难度等级选择模态框 -->
+  <view class="modal" wx:if="{{showDifficultyModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <view class="btn" bindtap="hideModal">取消</view>
+        <view class="title">选择难度等级</view>
+        <view class="btn" bindtap="confirmDifficulty">确定</view>
+      </view>
+      <view class="modal-body">
+        <picker-view value="{{difficultySelectedIndex}}" bindchange="difficultyPickerChange">
+          <picker-view-column>
+            <view wx:for="{{difficultyOptions}}" wx:key="index">{{item.level}}</view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+    </view>
+  </view>
+  <!-- 遮罩层放到这里 -->
+  <view class="mask" wx:if="{{showAnswerTimeModal || showDifficultyModal || showQuestionNumModal}}" bindtap="hideModal"></view>
+
+  <view class="section-title">关于</view>
+  <!-- 当前版本 -->
+  <view class="setting-item">
+    <view class="label">当前版本</view>
+    <view class="value">{{currentVersion}}</view>
+  </view>
+  <!-- 用户协议 -->
+  <view class="setting-item" bindtap="navigateToUserAgreement">
+    <view class="label">用户协议</view>
+    <view class="arrow-icon">
+      <image src="../../assets/icons/RightOutline_32px.svg" class="function-icon"></image>
+    </view>
+  </view>
+  <!-- 隐私政策 -->
+  <view class="setting-item" bindtap="navigateToPrivacyPolicy">
+    <view class="label">隐私政策</view>
+    <view class="arrow-icon">
+      <image src="../../assets/icons/RightOutline_32px.svg" class="function-icon"></image>
+    </view>
+  </view>
+</view>

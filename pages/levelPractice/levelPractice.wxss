@@ -1,0 +1,335 @@
+/* pages/levelPractice/levelPractice.wxss */
+.container {
+    position: relative;
+  }
+  
+  .level-select-guide-achievement {
+    padding: 20rpx;
+  }
+  
+  .level-select {
+    background: #fff;
+    border-radius: 15rpx;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15rpx;
+  }
+  
+  .passed {
+    color: #666;
+    font-size: 28rpx;
+  }
+  
+  .progress {
+    color: #999;
+    font-size: 28rpx;
+    margin-bottom: 15rpx;
+    
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15rpx;
+  }
+  
+  .item {
+    border: 1rpx solid #ddd;
+    border-radius: 10rpx;
+    padding: 20rpx;
+    text-align: center;
+  }
+  
+  .item.locked {
+    background: #f5f5f5;
+    opacity: 0.6;
+  }
+  
+  .item.passed {
+    background: #f5f5f5;
+    opacity: 1;
+  }
+  
+  .num {
+    font-size: 40rpx;
+    font-weight: bold;
+    margin-bottom: 10rpx;
+  }
+  
+  .type {
+    color: #666;
+    font-size: 28rpx;
+  }
+  
+  .guide {
+    background: #fff;
+    border-radius: 15rpx;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+  }
+  
+  .guide-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15rpx;
+    font-size: 28rpx;
+  }
+  
+  .achievement {
+    background: #fff;
+    border-radius: 15rpx;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+  }
+  
+  .achievement-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15rpx;
+    font-size: 28rpx;
+  }
+  
+  .progress-tag {
+    background: #e0f0ff;
+    color: #007AFF;
+    padding: 5rpx 15rpx;
+    border-radius: 20rpx;
+    margin-left: 15rpx;
+  }
+  
+  .answer-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 30rpx;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .progress-bar {
+    height: 8rpx;
+    background: #f0f0f0;
+    margin-bottom: 20rpx;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: #007AFF;
+  }
+  
+  .math-question {
+    font-size: 50rpx;
+    margin: 30rpx 0;
+  }
+  
+  .inputAnswer {
+    border: 1rpx solid #ddd;
+    padding: 15rpx;
+    border-radius: 8rpx;
+    margin-bottom: 20rpx;
+    width: 80%;
+    margin: 0 auto 20rpx;
+  }
+  
+  .btn-group {
+    display: flex;
+    gap: 20rpx;
+    margin-bottom: 30rpx;
+    justify-content: center;
+  }
+  
+  .progress-summary {
+    display: flex;
+    justify-content: space-around;
+    font-size: 30rpx;
+    color: #666;
+  }
+  
+  .result-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    z-index: 999;
+    padding: 20rpx;
+  }
+  
+  .replay-btn,.back-btn {
+    margin: 10rpx 0;
+    padding: 15rpx 60rpx;
+    width: 80%;
+    max-width: 300rpx;
+  }
+  
+  .wrong-list {
+    width: 100%;
+    margin-top: 20rpx;
+  }
+  
+  .wrong-item {
+    margin: 15rpx 0;
+    color: #ff3b30;
+    font-size: 32rpx;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background: white;
+    border-radius: 20rpx;
+    padding: 30rpx;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 36rpx;
+    margin-bottom: 20rpx;
+  }
+  
+  .info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20rpx;
+    font-size: 32rpx;
+  }
+  
+  .info text:first-child {
+    color: #666;
+    margin-right: 15rpx;
+  }
+  
+  .blue {
+    color: #007AFF;
+  }
+  
+  .btn-group {
+    display: flex;
+    gap: 20rpx;
+    margin-top: 20rpx;
+  }
+  
+  .start-btn,.submit-btn,.confirm-btn,.claim-btn {
+    background: #007AFF;
+    color: white;
+    padding: 15rpx 40rpx;
+    border-radius: 8rpx;
+    font-size: 32rpx;
+  }
+  
+  .cancel-btn,.giveup-btn,.back-btn {
+    background: #fff;
+    color: #666;
+    padding: 15rpx 40rpx;
+    border: 1rpx solid #ddd;
+    border-radius: 8rpx;
+    font-size: 32rpx;
+  }
+  
+  /* 放弃确认弹窗遮罩层样式 */
+  .giveup-confirm-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .giveup-confirm-modal {
+    background: white;
+    border-radius: 10rpx;
+    padding: 20rpx;
+    text-align: center;
+  }
+  
+  .modal-title {
+    font-size: 32rpx;
+    margin-bottom: 15rpx;
+  }
+  
+  .modal-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15rpx;
+    margin-top: 15rpx;
+  }
+  
+  .confirm-btn {
+    background: #007AFF;
+    color: white;
+    padding: 12rpx 40rpx;
+    border-radius: 6rpx;
+  }
+  
+  .cancel-btn {
+    background: #fff;
+    color: #666;
+    padding: 12rpx 40rpx;
+    border: 1rpx solid #ddd;
+    border-radius: 6rpx;
+  }
+  
+  /* 奖励弹窗遮罩层样式 */
+  .reward-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .reward-modal {
+    background: white;
+    border-radius: 10rpx;
+    padding: 20rpx;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 32rpx;
+    margin-bottom: 15rpx;
+  }
+  
+  .claim-btn {
+    background: #007AFF;
+    color: white;
+    padding: 12rpx 40rpx;
+    border-radius: 6rpx;
+  }

@@ -14,6 +14,14 @@ Component({
         bindtap: {
             type: String,
             value: ''
+        },
+        width: {
+            type: String,
+            value: '75%'
+        },
+        iconPath: {
+            type: String,
+            value: ''
         }
     },
 

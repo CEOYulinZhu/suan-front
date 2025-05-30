@@ -1,1 +1,207 @@
 /* pages/report/report.wxss */
+.root{
+  padding: 32rpx;
+}
+
+.tabBar{
+  margin-bottom: 32rpx;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.tabBar > view {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.tabItem{
+  width: 128rpx;
+  padding: 16rpx 0rpx 20rpx;
+  text-align: center;
+}
+
+.lightTabItem{
+  color: #1677ff;
+  border-bottom: 4rpx solid #1677ff;
+
+}
+
+.practiceData{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.dataItem{
+  background-color: rgb(255, 255, 255);
+  border-radius: 24rpx;
+  padding: 32rpx;
+  box-shadow: rgba(0, 0, 0, 0.05) 0rpx 4rpx 16rpx;
+}
+
+.itemTitle{
+  color: rgb(102, 102, 102);
+  font-size: 26rpx;
+  margin-bottom: 16rpx;
+}
+
+.itemValue{
+  font-size: 44rpx;
+  font-weight: bold;
+  color: rgb(22, 119, 255);
+}
+
+.itemState{
+  font-size: 24rpx;
+  margin-top: 12rpx;
+  color: rgb(34, 187, 51);
+}
+
+.itemStateRed{
+  color: rgb(255, 77, 79);
+}
+
+.enhance{
+  margin-bottom: 32rpx;
+  border-radius: 24rpx;
+  padding: 0rpx 24rpx;
+  box-shadow: rgba(0, 0, 0, 0.05) 0rpx 4rpx 16rpx;
+  background-color: rgb(255, 255, 255);
+}
+
+.Titles{
+  border-bottom: 2rpx solid rgb(245, 245, 245);
+  padding: 24rpx 0rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.titleIcons{
+  height: 32rpx;
+  width: 32rpx;
+  vertical-align: -0.125em;
+  margin-right: 16rpx;
+}
+
+.enhanceContent{
+  padding: 24rpx 0rpx;
+}
+
+.enhanceItems{
+  flex-wrap: wrap;
+  display: inline-flex;
+  gap: 16rpx;
+  margin-bottom: calc(16rpx * -1);
+}
+
+.enhanceItem{
+  padding-bottom: 16rpx;
+  margin-right: 16rpx;
+  padding: 12rpx 20rpx;
+  border-radius: 32rpx;
+  background-color: rgb(230, 244, 255);
+  color: rgb(22, 119, 255);
+  font-size: 24rpx;
+  border: 2rpx solid #666666;
+}
+
+.grasps{
+  margin-bottom: 32rpx;
+  border-radius: 24rpx;
+  box-shadow: rgba(0, 0, 0, 0.05) 0rpx 4rpx 16rpx;
+  background-color: rgb(255, 255, 255);
+  padding: 0rpx 24rpx;
+  padding-bottom: 24rpx;
+}
+
+.graspsItems{
+  margin-bottom: 40rpx;
+}
+
+.itemTitle{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.itemName{
+  font-weight: 500;
+}
+
+.itemPercent{
+  font-weight: 600;
+  color: rgb(22, 119, 255);
+}
+
+.graspsBlack{
+  height: 20rpx;
+  border-radius: 10rpx;
+  background-color: #eeeeee;
+}
+
+.graspsFill{
+  height: 100%;
+  border-radius: 10rpx;
+  background-color: #1677ff;
+}
+
+.graspsFillBest{
+  background-color: #22bb33;
+}
+
+.advice{
+  margin-bottom: 32rpx;
+  border-radius: 24rpx;
+  padding: 0rpx 24rpx;
+  box-shadow: rgba(0, 0, 0, 0.05) 0rpx 4rpx 16rpx;
+  background-color: rgb(255, 255, 255);
+}
+
+.adviceContent{
+  padding-top: 24rpx;
+}
+
+.adviceItems{
+  display: flex;
+  margin-bottom: 24rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 2rpx solid rgb(245, 245, 245);
+}
+
+.adviceIcons{
+  padding-top: 10rpx;
+  margin-right: 24rpx;
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.adviceItemsTitles{
+  font-size: 26rpx;
+  margin-bottom: 8rpx;
+}
+
+.adviceItemsText{
+  color: rgb(102, 102, 102);
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+.interactButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 24rpx;
+}
+
+.interactButtons > view {
+  flex: 1; /* 均分剩余空间 */
+  min-width: 0; /* 防止内容溢出影响布局 */
+  margin-top: -30rpx;
+}

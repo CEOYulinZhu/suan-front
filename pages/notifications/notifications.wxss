@@ -1,1 +1,178 @@
-/* pages/notifications/notifications.wxss */
+.notifications-container {
+  background-color: #f9f9f9;
+}
+
+.back-icon {
+  width: 20px;
+  height: 20px;
+}
+
+
+.read-all {
+  color: #1677ff;
+  font-size: 14px;
+  margin-top: 20rpx;
+}
+
+.tab-bar {
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  border-bottom: 1px solid white;
+}
+
+.tab-item {
+  background: rgb(255, 255, 255);
+  padding: 8px 0 10px;
+  font-size: 30rpx;
+}
+
+.active {
+  color: #1677ff;
+  border-bottom: 2px solid #1677ff;
+}
+
+.badge {
+  background-color: #ff4d4f;
+  color: white;
+  border-radius: 100%;
+  padding: 1px 5px;
+  font-size: 10px;
+  margin-left: 5px;
+  display: inline-flex;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.notification-list {
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.icon-wrapper {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.unread-bg {
+  background-color: #e6f7ff; /* 淡蓝色背景 */
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.read-bg {
+  background-color: white; /* 淡蓝色背景 */
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.red-dot {
+  position: relative;
+  top: -15px;
+  right: 2rpx;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: rgb(255, 49, 65);
+}
+
+.icon {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.content-wrapper {
+  flex: 1;
+}
+
+.title {
+  font-size: 16px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  width: 550rpx;
+}
+
+.time {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.desc {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  width: 550rpx;
+}
+
+.arrow-icon {
+  margin-left: auto; /* 让右侧箭头靠最右边 */
+}
+
+.function-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.tail {
+  display: block;
+  width: calc(100% - 24px);
+  margin: 16px 12px;
+  padding: 12px 0px;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(22, 119, 255);
+  border-radius: 8px;
+  color: rgb(22, 119, 255);
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-btn{
+  position: relative;
+  padding: 27px 40rpx;
+  background-color: red;
+  color: white;
+}
+
+.no-message-tip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+  text-align: center;
+}
+.icon-wrapper {
+  margin-bottom: 20px;
+}
+.empty-icon {
+  width: 80rpx;
+  height: 80rpx;
+}
+.text-wrapper.title {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 10px;
+}
+.text-wrapper.desc {
+  font-size: 14px;
+  color: #999;
+}

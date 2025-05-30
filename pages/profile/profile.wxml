@@ -1,2 +1,65 @@
 <!--pages/profile/profile.wxml-->
-<text>pages/profile/profile.wxml</text>
+<view class="user-profile-container" bindtap="handleOutsideClick">
+  <!-- 第一部分：用户信息和统计数据 -->
+  <view class="user-info-section">
+    <view class="user-header">
+      <view class="user-img" catchtap="handleUserImgClick" data-index="0"
+      style="width: {{userImgSize}}rpx; height: {{userImgSize}}rpx; border-radius: {{userImgSize / 2}}rpx; overflow: hidden; background-color: #fff; margin-left: {{userImgMarginLeft}}rpx;">
+        <image class="avatar"  src="{{user.avatarUrl}}"></image>
+      </view>
+      <view class="user-name-class">
+        <view class="name">{{user.name}}</view>
+        <view class="class">{{user.class}}</view>
+      </view>
+    </view>
+    <view class="stats">
+      <view class="stat-item">
+        <view class="stat-value">{{user.cumulativePractice}}</view>
+        <view class="stat-label">累计练习</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{user.accuracyRate}}%</view>
+        <view class="stat-label">正确率</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{user.continuousCheckins}}</view>
+        <view class="stat-label">连续打卡</view>
+      </view>
+    </view>
+  </view>
+  <!-- 第二部分：功能跳转 -->
+  <view class="function-section">
+    <view class="function-item" bindtap="goToPersonalInfo">
+      <image src="/assets/icons/UserOutline_32px.svg" class="function-icon" style="color: #87ceeb;"></image>
+      <view class="function-label">个人资料</view>
+      <view class="arrow-icon">
+        <image src="../../assets/icons/RightOutline_32px.svg" class="function-icon"></image>
+      </view>
+    </view>
+    <view class="function-item" bindtap="goToNotifications">
+      <image src="../../assets/icons/MessageOutline_32px.svg" class="function-icon" style="color: #87ceeb;"></image>
+      <view class="function-label">消息通知</view>
+      <view class="arrow-icon">
+        <image src="../../assets/icons/RightOutline_32px.svg" class="function-icon"></image>
+      </view>
+    </view>
+    <view class="function-item" bindtap="goToSettings">
+      <image src="../../assets/icons/SetOutline_32px.svg" class="function-icon" style="color: #87ceeb;"></image>
+      <view class="function-label">系统设置</view>
+      <view class="arrow-icon">
+        <image src="../../assets/icons/RightOutline_32px.svg" class="function-icon"></image>
+      </view>
+    </view>
+    <view class="function-item" bindtap="goToHelpAndFeedback">
+      <image src="../../assets/icons/QuestionCircleOutline_32px.svg" class="function-icon" style="color: #87ceeb;"></image>
+      <view class="function-label">帮助与反馈</view>
+      <view class="arrow-icon">
+        <image src="../../assets/icons/RightOutline_32px.svg" class="function-icon"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 第三部分：退出登录按钮 -->
+  <view class="logout-section">
+    <view class="logout-btn" bindtap="logout">退出登录</view>
+  </view>
+</view>

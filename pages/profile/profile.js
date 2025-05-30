@@ -5,62 +5,99 @@ Page({
    * 页面的初始数据
    */
   data: {
+    user: {
+      avatarUrl: '/assets/bar/headpicture.png',
+      name: '小明',
+      class: '三年级二班',
+      cumulativePractice: 120,
+      accuracyRate: 85,
+      continuousCheckins: 15
+    },
+    userImgSize: 150, // 初始宽度和高度值，单位rpx
+    userImgMarginLeft: 50, // 初始左边距值，单位rpx
+    isEnlarged: false // 新增一个标志位，用于记录是否已经放大
+  },
 
+   /**
+   * 点击头像，长宽变大;放大后再点一下，还原
+   */
+  handleUserImgClick(e) {
+    const index = e.currentTarget.dataset.index;
+    if (!this.data.isEnlarged) {
+      // 如果没有放大，进行放大操作
+      let newSize = this.data.userImgSize + 20;
+      this.setData({
+        userImgSize: newSize,
+        userImgMarginLeft: this.data.userImgMarginLeft - 10,
+        isEnlarged: true
+      });
+    }
+  },
+  handleOutsideClick(e) {
+    // 检查点击的目标是否是.user-img
+    const target = e.target;
+    if (!target.dataset.index) {
+      // 如果不是.user-img，恢复原样
+      this.setData({
+        userImgSize: 150,
+        userImgMarginLeft: 50,
+        isEnlarged: false
+      });
+    }
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 跳转到个人资料页面
    */
-  onLoad(options) {
-
+  goToPersonalInfo() {
+    wx.navigateTo({
+      url: '/pages/user-profile-detail/user-profile-detail'
+    });
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 跳转到消息通知页面
    */
-  onReady() {
-
+  goToNotifications() {
+    wx.navigateTo({
+      url: '/pages/notifications/notifications'
+    });
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 跳转到系统设置页面
    */
-  onShow() {
-
+  goToSettings() {
+    wx.navigateTo({
+      url: '/pages/settings/settings'
+    });
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * 跳转到帮助与反馈页面
    */
-  onHide() {
-
+  goToHelpAndFeedback() {
+    wx.navigateTo({
+      url: '/pages/feedback/feedback'
+    });
   },
 
   /**
-   * 生命周期函数--监听页面卸载
+   * 退出登录
    */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  logout() {
+    wx.showModal({
+      title: '提示',
+      content: '确定要退出登录吗？',
+      success: (res) => {
+        if (res.confirm) {
+          // 这里添加退出登录的逻辑，比如清除登录态等
+          wx.redirectTo({
+            url: '/pages/login/login'
+          });
+        }
+      }
+    });
   }
+
 })

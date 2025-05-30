@@ -1,0 +1,163 @@
+/* pages/timedChallenge/timedChallenge.wxss */
+/* 计时挑战相关样式 */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(-90px + 100vh);
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .description {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .start-btn,
+  .submit-btn,
+  .retry-btn{
+    display: block;
+    width: 150px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #007AFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  .return-btn {
+    display: block;
+    width: 150px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #e7eaee;
+    color: rgb(17, 16, 16);
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .countdown-icon {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .countdown-number {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .time-bar {
+    height: 10px;
+    background-color: #eee;
+    margin-bottom: 10px;
+  }
+  
+  .time-progress {
+    height: 100%;
+    background-color: #007AFF;
+  }
+  
+  .remaining-time {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .question {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .answer-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  .modefhead{
+    align-items: center;
+    height: 50rpx;
+    width: 100%;
+  }
+  .real-time-statistics {
+    margin-top: 20px;
+  }
+  
+  .stat-item {
+    margin-bottom: 10px;
+  }
+  
+  
+  .finish-text {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .summary {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .average-time {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .time-value {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .speed-rating {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .answer-details {
+    margin-top: 20px;
+  }
+  
+  .details-title {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .question-text {
+    flex: 1;
+  }
+  
+  .result-text {
+    flex: 1;
+    text-align: right;
+  }
+  .finish-icon {
+    margin: 20rpx auto;
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    background-color: #e6f4ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

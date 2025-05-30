@@ -1,5 +1,4 @@
 .button-wrapper {
-  width: 75%; /* 减少宽度百分比 */
   margin: 30rpx auto; /* 外边距也移到包裹层 */
 }
 
@@ -43,3 +42,14 @@
   border-color: #409eff; /* 按下时保持边框颜色 */
   color: #409eff; /* 按下时保持文字颜色 */
 } 
+
+.icon{
+  height: 40rpx;
+  width: 40rpx;
+  margin-right: 16rpx;
+}
+
+.primary-icon{
+  /* filter: brightness(1000%); */
+  filter: invert(1) brightness(1000%);
+}

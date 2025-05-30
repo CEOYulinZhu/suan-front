@@ -5,7 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    avatarUrl: '/assets/bar/headpicture.png',
+    name: '小明',
+    class: '三年级二班',
+    phone: '138****1234',
+    email: 'xiaoming@example.com',
+    isEditing: false
   },
 
   /**
@@ -62,5 +67,32 @@ Page({
    */
   onShareAppMessage() {
 
-  }
+  },
+
+  changeAvatar() {
+    // 这里添加选择图片并上传设置头像的逻辑，例如调用wx.chooseImage等接口
+    console.log('更换头像功能待实现');
+    wx.showModal({
+      content: '更换头像功能待实现',
+    });
+  },
+  editProfile() {
+    this.setData({
+      isEditing: true
+    });
+  },
+  cancelEdit() {
+    this.setData({
+      isEditing: false
+    });
+  },
+  saveEdit() {
+    console.log('保存功能待实现');
+    this.setData({
+      isEditing: false
+    });
+    wx.showModal({
+      content: '保存功能待实现',
+    });
+  },
 })

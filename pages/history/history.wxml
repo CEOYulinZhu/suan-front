@@ -1,2 +1,111 @@
-<!--pages/history/history.wxml-->
-<text>pages/history/history.wxml</text>
+<!-- pages/history/history.wxml -->
+<!-- 自定义tab栏（紧贴原生导航栏） -->
+<view class="tabBar">
+  <scroll-view 
+    class="tabBarContent" 
+    scroll-x="true" 
+    scroll-with-animation="false"
+    show-scrollbar="false"
+  >
+    <view wx:for="{{typeList}}" 
+          wx:key="index"
+          class="tabBarItem {{activeIndex === index ? 'active' : ''}}"
+          bindtap="handleTabClick"
+          data-index="{{index}}">
+      <view class="tabText">{{item}}</view>
+      <view class="underline"></view>
+    </view>
+  </scroll-view>
+</view>
+
+<!-- 页面内容-->
+<view class="content">
+  <!--筛选部分-->
+  <view class="choose">
+    <view class="chooseTitle">
+      <view class="chooseTitleLeft">
+        <view>
+          <image src="/assets/icons/SelectionOutline_32px.svg" class="chooseTitleIcon"></image>
+        </view>
+        <view>筛选</view>
+      </view>
+      <view class="chooseTitleRight" bindtap="handleReset">✕ 重置</view>
+    </view>
+    <view class="chooseSmallTitle">时间范围</view>
+    <view class="chooseTypes">
+      <view 
+        wx:for="{{timeRangeList}}" 
+        wx:key="index"
+        class="{{selectedTimeIndex === index ? 'active' : ''}}"
+        bindtap="handleTimeRangeClick"
+        data-index="{{index}}"
+      >{{item}}</view>
+    </view>
+    <view class="chooseSmallTitle">题目类型</view>
+    <view class="chooseTypes">
+      <view 
+        wx:for="{{questionTypeList}}" 
+        wx:key="index"
+        class="{{selectedTypeIndex === index ? 'active' : ''}}"
+        bindtap="handleQuestionTypeClick"
+        data-index="{{index}}"
+      >{{item}}</view>
+    </view>
+  </view>
+
+  <!--筛选结果-->
+  <view class="history">
+    <block wx:if="{{selectedList.length > 0}}">
+      <view class="historyItems" wx:for="{{selectedList}}" wx:key="index">
+        <view class="itemsTop">
+          <view class="itemsTitle">
+            <view class="historyItemsIconsBlack">
+              <image src="{{item.iconPath}}" class="historyItemsIcons"></image>
+            </view>
+            <view>{{item.type}}</view>
+          </view>
+          <view class="itemsTimes">{{item.date}} {{item.time}}</view>
+        </view>
+        <view class="itemsContents">
+          <view class="itemsContentsTitles">题目数量</view>
+          <view>{{item.questionNum}}道</view>
+        </view>
+        <view class="itemsContents">
+          <view class="itemsContentsTitles">正确数量</view>
+          <view>{{item.rightNum}}道</view>
+        </view>
+        <view class="itemsContents">
+          <view class="itemsContentsTitles">正确率</view>
+          <view>{{item.correctness}}</view>
+        </view>
+        <view class="itemsContents">
+          <view class="itemsContentsTitles">用时</view>
+          <view>{{item.timeSpent}}秒</view>
+        </view>
+        <view wx:if="{{item.starNum > 0}}" class="itemsContents">
+          <view class="itemsContentsTitles">获得星星</view>
+          <view class="historyStar">
+            <view wx:for="{{item.starNum}}">
+              <image src="/assets/icons/EmptyStarOutline_32px.svg" class="historyStarIcon"></image>
+            </view>
+          </view>
+        </view>
+        <view class="itemsTypes">
+          <view class="itemsTypesText">
+            <view wx:for="{{item.labelList}}" wx:key="index">{{item}}</view>
+          </view>
+          <view class="toPracticeDetail" bindtap="handleViewDetail" data-type="{{item.type}}">查看详情 ᐳ</view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="empty">
+        <view class="emptyTop">
+          <image src="/assets/icons/BookOutline_32px.svg" class="emptyIcon"></image>
+          <view class="empty-text">暂无符合条件的练习记录</view>
+        </view>
+        <view class="empty-btn" bindtap="goToPractice">去练习</view>
+      </view>
+    </block>
+  </view>
+</view>

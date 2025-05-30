@@ -1,7 +1,8 @@
 {
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-  "projectname": "%E5%B0%8F%E5%AD%A6%E6%95%B0%E5%AD%A6%E5%8F%A3%E7%AE%97%E5%88%86%E7%BA%A7%E8%AE%AD%E7%BB%83%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%89%8D%E7%AB%AF",
+  "projectname": "suan-front",
   "setting": {
     "compileHotReLoad": true
-  }
+  },
+  "libVersion": "trial"
 }
