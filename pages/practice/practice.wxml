@@ -1,5 +1,5 @@
 
-<view class="container">
+<view class="practice-container">
   <!-- 选择练习模式部分 -->
   <view class="practice-mode-section">
     <view class="section-header">
@@ -52,7 +52,7 @@
       <text>每日练习</text>
     </view>
     <view class="section-desc">已完成今日 0/10 题，坚持练习获得额外奖励！</view>
-    <button bindtap="startDailyPractice" class="start-daily-practice-btn" style="background-color: #007AFF; color: white;" >开始每日练习</button>
+    <view bindtap="startDailyPractice" class="start-daily-practice-btn" style="background-color: #007AFF; color: white;" >开始每日练习</view> 
   </view>
 
   <!-- 个性化学习计划部分 -->

@@ -4,16 +4,17 @@
 /* 选择练习模式区域样式 */
 
 
-.container {
+.practice-container {
     padding: 40rpx;
     background-color: #f5f5f5;
+    margin-bottom: 500rpx;
   }
   
   /* 选择练习模式部分样式 */
   .practice-mode-section {
     background-color: #fff;
     border-radius: 10rpx;
-    padding: 20rpx;
+    padding: 23rpx;
     margin-bottom: 20rpx;
   }
   .section-header {
@@ -32,9 +33,10 @@
     }
 
   .section-desc {
-    font-size: 28rpx;
+    font-size: 24rpx;
     color: #666;
-    margin-bottom: 15rpx;
+    margin-bottom: 18rpx;
+    line-height: 1.5;
   }
   .practice-mode-list {
     display: grid;
@@ -45,19 +47,19 @@
     place-items: center;
   }
   .mode-item {
-    width:280rpx;
+
     height: 200rpx;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 30rpx;
-    border-radius: 10rpx;
+    border-radius: 30rpx;
     margin-bottom: 10rpx;
     box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
   }
   .mode-icon {
     width: 60px;
-    height: 60px;
+    
     border-radius: 30px;
     background-color: rgba(255, 255, 255, 0.2);
     display: flex;
@@ -84,44 +86,53 @@
     position: relative;
     font-size: 28rpx;
     color: rgb(251, 253, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
   }
   .recommend-tag {
-      position: absolute;
+    position: absolute;
     top: 40rpx;
     right: 10rpx;
   }
   
   /* 每日练习部分样式 */
   .daily-practice-section {
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
     border-radius: 20rpx;
     padding: 80rpx;
     margin-bottom: 20rpx;
   }
   .start-daily-practice-btn {
-    width: 100%;
-    padding: 15rpx;
+    width: 500rpx;
+    padding: 25rpx;
     border: none;
     border-radius: 20rpx;
     font-size: 32rpx;
+    justify-content: center;
+    align-items: center;
+    display: flex;
   }
   
   /* 个性化学习计划部分样式 */
   .personalized-study-plan-section {
     background-color: #fff;
     border-radius: 20rpx;
-    padding: 80rpx;
-    margin-bottom: 20rpx;
+    padding: 90rpx;
+    margin-bottom: 140rpx;
   }
   .plan-item {
     border: 1px solid #ccc;
-    border-radius: 5rpx;
-    padding: 15rpx;
+    border-radius: 20rpx;
+    padding: 30rpx;
     margin-bottom: 10rpx;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
   .plan-item-content {
+    
     font-size: 30rpx;
   }

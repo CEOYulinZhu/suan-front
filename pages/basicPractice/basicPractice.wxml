@@ -1,64 +1,100 @@
-<!--pages/basicPractice/basicPractice.wxml-->
 <view class="basic-practice-container">
-  <!-- 顶部操作区域 -->
-  <view class="header-actions">
-    <button bindtap="showExitConfirmDialog" class="back-button">
-      <icon type="arrowleft" size="16"></icon>
-    </button>
-    <view class="title"> </view>
-  </view>
-  <!-- 题目进度 -->
-  <view class="progress-bar">
-    <view class="progress-text">第 {{currentQuestionIndex + 1}} 题 / 共 {{totalQuestions}} 题</view>
-    <view class="progress" style="width: {{(currentQuestionIndex + 1) / totalQuestions * 100}}%;"></view>
-  </view>
-  <!-- 题目内容 -->
-  <view class="question-card">
-    <view class="question">
-      <text class="question-text">{{questionContent}}</text>
+    <!-- 题目进度 -->
+    <view class="progress-bar" hidden="{{isCompleted}}">
+        <view class="progress-text">第 {{currentQuestionIndex + 1}} 题 / 共 {{totalQuestions}} 题</view>
+        <view class="progress" style="width: {{(currentQuestionIndex + 1) / totalQuestions * 100}}%;"></view>
     </view>
-    <view class="answer-input-box">
-      <input type="number" bindinput="inputAnswer" placeholder="请输入答案" class="custom-input"></input>
+    
+    <!-- 题目内容 -->
+    <view class="question-card" hidden="{{isCompleted}}">
+        <view class="question">
+            <text class="question-text">{{questionContent}}</text>
+        </view>
+        <view class="answer-input-box">
+            <input type="number" bindinput="inputAnswer" placeholder="请输入答案" class="custom-input" value="{{userAnswer}}"></input>
+        </view>
+        <view class="submit-btn" bindtap="submitAnswer">提交答案</view>
     </view>
-    <view class="submit-btn" bindtap="submitAnswer">提交答案</view>
-  </view>
-  <!-- 练习统计 -->
-  <view class="practice-statistics">
-    <view class="stat-title">练习统计</view>
-    <view class="stat-item">
-      <view class="stat-icon">📄</view>
-      <view class="stat-label">已完成题目</view>
-      <view class="stat-value">{{completedQuestions}} / {{totalQuestions}}</view>
+    
+    <!-- 练习统计 -->
+    <view class="practice-statistics" hidden="{{isCompleted}}">
+        <view class="stat-title">练习统计</view>
+        <view class="stat-item">
+            <view class="stat-icon"><image src="/assets/icons/AlreadyfinshOutline_32px.svg" class="basicmodeicons"></image></view>
+            <view class="stat-label">已完成题目</view>
+            <view class="stat-value">{{completedQuestions}} / {{totalQuestions}}</view>
+        </view>
+        <view class="stat-item">
+            <view class="stat-icon"><image src="/assets/icons/RigtanswerOutline_32px.svg" class="basicmodeicons"></image></view>
+            <view class="stat-label">正确题数</view>
+            <view class="stat-value">{{correctQuestions}} 题</view>
+        </view>
+        <view class="stat-item">
+            <view class="stat-icon"><image src="/assets/icons/FalseanswerOutline_32px.svg" class="basicmodeicons"></image></view>
+            <view class="stat-label">错误题数</view>
+            <view class="stat-value">{{wrongQuestions}} 题</view>
+        </view>
+        <view class="stat-item">
+            <view class="stat-icon"><image src="/assets/icons/RigtanswerOutline_32px.svg" class="basicmodeicons"></image></view>
+            <view class="stat-label">正确率</view>
+            <view class="stat-value">{{accuracyRate}}%</view>
+        </view>
+        <view class="stat-item">
+            <view class="stat-icon"><image src="/assets/icons/UsetimeOutline_32px.svg" class="basicmodeicons"></image></view>
+            <view class="stat-label">用时</view>
+            <view class="stat-value">{{totalTime}} 秒</view>
+        </view>
     </view>
-    <view class="stat-item">
-      <view class="stat-icon">✅</view>
-      <view class="stat-label">正确题数</view>
-      <view class="stat-value">{{correctQuestions}} 题</view>
+    
+    <!-- 确认退出对话框 -->
+    <view class="exit-confirm-dialog" hidden="{{!isExitConfirmDialogVisible}}">
+        <view class="confirm-content">
+            <view class="confirm-title">确定要结束本次练习吗？</view>
+            <view class="confirm-buttons">
+                <button bindtap="cancelExit" class="cancel-button">取消</button>
+                <button bindtap="confirmExit" class="confirm-button">确定</button>
+            </view>
+        </view>
     </view>
-    <view class="stat-item">
-      <view class="stat-icon">❌</view>
-      <view class="stat-label">错误题数</view>
-      <view class="stat-value">{{wrongQuestions}} 题</view>
+    
+    <!-- 完成界面 -->
+    <view class="completed-section" hidden="{{!isCompleted}}">
+        <!-- 顶部图标和标题 -->
+        <view class="completed-header">
+            <image src="/assets/icons/SmileyOutline-32px.svg" class="completed-icon"></image>
+            <text class="completed-title">练习完成!</text>
+        </view>
+        
+        <!-- 统计信息 -->
+        <view class="completed-stats">
+            <view class="stat-item">
+                <view class="stat-label" style="color: orange;">总题数: {{totalQuestions}}</view>
+                <view class="stat-label" style="color: green;">正确: {{correctQuestions}}</view>
+                <view class="stat-label" style="color: orange;">错误: {{wrongQuestions}}</view>
+            </view>
+            <view class="stat-item">
+                <view class="stat-label" style="color: green;">正确率: {{accuracyRate}}%</view>
+                <view class="stat-label" style="color: rgb(104, 175, 233);">用时: {{totalTime}} 秒</view>
+            </view>
+        </view>
     </view>
-    <view class="stat-item">
-      <view class="stat-icon">✅</view>
-      <view class="stat-label">正确率</view>
-      <view class="stat-value">{{accuracyRate}}%</view>
+        <!-- 操作按钮 -->
+        <view class="completed-buttons" hidden="{{!isCompleted}}">
+            <view bindtap="restartPractice" class="restart-btn">再来一组</view>
+            <view bindtap="goBackToSelect" class="back-btn">返回选择</view>
+        </view>
+        
+        <view class="completed-section" hidden="{{!isCompleted}}">
+        <!-- 答题详情 -->
+        <view class="answer-details">
+            <view class="details-title">答题详情</view>
+            <view class="details-item {{item.isCorrect ? 'correct-answer' : 'wrong-answer'}}" wx:for="{{answerDetails}}" wx:key="index">
+                <view class="question">{{item.question}}</view>
+                <view class="answer" style="color: {{item.isCorrect ? 'green' : 'red'}}">
+                    {{item.userAnswer}} 
+                    <text wx:if="{{!item.isCorrect}}">× ({{item.correctAnswer}})</text>
+                </view>
+            </view>
+        </view>
     </view>
-    <view class="stat-item">
-      <view class="stat-icon">⏱️</view>
-      <view class="stat-label">用时</view>
-      <view class="stat-value">{{totalTime}} 秒</view>
-    </view>
-  </view>
-  <!-- 确认退出对话框 -->
-  <view class="exit-confirm-dialog" hidden="{{!isExitConfirmDialogVisible}}">
-    <view class="confirm-content">
-      <view class="confirm-title">确定要结束本次练习吗？</view>
-      <view class="confirm-buttons">
-        <button bindtap="cancelExit" class="cancel-button">取消</button>
-        <button bindtap="confirmExit" class="confirm-button">确定</button>
-      </view>
-    </view>
-  </view>
-</view>
+</view>  

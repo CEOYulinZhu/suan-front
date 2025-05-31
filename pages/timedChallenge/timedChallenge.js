@@ -1,4 +1,3 @@
-// pages/timedChallenge/timedChallenge.js
 Page({
     data: {
       isCountdown: false,
@@ -14,13 +13,47 @@ Page({
       wrongQuestions: 0,
       accuracyRate: 0,
       speedRating: '',
-      answerDetail: [],
+      speedRatingClass: '',
+      answerDetail: [], // 存储答题详情
       startTime: 0,
       answerTimes: [],
-      currentQuestionAnswer: '' // 新增：存储当前题目正确答案
+      currentQuestionAnswer: '',
+      timeColorClass: '',
+      averageTime: 0,
+      countdownInterval: null,
+      timeCountdownInterval: null,
+      answerTipVisible: false,
+      answerTipMessage: '',
+      isSubmitting: false,
+      answerTipTimeout: null
+    },
+  
+    // 生命周期：页面卸载时清除定时器
+    onUnload() {
+      this.clearAllIntervals();
+      if (this.data.answerTipTimeout) {
+        clearTimeout(this.data.answerTipTimeout);
+      }
+    },
+  
+    // 清除所有定时器
+    clearAllIntervals() {
+      if (this.data.countdownInterval) {
+        clearInterval(this.data.countdownInterval);
+        this.setData({ countdownInterval: null });
+      }
+      if (this.data.timeCountdownInterval) {
+        clearInterval(this.data.timeCountdownInterval);
+        this.setData({ timeCountdownInterval: null });
+      }
     },
   
     startChallenge() {
+      this.clearAllIntervals();
+      if (this.data.answerTipTimeout) {
+        clearTimeout(this.data.answerTipTimeout);
+      }
+  
       this.setData({
         isCountdown: true,
         isAnswering: false,
@@ -35,43 +68,59 @@ Page({
         wrongQuestions: 0,
         accuracyRate: 0,
         speedRating: '',
-        answerDetail: [],
+        speedRatingClass: '',
+        answerDetail: [], // 重置答题详情
         startTime: 0,
         answerTimes: [],
-        currentQuestionAnswer: ''
+        currentQuestionAnswer: '',
+        timeColorClass: '',
+        averageTime: 0,
+        answerTipVisible: false,
+        answerTipMessage: '',
+        isSubmitting: false,
+        answerTipTimeout: null
       });
-      const countdown = setInterval(() => {
+  
+      const countdownInterval = setInterval(() => {
         if (this.data.countdown > 1) {
           this.setData({ countdown: this.data.countdown - 1 });
         } else {
-          clearInterval(countdown);
+          clearInterval(countdownInterval);
+          
+          // 直接在倒计时结束时生成题目
+          const newQuestion = this.generateQuestion();
           this.setData({
             isCountdown: false,
             isAnswering: true,
-            startTime: Date.now()
+            startTime: Date.now(),
+            currentQuestion: newQuestion.question,
+            currentQuestionAnswer: newQuestion.answer
           });
-          this.randomNextQuestion();
+          
           this.startTimeCountdown();
         }
       }, 1000);
+  
+      this.setData({ countdownInterval });
     },
   
-    // 生成随机题目
+    // 修复num1/num2只读问题
     generateQuestion() {
-      const num1 = Math.floor(Math.random() * 100); // 生成0-99的数
-      const num2 = Math.floor(Math.random() * 100);
-      const operator = Math.random() < 0.5? '+' : '-'; // 随机加减
+      let num1 = Math.floor(Math.random() * 100); // 使用let允许修改
+      let num2 = Math.floor(Math.random() * 100);
+      const operator = Math.random() < 0.5 ? '+' : '-';
       let answer;
+  
       if (operator === '+') {
         answer = num1 + num2;
       } else {
-        // 确保减法结果非负
-        if (num1 < num2) [num1, num2] = [num2, num1];
+        if (num1 < num2) [num1, num2] = [num2, num1]; // 修复交换逻辑
         answer = num1 - num2;
       }
-      return { 
-        question: `${num1} ${operator} ${num2} =?`, 
-        answer: answer.toString() 
+  
+      return {
+        question: `${num1} ${operator} ${num2} =?`,
+        answer: answer.toString()
       };
     },
   
@@ -79,7 +128,9 @@ Page({
       const newQuestion = this.generateQuestion();
       this.setData({
         currentQuestion: newQuestion.question,
-        currentQuestionAnswer: newQuestion.answer // 存储当前题目正确答案
+        currentQuestionAnswer: newQuestion.answer,
+        answerTipVisible: false,
+        answer: ''
       });
     },
   
@@ -88,56 +139,117 @@ Page({
     },
   
     submitAnswer() {
+      if (this.data.isSubmitting) return;
       if (!this.data.isAnswering) return;
-      const answer = this.data.answer;
-      const isCorrect = answer === this.data.currentQuestionAnswer; // 使用存储的答案判断
+  
+      const answer = this.data.answer.trim();
+      if (!answer) {
+        this.showAnswerTip('请输入答案', 2000);
+        return;
+      }
+  
+      this.setData({ isSubmitting: true });
+  
+      const isCorrect = answer === this.data.currentQuestionAnswer;
       const answerTime = Date.now() - this.data.startTime;
       this.data.answerTimes.push(answerTime);
   
-      this.setData({
-        completedQuestions: this.data.completedQuestions + 1,
-        [isCorrect? 'correctQuestions' : 'wrongQuestions']: this.data[isCorrect? 'correctQuestions' : 'wrongQuestions'] + 1,
-        accuracyRate: (this.data.correctQuestions / this.data.completedQuestions * 100).toFixed(0),
-        answer: ''
-      });
+      const completedQuestions = this.data.completedQuestions + 1;
+      const correctQuestions = isCorrect ? this.data.correctQuestions + 1 : this.data.correctQuestions;
+      const wrongQuestions = isCorrect ? this.data.wrongQuestions : this.data.wrongQuestions + 1;
+      const averageTime = this.calculateAverageTime();
   
-      this.data.answerDetail.push({
+      // 记录答题详情
+      const detailItem = {
         question: this.data.currentQuestion,
-        answer: answer,
-        isCorrect: isCorrect,
+        userAnswer: answer,
         correctAnswer: this.data.currentQuestionAnswer,
-        time: (answerTime / 1000).toFixed(0)
+        isCorrect: isCorrect,
+        time: (answerTime / 1000).toFixed(1),
+        timeClass: answerTime < 3000 ? 'fast' : (answerTime < 5000 ? 'medium' : 'slow')
+      };
+  
+      this.data.answerDetail.push(detailItem);
+      
+      // 更新数据绑定
+      this.setData({
+        completedQuestions,
+        correctQuestions,
+        wrongQuestions,
+        accuracyRate: completedQuestions > 0 ? (correctQuestions / completedQuestions * 100).toFixed(0) : 0,
+        averageTime,
+        answerDetail: this.data.answerDetail // 确保数据更新到视图层
       });
   
-      if (this.data.remainingTime > 0) {
-        this.randomNextQuestion();
-        this.setData({
-          startTime: Date.now()
-        });
-      } else {
-        this.endChallenge();
-      }
+      this.showAnswerTip(
+        isCorrect ? '回答正确!' : `回答不正确，正确答案是${this.data.currentQuestionAnswer}`,
+        1500
+      );
+  
+      setTimeout(() => {
+        if (this.data.remainingTime > 0) {
+          this.randomNextQuestion();
+          this.setData({ startTime: Date.now(), isSubmitting: false });
+        } else {
+          this.endChallenge();
+        }
+      }, 1500);
     },
   
     startTimeCountdown() {
-      const interval = setInterval(() => {
-        this.setData({ remainingTime: this.data.remainingTime - 1 });
-        this.setData({ timeProgress: this.data.remainingTime / 60 * 100 });
-        if (this.data.remainingTime <= 0) {
-          clearInterval(interval);
+      if (this.data.timeCountdownInterval) {
+        clearInterval(this.data.timeCountdownInterval);
+      }
+  
+      const timeCountdownInterval = setInterval(() => {
+        const remainingTime = this.data.remainingTime - 1;
+        let timeColorClass = '';
+  
+        if (remainingTime <= 10) {
+          timeColorClass = 'red';
+        } else if (remainingTime <= 30) {
+          timeColorClass = 'yellow';
+        }
+  
+        this.setData({
+          remainingTime,
+          timeProgress: remainingTime / 60 * 100,
+          timeColorClass
+        });
+  
+        if (remainingTime <= 0) {
+          clearInterval(timeCountdownInterval);
           this.setData({
-            isAnswering: false
+            isAnswering: false,
+            isSubmitting: false
           });
           this.endChallenge();
         }
       }, 1000);
+  
+      this.setData({ timeCountdownInterval });
     },
   
     endChallenge() {
+      const averageTime = this.calculateAverageTime();
+      let speedRating = '普通';
+      let speedRatingClass = 'normal';
+  
+      if (averageTime < 3) {
+        speedRating = '极速';
+        speedRatingClass = 'fast';
+      } else if (averageTime < 5) {
+        speedRating = '快速';
+        speedRatingClass = 'medium';
+      }
+  
       this.setData({
         isFinished: true,
-        averageTime: this.data.answerTimes.length > 0? (this.data.answerTimes.reduce((sum, time) => sum + time, 0) / this.data.answerTimes.length / 1000).toFixed(1) : 0,
-        speedRating: (this.data.averageTime < 3)? '极速' : (this.data.averageTime < 5)? '快速' : '普通'
+        averageTime,
+        speedRating,
+        speedRatingClass,
+        answerTipVisible: false,
+        isSubmitting: false
       });
     },
   
@@ -147,5 +259,36 @@ Page({
   
     returnToSelect() {
       wx.navigateBack();
+    },
+  
+    showAnswerTip(message, duration = 1500) {
+      if (this.data.answerTipTimeout) {
+        clearTimeout(this.data.answerTipTimeout);
+      }
+      
+      this.setData({
+        answerTipVisible: true,
+        answerTipMessage: message
+      });
+      
+      const timeoutId = setTimeout(() => {
+        this.setData({ answerTipVisible: false });
+      }, duration);
+      
+      this.setData({ answerTipTimeout: timeoutId });
+    },
+  
+    hideAnswerTip() {
+      if (this.data.answerTipTimeout) {
+        clearTimeout(this.data.answerTipTimeout);
+      }
+      this.setData({ answerTipVisible: false });
+    },
+  
+    calculateAverageTime() {
+      const answerTimes = this.data.answerTimes;
+      return answerTimes.length > 0 
+        ? (answerTimes.reduce((sum, time) => sum + time, 0) / answerTimes.length / 1000).toFixed(1) 
+        : 0;
     }
   });

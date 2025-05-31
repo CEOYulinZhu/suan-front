@@ -1,28 +1,7 @@
-/* pages/basicPractice/basicPractice.wxss */
 .basic-practice-container {
     padding: 20rpx;
     background-color: #f5f5f5;
 }
-
-.header-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    margin-bottom: 20rpx;
-}
-
-.back-button {
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: none;
-}
-
-.title {
-    font-size: 28rpx;
-    font-weight: bold;
-}
-
 .progress-bar {
     text-align: center;
     margin-bottom: 15rpx;
@@ -32,12 +11,18 @@
     color: #666;
     font-size: 24rpx;
     margin-bottom: 5rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10rpx;
 }
 
 .progress {
-    height: 4rpx;
-    background-color: #e0e0e0;
+    height: 20rpx;
+    background: linear-gradient(to right, rgb(77, 171, 255), rgb(22, 119, 255));
     margin-top: 0;
+    margin-bottom: 30rpx;
+    border-radius: 10px;
 }
 
 .question-card {
@@ -54,33 +39,38 @@
 }
 
 .question-text {
-    font-size: 40rpx;
-    color: #333;
+    font-size: 90rpx;
+    color: rgb(0, 0, 0);
+    margin-bottom: 90rpx;
 }
 
 .answer-input-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20rpx;
 }
 
 .custom-input {
-    width: 100%;
-    padding: 18rpx;
+    width: 40%;
+    padding: 28rpx;
     border: 1px solid #e0e0e0;
-    border-radius: 10rpx;
-    font-size: 30rpx;
+    border-radius: 20rpx;
+    font-size: 45rpx;
     text-align: center;
-    background-color: #f9f9f9;
+    background-color: #e7f1ff;
+    margin-bottom: 50rpx;
 }
 
 .submit-btn {
     background-color: #007AFF;
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 15rpx;
     text-align: center;
-    border-radius: 25rpx;
+    border-radius: 30rpx;
     font-size: 32rpx;
     width: 100%;
-    max-width: 300rpx;
+    max-width: 250rpx;
     margin: 0 auto;
 }
 
@@ -166,3 +156,125 @@
     padding: 10rpx 20rpx;
     border-radius: 5rpx;
 }
+
+.basicmodeicons {
+    height: 30rpx;
+    width: 50rpx;
+    filter: invert(100%) grayscale(100%);
+}
+
+/* 完成界面样式 */
+.completed-section {
+    text-align: center;
+    padding: 40rpx;
+    background-color: #fff;
+    border-radius: 20rpx;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.completed-header {
+    margin-bottom: 20rpx;
+}
+
+.completed-icon {
+    height: 60rpx;
+    width: 60rpx;
+    margin-bottom: 10rpx;
+    display: block;
+    margin: 0 auto 50rpx;
+}
+
+.completed-title {
+    font-size: 40rpx;
+    margin-bottom: 0;
+}
+
+.completed-stats {
+    margin-bottom: 20rpx;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10rpx;
+}
+
+.stat-label {
+    margin: 0 10rpx;
+    color: #666;
+    font-size: 28rpx;
+}
+
+.completed-buttons {
+    margin-top: 30rpx;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20rpx;
+    width: 100%;
+}
+
+.restart-btn {
+    background-color: #007AFF;
+    color: white;
+    padding: 15rpx;
+    text-align: center;
+    border-radius: 25rpx;
+    font-size: 32rpx;
+    width: 100%;
+    max-width: 680rpx;
+    margin: 0 auto;
+    margin-bottom: 40rpx;
+}
+
+.back-btn {
+    background-color: #ffffff;
+    border: 1px solid rgb(105, 103, 103);
+    padding: 15rpx;
+    text-align: center;
+    border-radius: 25rpx;
+    font-size: 32rpx;
+    width: 100%;
+    max-width: 680rpx;
+    margin: 0 auto;
+    margin-bottom: 40rpx;
+}
+
+.answer-details {
+    text-align: left;
+}
+
+.details-title {
+    font-size: 32rpx;
+    color: #333;
+    margin-bottom: 10rpx;
+    border-left: 4rpx solid #007AFF;
+    padding-left: 10rpx;
+}
+
+.details-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10rpx;
+    padding: 15rpx;
+    border-radius: 10rpx;
+}
+
+.question {
+    font-size: 32rpx;
+    color: #333;
+}
+
+.answer {
+    font-size: 32rpx;
+}
+
+/* 新增：答题详情的背景颜色样式 */
+.correct-answer {
+    background-color: #e8f5e9; /* 浅绿色背景 */
+}
+
+.wrong-answer {
+    background-color: #ffebee; /* 浅红色背景 */
+}  
