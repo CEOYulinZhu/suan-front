@@ -1,91 +1,129 @@
-<view class="container">
+<view class="ai-container">
   <!-- 顶部导航栏 -->
-  <view class="top-nav">
-    <view class="nav-item" data-tab="互动练习" bindtap="switchTab" wx:class="{{currentPage === '互动练习' ? 'active' : ''}}">互动练习</view>
-    <view class="nav-item" data-tab="可视化学习" bindtap="switchTab" wx:class="{{currentPage === '可视化学习' ? 'active' : ''}}">可视化学习</view>
-    <view class="nav-item" data-tab="向老师提问" bindtap="switchTab" wx:class="{{currentPage === '向老师提问' ? 'active' : ''}}">向老师提问</view>
-    <view class="nav-item" data-tab="学习进度" bindtap="switchTab" wx:class="{{currentPage === '学习进度' ? 'active' : ''}}">学习进度</view>
+  <view class="nav">
+    <view 
+      wx:for="{{navItems}}" 
+      wx:key="index" 
+      class="nav-item {{currentActiveIndex === index ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-tab="{{item}}"
+      data-index="{{index}}"
+    >
+      {{item}}
+    </view>
   </view>
-  
+
   <!-- 互动练习页面 -->
-  <scroll-view wx:if="{{currentPage === '互动练习'}}" class="page-container" scroll-y="{{true}}" show-scrollbar="{{false}}">
-    <view class="practice-container">
-      <!-- 今日挑战 -->
-      <view class="challenge">
-        <text class="section-title">🎲今日挑战</text>
+<view wx:if="{{currentPage === '互动练习'}}" class="page-container" scroll-y="{{true}}" show-scrollbar="{{false}}">
+  <!-- 今日挑战 -->
+  <view class="challenge">
+        <view class="bmpJRA">
+          <image src="/assets/ai/math-icon.svg" style="width: 15px; height: 15px;"></image>今日挑战
+        </view>
         <view class="question">{{question.num1}} + {{question.num2}} = ?</view>
         <view class="options">
-          <view class="option" data-value="{{item}}" bindtap="checkAnswer" wx:class="{{question.selectedOption === item ? (question.isCorrect ? 'correct' : 'incorrect') : ''}}" wx:for="{{question.options}}" wx:key="index">{{item}}</view>
+          <view
+            wx:for="{{question.options}}"
+            wx:key="index"
+            class="option {{item === question.selectedOption ? (question.isCorrect ? 'correct' : (item === question.answer ? 'correct' : 'incorrect')) : ''}}"
+            bindtap="selectOption"
+            data-value="{{item}}"
+          >
+            {{item}}
+          </view>
         </view>
-        <button class="btn-change" bindtap="generateNewQuestion" wx:if="{{!question.isCorrect}}">换一题</button>
-        <button class="btn-next" bindtap="nextQuestion" wx:if="{{question.isCorrect}}">下一题</button>
+        
+        <!-- 按钮显示逻辑 -->
+        <button 
+          wx:if="{{question.selectedOption !== null && question.isCorrect}}" 
+          class="btn-change" 
+          bindtap="nextQuestion"
+        >
+          下一题
+        </button>
+        <button 
+          wx:if="{{question.selectedOption !== null && !question.isCorrect}}" 
+          class="btn-change" 
+          bindtap="nextQuestion"
+        >
+          下一题
+        </button>
+        <button 
+          wx:if="{{question.selectedOption === null}}" 
+          class="btn-change" 
+          bindtap="generateNewQuestion"
+        >
+          换一题
+        </button>
         
         <!-- 答题结果提示 -->
         <view class="result-tip" wx:if="{{question.selectedOption !== null}}">
           <view wx:if="{{question.isCorrect}}" class="correct-tip">
-            <text class="result-text">答对了！👍</text>
-            <text class="tip-content">加法计算技巧：先算整十数，再加各位数</text>
+              <text class="result-text">答对了！👍</text>
+              <view class="tip-content">加法计算技巧：先算整十数，再加各位数</view>
           </view>
           <view wx:if="{{!question.isCorrect}}" class="incorrect-tip">
-            <text class="result-text">正确答案是: {{question.answer}}</text>
-            <text class="tip-content">加法计算技巧：先算整十数，再加各位数</text>
+              <text class="result-text">正确答案是: {{question.answer}}</text>
+              <view class="tip-content">加法计算技巧：先算整十数，再加各位数</view>
           </view>
         </view>
-      </view>
-      
-      <!-- 趣味视频 -->
-      <view class="fun-video">
-        <text class="section-title">📷︎趣味视频讲解</text>
-        <swiper class="video-swiper" indicator-dots="{{true}}" autoplay="{{false}}" interval="{{5000}}" duration="{{500}}" bindchange="changeVideo">
-          <swiper-item wx:for="{{videos}}" wx:key="index">
-            <image src="{{item}}" mode="aspectFill"></image>
-          </swiper-item>
-        </swiper>
-        <view class="video-tip">数学加速技巧</view>
-      </view>
     </view>
-  </scroll-view>
+  
+   <!-- 趣味视频讲解 -->
+   <view class="fun-video">
+    <view class="bmpJRA">
+      <image src="/assets/AI/camera.svg" style="width: 16px; height: 16px;"></image>趣味视频讲解
+    </view>
+    <swiper class="video-swiper" indicator-dots="{{true}}" autoplay="{{false}}" interval="{{5000}}" duration="{{500}}" bindchange="changeVideo">
+        <swiper-item wx:for="{{videos}}" wx:key="index">
+            <image src="{{item}}" mode="aspectFill"></image>
+        </swiper-item>
+    </swiper>
+    <view class="video-tip">数学加速技巧</view>
+</view>
+</view>
   
   <!-- 可视化学习页面 -->
-  <scroll-view wx:if="{{currentPage === '可视化学习'}}" class="page-container" scroll-y="{{true}}">
+  <scroll-view wx:if="{{currentPage === '可视化学习'}}" class="page-container" scroll-y="{{true}}" show-scrollbar="{{false}}">
+    <!-- 可视化学习页面内容 -->
     <view class="visualization-container">
       <view class="visualization-content">
-        <text class="section-title">🎲可视化学习</text>
+        <view class="bmpJRA">
+          <image src="/assets/ai/image.svg" style="width: 15px; height: 15px;"></image>可视化学习
+        </view>
         <view class="question">{{question.num1}} + {{question.num2}} = ?</view>
         <!-- 小技巧提示 -->
         <view class="tip-tag-container">
           <text class="tip-tag">计算小技巧：拆分法</text>
         </view>
         
-        <!-- 原始数字 -->
-        <view class="original-numbers-container">
-          <text class="original-numbers-title">原始数字</text>
-          <view class="number-group">
-            <text class="big-number">{{question.num1}}</text>
-            <text class="plus">+</text>
-            <text class="big-number">{{question.num2}}</text>
-          </view>
-          <view class="number-beads">
-            <view class="bead-group">
-              <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]}}" wx:key="index" wx:if="{{index < question.num1}}" class="bead-with-number">
-                <text class="number">{{index + 1}}</text>
-              </view>
+        <!-- 原始数字模块 -->
+        <view class="module-container original-numbers-container">
+          <text class="diOOcZ">原始数字</text>
+            <view class="number-group">
+                <text class="big-number">{{question.num1}}</text>
+                <text class="plus">+</text>
+                <text class="big-number">{{question.num2}}</text>
             </view>
-            <text class="plus-sign">+</text>
-            <view class="bead-group">
-              <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]}}" wx:key="index" wx:if="{{index < question.num2}}" class="bead-with-number">
-                <text class="number">{{index + 1}}</text>
-              </view>
+            <view class="number-beads">
+                <view class="bead-row">
+                    <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]}}" wx:key="index" wx:if="{{index < question.num1}}" class="bead-with-number" wx:class="{{index % 10 === 0 ? 'last-in-row' : ''}}">
+                        <text class="number">{{index + 1}}</text>
+                    </view>
+                </view>
+                <text class="plus-sign">+</text>
+                <view class="bead-row">
+                    <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]}}" wx:key="index" wx:if="{{index < question.num2}}" class="bead-with-number" wx:class="{{index % 10 === 0 ? 'last-in-row' : ''}}">
+                        <text class="number">{{index + 1}}</text>
+                    </view>
+                </view>
             </view>
-          </view>
         </view>
         
         <!-- 拆分运算 -->
+        <text class="decomposition-title">拆分运算</text>
         <view class="decomposition-container">
-          <text class="decomposition-title">拆分运算
-            <text class="decomposition-subtitle">把数字拆成十位和个位</text>
-          </text>
-          
+          <text class="diOOcZ">把数字拆成十位和个位</text>
           <view class="equation">{{question.num1}} = <text class="highlight">{{visualize.tens1}}</text> + <text class="highlight">{{visualize.ones1}}</text></view>
           <view class="equation">{{question.num2}} = <text class="highlight">{{visualize.tens2}}</text> + <text class="highlight">{{visualize.ones2}}</text></view>
           <view class="parts">
@@ -131,24 +169,25 @@
         </view>
         
         <!-- 计算拆分后的加法 -->
-        <view class="calculation-container">
-          <text class="calculation-title">计算拆分之后的加法</text>
-          <view class="step-container">
-            <view class="step-item">
-              <text class="step-text">{{visualize.tens1}} + {{visualize.tens2}} = <text class="highlight">{{visualize.sumTens}}</text> (十位相加)</text>
-            </view>
-            <view class="step-item">
-              <text class="step-text">{{visualize.ones1}} + {{visualize.ones2}} = <text class="highlight">{{visualize.sumOnes}}</text> (个位相加)</text>
-            </view>
-            <view class="step-item">
-              <text class="step-text">{{visualize.sumTens}} + {{visualize.sumOnes}} = <text class="highlight">{{visualize.sumTotal}}</text> (结果)</text>
-            </view>
-          </view>
+
+          <text class="diOOcZ">计算拆分之后的加法</text>
+            <view class="step-container">
+                <view class="dKIaKw">
+                    <text class="step-text">{{visualize.tens1}} + {{visualize.tens2}} = <text class="highlight">{{visualize.sumTens}}</text> (十位相加)</text>
+                </view>
+                <view class="dKIaKw">
+                    <text class="step-text">{{visualize.ones1}} + {{visualize.ones2}} = <text class="highlight">{{visualize.sumOnes}}</text> (个位相加)</text>
+                </view>
+                <view class="dKIaKw2">
+                    <text class="step-text">{{visualize.sumTens}} + {{visualize.sumOnes}} = <text class="highlight">{{visualize.sumTotal}}</text> (结果)</text>
+                </view>
         </view>
         
         <!-- 解题步骤 -->
         <view class="steps-container">
-          <text class="steps-title">解题步骤</text>
+          <view class="steps-header">
+            <text class="steps-title">解题步骤</text>
+          </view>
           <view class="step-item">
             <text class="step-number">1</text>
             <text class="step-text">将{{question.num1}}拆分为{{visualize.tens1}} + {{visualize.ones1}}，将{{question.num2}}拆分为{{visualize.tens2}} + {{visualize.ones2}}</text>
@@ -170,7 +209,7 @@
         <!-- 最终结果 -->
         <view class="final-result-container">
           <text class="final-result-title">最终结果</text>
-          <view class="result-equation">{{question.num1}} + {{question.num2}} = <text class="result">{{visualize.sumTotal}}</text></view>
+          <view class="result">{{question.num1}} + {{question.num2}} = <text class="result">{{visualize.sumTotal}}</text></view>
           <!-- 结果珠子 -->
           <view class="result-beads">
             <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]}}" wx:key="index" wx:if="{{index < visualize.sumTotal}}" class="result-bead-with-number">
@@ -185,138 +224,210 @@
   </scroll-view>
   
   <!-- 向老师提问页面 -->
-  <scroll-view wx:if="{{currentPage === '向老师提问'}}" class="page-container" scroll-y="{{true}}">
-      <view class="question-container">
-      <view class="chat-container">
-        <view class="message assistant">
+  <scroll-view wx:if="{{currentPage === '向老师提问'}}" class="page-container" scroll-y="{{true}}" show-scrollbar="{{false}}">
+    <view class="adm-card-body">
+    <!-- 固定的数学智能助手部分 -->
+    <view class="assistant-info-container">
+      <view class="message assistant">
           <view class="avatar">
-            <image src="/assets/ai/avatar-assistant.png"></image>
+            <image src="/assets/AI/avatar-ass.svg"></image>
           </view>
           <view class="content">
-            <text class="name">数学智能助手 
+            <text class="fJOZqM ">数学智能助手 
               <text class="status">在线，可以提问</text>
             </text>
-            
-            <text class="time">20:49</text>
           </view>
         </view>
-        <view class="message assistant">
-          <view class="avatar">
-            <image src="/assets/ai/avatar-assistant.png"></image>
+    </view>
+
+    <!-- 分割线 
+    <view class="divider"></view>
+  -->
+    <!-- 消息列表部分 -->
+    <view class="message-list-container">
+      <view class="message-list">
+        <block wx:for="{{messages}}" wx:key="index">
+          <view class="message {{item.type}}">
+            <!-- 助手消息 -->
+            <block wx:if="{{item.type === 'assistant'}}">
+              <view class="avatar">
+                <image src="/assets/AI/avatar-ass.svg"></image>
+              </view>
+              <view class="content">
+                <text class="message-text">{{item.content}}
+                  
+                </text>
+                <text class="time">{{item.time}}</text>
+              </view>
+            </block>
+            <!-- 用户消息 -->
+            <block wx:if="{{item.type === 'user'}}">
+              <view class="content-user">
+                <text class="message-text2">{{item.content}}
+                  
+                </text>
+                <text class="time2">{{item.time}}</text>
+              </view>
+              <view class="userav">
+                <image src="/assets/AI/user.svg" style="width: 40rpx; height: 40rpx;"></image>
+              </view>
+            </block>
           </view>
-          <view class="content">
-            <text class="message-text">你好！我是你的AI数学老师，我可以帮你解决口算问题，提供可视化解释！试试问我"怎么计算25+17?"</text>
-            <text class="time">20:49</text>
-          </view>
-        </view>
+        </block>
       </view>
-      
-      <view class="input-container">
-          <input class="input" placeholder="例如：怎么计算25+17?" value="{{userMessage}}" bindinput="onInput" />
-          <button class="btn-send" bindtap="sendMessage">发送</button>
-      </view>
-      
-      <view class="popular-questions">
-        <text class="section-title">⭐热门问题</text>
-        <view class="question-tags">
-          <text class="tag">怎么计算25+17?</text>
-          <text class="tag">进位加法怎么算?</text>
-          <text class="tag">连加题有什么技巧?</text>
-          <text class="tag">退位减法怎么教孩子?</text>
-        </view>
+    </view>
+
+    <!-- 固定的发送消息部分 -->
+    <view class="input-bg">
+      <view class="gzNVlp">
+        <input 
+           class="input" 
+           placeholder="例如：怎么计算25+17?" 
+          value="{{userMessage}}" 
+          bindinput="onInput" 
+         />
+       </view>
+       <view class="kqpWaO ">
+         <image src="/assets/AI/camera.svg" style="width: 40rpx; height: 40rpx"></image>
+       </view>
+       <button class="btn-send" bindtap="sendMessage">发送</button>
+     </view>
+  </view>
+    <!-- 热门问题部分 -->
+    <view class="hot-questions">
+      <text class="bmpJRA">⭐热门问题</text>
+      <view class="question-tags">
+        <text class="tag" bindtap="fillInput" data-question="怎么计算25+17?">怎么计算25+17?</text>
+        <text class="tag2" bindtap="fillInput" data-question="进位加法怎么算?">进位加法怎么算?</text>
+        <text class="tag3" bindtap="fillInput" data-question="连加题有什么技巧?">连加题有什么技巧?</text>
+        <text class="tag4" bindtap="fillInput" data-question="退位减法怎么教孩子?">退位减法怎么教孩子?</text>
+        <text class="tag5" bindtap="fillInput" data-question="口算有哪些常见错误?">口算有哪些常见错误?</text>
+        <text class="tag6" bindtap="fillInput" data-question="如何提高计算速度?">如何提高计算速度?</text>
       </view>
     </view>
   </scroll-view>
   
   <!-- 学习进度页面 -->
-  <scroll-view wx:if="{{currentPage === '学习进度'}}" class="page-container" scroll-y="{{true}}">
+  <scroll-view wx:if="{{currentPage === '学习进度'}}" class="page-container" scroll-y="{{true}}" show-scrollbar="{{false}}">
+    <!-- 学习进度页面内容 -->
     <view class="progress-container">
       <!-- 个人学习进度 -->
       <view class="personal-progress">
         <text class="section-title">👤个人学习进度</text>
-        
+        <!-- 总体 -->
         <view class="progress-item">
-          <text class="progress-label">⚝总体掌握度</text>
-          <progress percent="{{progress.overall}}" show-info="{{true}}" active="{{false}}" />
-          <text class="progress-percent">{{progress.overall}}%</text>
+          <image src="/assets/ai/star.svg" style="width: 15px; height: 15px;"></image>
+          <text class="progress-label">总体掌握度 <text class="lhUXcF">{{progress.overall}}%</text></text>
+          <view class="evsnlc "></view>
         </view>
         
-        <view class="progress-item">
-          <text class="progress-label">🗊加法进位</text>
-          <progress percent="{{progress.addition}}" show-info="{{true}}" active="{{false}}" />
-          <text class="progress-percent">{{progress.addition}}%</text>
+        <!-- 加法  -->
+        <view class="progress-item2">
+          <image src="/assets/ai/math-icon.svg" style="width: 10px; height: 10px;"></image>
+          <text class="bpfJac">加法进位 <text class="lhUXcF">{{progress.addition}}%</text></text>
+          <view class="evsnlc2 "></view>
+          <!-- #endif <text class="progress-percent">{{progress.addition}}%</text> -->
         </view>
         
-        <view class="progress-item">
-          <text class="progress-label">🗊连加连减</text>
-          <progress percent="{{progress.consecutive}}" show-info="{{true}}" active="{{false}}" />
-          <text class="progress-percent">{{progress.consecutive}}%</text>
+        <!-- 连加  -->
+        <view class="progress-item2">
+          <image src="/assets/ai/math-icon.svg" style="width: 10px; height: 10px;"></image>
+          <text class="bpfJac">连加连减 <text class="lhUXcF2">{{progress.consecutive}}%</text></text>
+          <view class="evsnlc3 "></view>
+          <!-- 
+            <progress percent="{{progress.consecutive}}" show-info="{{true}}" active="{{false}}" />
+            <text class="progress-percent">{{progress.consecutive}}%</text> 
+          -->
         </view>
-        
-        <view class="progress-item">
-          <text class="progress-label">🗊乘法口诀</text>
-          <progress percent="{{progress.multiplication}}" show-info="{{true}}" active="{{false}}" />
+
+        <!-- 乘法  -->
+        <view class="progress-item2">
+          <image src="/assets/ai/math-icon.svg" style="width: 10px; height: 10px;"></image>
+          <text class="bpfJac">乘法口诀 <text class="lhUXcF3">{{progress.multiplication}}%</text></text>
+          <view class="evsnlc4 "></view>
+          <!-- 
+             <progress percent="{{progress.multiplication}}" show-info="{{true}}" active="{{false}}" />
           <text class="progress-percent">{{progress.multiplication}}%</text>
+          -->
         </view>
-        
-        <view class="progress-item">
-          <text class="progress-label">🗊应用题解析</text>
-          <progress percent="{{progress.application}}" show-info="{{true}}" active="{{false}}" />
+
+        <!-- 🗊应用题解析  -->
+        <view class="progress-item2">
+          <image src="/assets/ai/math-icon.svg" style="width: 10px; height: 10px;"></image>
+          <text class="bpfJac">应用题解析 <text class="lhUXcF4">{{progress.application}}%</text></text>
+          <view class="evsnlc5 "></view>
+          <!-- 
+            <progress percent="{{progress.application}}" show-info="{{true}}" active="{{false}}" />
           <text class="progress-percent">{{progress.application}}%</text>
+          -->
         </view>
       </view>
-      
+    </view>
+    
+      <!-- 中间隔开部分 
+        <view class="separator"></view>
+      -->
+    
+    
+    <view class="challenge2">
       <!-- 个性化学习计划 -->
       <view class="learning-plan">
         <text class="section-title">⭐个性化学习计划</text>
         
         <view class="recommended-paths">
-          <text class="path-title">  🗀推荐学习路径</text>
+          <image src="/assets/ai/progect.svg" style="width: 15px; height: 15px; color: rgb(22, 119, 255);"></image>
+          <text class="path-title">  推荐学习路径</text>
           
-          <view class="path-item">
+          <view class="path-item status-in-progress">
             <view class="path-info-container">
               <view class="path-info-icon">
-                <image src="/assets/AI/math-icon.png"></image>
+                <image src="/assets/ai/math-icon.svg" style="width: 40rpx; height: 40rpx;"></image>
               </view>
               <view class="path-info">
                 <text class="path-name">加法进位专题</text>
-                <text class="path-status">进行中 3/5</text>
+                <view>
+                  <text class="bDsqBI">进行中 3/5</text>
+                </view>
                 <text class="path-description">掌握加法进位的原理和方法</text>
               </view>
             </view>
             <view class="btn-continue">继续学习</view>
           </view>
           
-          <view class="path-item">
+          <view class="path-item status-in-progress">
             <view class="path-info-container">
               <view class="path-info-icon">
-                <image src="/assets/AI/math-icon.png"></image>
+                <image src="/assets/ai/math-icon.svg" style="width: 40rpx; height: 40rpx;"></image>
               </view>
               <view class="path-info">
                 <text class="path-name">退位减法专题</text>
-                <text class="path-status">进行中 1/5</text>
+                <view>
+                  <text class="bDsqBI">进行中 1/5</text>
+                </view>
                 <text class="path-description">学习退位减法的计算技巧</text>
               </view>
             </view>
             <view class="btn-continue">继续学习</view>
           </view>
           
-          <view class="path-item">
+          <view class="path-item status-not-started">
             <view class="path-info-container">
               <view class="path-info-icon">
-                <image src="/assets/AI/math-icon.png"></image>
+                <image src="/assets/ai/math-icon.svg" style="width: 40rpx; height: 40rpx;"></image>
               </view>
               <view class="path-info">
                 <text class="path-name">混合运算专题</text>
-                <text class="path-status">未开始</text>
+                <view class="">
+                  <text class="kRGDSX">未开始</text>
+                </view>
                 <text class="path-description">综合运用加减法解决问题</text>
               </view>
             </view>
-            <view class="btn-continue">开始学习</view>
+            <view class="btn-start">开始学习</view>
           </view>
         </view>
         
-        <button class="btn-full-plan">查看完整学习计划</button>
+        <view class="btn-full-plan">查看完整学习计划</view>
       </view>
     </view>
   </scroll-view>
