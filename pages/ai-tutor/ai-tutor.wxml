@@ -391,7 +391,7 @@
                 <text class="path-description">掌握加法进位的原理和方法</text>
               </view>
             </view>
-            <view class="btn-continue">继续学习</view>
+            <view class="btn-continue" bindtap="onContinueLearning">继续学习</view>
           </view>
           
           <view class="path-item status-in-progress">
@@ -407,7 +407,7 @@
                 <text class="path-description">学习退位减法的计算技巧</text>
               </view>
             </view>
-            <view class="btn-continue">继续学习</view>
+            <view class="btn-continue" bindtap="onStartLearning">继续学习</view>
           </view>
           
           <view class="path-item status-not-started">
@@ -423,11 +423,11 @@
                 <text class="path-description">综合运用加减法解决问题</text>
               </view>
             </view>
-            <view class="btn-start">开始学习</view>
+            <view class="btn-start" bindtap="onStartLearning">开始学习</view>
           </view>
         </view>
         
-        <view class="btn-full-plan">查看完整学习计划</view>
+        <view class="btn-full-plan" bindtap="onStartLearning">查看完整学习计划</view>
       </view>
     </view>
   </scroll-view>

@@ -1,5 +1,21 @@
 Page({
-  
+
+  onContinueLearning: function() {
+    wx.navigateTo({
+      url: '/pages/practice-daily/practice-daily',
+    });
+  },
+  onStartLearning: function() {
+    wx.navigateTo({
+      url: '/pages/customPractice/customPractice'
+    });
+  },
+  onViewFullPlan: function() {
+    wx.navigateTo({
+      url: '/pages/practice/practice'
+    });
+  },
+
   data: {
     activeTab: '互动练习',
     currentPage: '互动练习', // 默认显示的页面
@@ -26,6 +42,7 @@ Page({
       '/assets/ai/math-video1.png',
       '/assets/ai/math-video2.png'
     ],
+    
     visualize: {
       tens1: 10,
       ones1: 7,
