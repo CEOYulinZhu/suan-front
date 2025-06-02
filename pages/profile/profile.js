@@ -18,6 +18,35 @@ Page({
     isEnlarged: false // 新增一个标志位，用于记录是否已经放大
   },
 
+  onLoad: function() {
+    const that = this;
+    wx.request({
+      url: 'http://localhost:8080/api/v1/stats/user',
+      method: 'GET',
+      header: {
+        // 携带认证 token（假设已登录，从缓存获取）
+        'Authorization': 'Bearer ' + wx.getStorageSync('token')
+      },
+      success: (res) => {
+        if (res.data.code === 200) { // 假设 Result 成功码为 200
+          const { data } = res.data;
+          that.setData({
+            'user.name': wx.getStorageSync('rememberedUsername'),
+            'user.cumulativePractice': data.cumulativePractice,
+            'user.accuracyRate': data.accuracyRate,
+            'user.continuousCheckins': data.continuousCheckins,
+          });
+        } else {
+          wx.showToast({ title: '数据获取失败', icon: 'none' });
+        }
+      },
+      fail: (err) => {
+        console.error(err);
+        wx.showToast({ title: '网络请求失败', icon: 'none' });
+      }
+    });
+  },
+
    /**
    * 点击头像，长宽变大;放大后再点一下，还原
    */
@@ -93,7 +122,7 @@ Page({
         if (res.confirm) {
           // 这里添加退出登录的逻辑，比如清除登录态等
           wx.redirectTo({
-            url: '/pages/login/login'
+            url: '/pages/welcome/welcome'
           });
         }
       }

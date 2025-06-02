@@ -19,17 +19,17 @@
           <icon type="contacts" size="20"></icon>
           <text>姓名</text>
         </view>
-        <input type="text" class="value" wx:if="{{isEditing}}" value="{{name}}" />
+        <input type="text" class="value" wx:if="{{isEditing}}" value="{{name}}" bindinput="onNameInput"/>
         <view class="value" wx:else>{{name}}</view>
       </view>
       <view class="infoitem">
         <view class="label">
-          <image src="../../assets/icons/ClassOutline_32px.svg" class="function-icon"></image>
+          <image src="../../assets/icons/ClassOutline_32px.svg" class="function-icon" ></image>
           <icon type="edit" size="20"></icon>
           <text>班级</text>
         </view>
-        <input type="text" class="value" wx:if="{{isEditing}}" value="{{class}}" />
-        <view class="value" wx:else>{{class}}</view>
+        <input type="text" class="value" wx:if="{{isEditing}}" value="{{classroom}}" bindinput="onClassInput"/>
+        <view class="value" wx:else>{{classroom}}</view>
       </view>
       <view class="infoitem">
         <view class="label">
@@ -37,16 +37,16 @@
           <icon type="chatbubble" size="20"></icon>
           <text>手机号</text>
         </view>
-        <input type="text" class="value" wx:if="{{isEditing}}" value="{{phone}}" />
-        <view class="value" wx:else>{{phone}}</view>
+        <input type="text" class="value" wx:if="{{isEditing}}" value="{{phoneNumber}}" bindinput="onPhoneInput"/>
+        <view class="value" wx:else>{{phoneNumber}}</view>
       </view>
       <view class="infoitem">
         <view class="label">
-          <image src="../../assets/icons/EmailOutline_32px.svg" class="function-icon"></image>
+          <image src="../../assets/icons/EmailOutline_32px.svg" class="function-icon" ></image>
           <icon type="mail" size="20"></icon>
           <text>邮箱</text>
         </view>
-        <input type="text" class="value" wx:if="{{isEditing}}" value="{{email}}" />
+        <input type="text" class="value" wx:if="{{isEditing}}" value="{{email}}" bindinput="onEmailInput"/>
         <view class="value" wx:else>{{email}}</view>
       </view>
       <view class="edit-buttons" wx:if="{{isEditing}}">
