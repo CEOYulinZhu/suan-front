@@ -111,8 +111,8 @@ formatTime: function (date) {
 
   // 生成新题目
   generateNewQuestion: function() {
-    const num1 = Math.floor(Math.random() * 14) + 0; // 10-99之间的随机数
-    const num2 = Math.floor(Math.random() * 14) + 0; // 10-99之间的随机数
+    const num1 = Math.floor(Math.random() * 25) + 1; // 10-99之间的随机数
+    const num2 = Math.floor(Math.random() * 25) + 1; // 10-99之间的随机数
     const answer = num1 + num2;
     const options = this.generateOptions(answer);
 

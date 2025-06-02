@@ -734,7 +734,7 @@
 .adm-card-body {
   padding: 50rpx;
   background-color: white;
-  border-radius: 15px;
+  border-radius: 30px;
 }
 
 .assistant-info-container {
@@ -1002,7 +1002,7 @@
 /* 热门问题部分 */
 .hot-questions {
   background-color: white;
-  border-radius: 12px;
+  border-radius: 30px;
   padding: 15px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   margin-top: 15px;
@@ -1097,7 +1097,7 @@
 /* 学习进度页面 */
 .progress-container {
   background-color: #fff;
-  border-radius: 15px;
+  border-radius: 30px;
   padding-left: 1rpx;  /* 左边距 */
   padding-right: 1rpx; /* 右边距 */
   overflow: hidden;
@@ -1295,7 +1295,7 @@
   background-color: white;
   padding: 20px;
   border-bottom: 1px solid #eee;
-  border-radius: 15px;
+  border-radius: 30px;
   padding-left: 1rpx;  /* 左边距 */
   padding-right: 1rpx; /* 右边距 */
   margin-bottom: 140rpx;
