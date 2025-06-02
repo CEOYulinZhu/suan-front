@@ -61,7 +61,7 @@
 
       <!-- 注册按钮 -->
       <view class="button-container">
-        <custom-button text="立即注册" bindtap="register" type="primary"></custom-button>
+        <custom-button text="立即注册" bindbuttontap="register" type="primary"></custom-button>
       </view>
 
       <!-- 用户协议 -->

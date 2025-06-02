@@ -83,41 +83,93 @@ Page({
   /**
    * 注册操作
    */
-  register: function () {
+  register: function() {
     if (!this.validateForm()) {
+      wx.showToast({
+        title: '请完善注册信息',
+        icon: 'none',
+        duration: 2000
+      });
       return;
     }
-
-    // 显示加载提示
+  
     wx.showLoading({
       title: '正在注册...',
       mask: true
     });
-
-    // 模拟注册请求
-    setTimeout(() => {
-      wx.hideLoading();
-
-      // 注册成功提示
-      wx.showToast({
-        title: '注册成功!',
-        icon: 'success',
-        duration: 1500
-      });
-
-      // 注册成功后跳转到登录页
-      setTimeout(() => {
-        wx.navigateTo({
-          url: '/pages/login/login'
+  
+    const registerData = {
+      username: this.data.username.trim(),
+      password: this.data.password
+    };
+  
+    wx.request({
+      url: 'http://localhost:8080/api/v1/account/register',
+      method: 'POST',
+      data: registerData,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: (res) => {
+        wx.hideLoading();
+        
+        // 统一处理响应数据
+        try {
+          const data = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
+          
+          // 成功条件：HTTP 200且业务code 200
+          if (res.statusCode === 200 && data.code === 200) {
+            wx.showToast({
+              title: '注册成功',
+              icon: 'success',
+              duration: 1500
+            });
+            setTimeout(() => {
+              wx.navigateTo({
+                url: '/pages/login/login'
+              });
+            }, 1500);
+          } 
+          // 用户名已存在
+          else if (res.statusCode === 400 && data.code === 400) {
+            this.setData({ usernameError: data.msg });
+            wx.showToast({
+              title: data.msg,
+              icon: 'none',
+              duration: 2000
+            });
+          }
+          // 其他错误
+          else {
+            wx.showToast({
+              title: data?.msg || '注册失败',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        } catch (e) {
+          wx.showToast({
+            title: '数据处理失败',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      },
+      fail: (err) => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '网络错误，请重试',
+          icon: 'none',
+          duration: 2000
         });
-      }, 1500);
-    }, 1500);
+      }
+    });
   },
 
   /**
    * 跳转到登录页面
    */
-  goToLogin: function () {
+  goToLogin: function() {
     wx.navigateTo({
       url: '/pages/login/login'
     });

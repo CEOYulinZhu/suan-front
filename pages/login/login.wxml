@@ -53,7 +53,7 @@
 
       <!-- 登录按钮 -->
       <view class="button-container">
-        <custom-button text="登录" bindtap="login" type="primary"></custom-button>
+        <custom-button text="登录" bindbuttontap="login" type="primary"></custom-button>
       </view>
     </view>
 
