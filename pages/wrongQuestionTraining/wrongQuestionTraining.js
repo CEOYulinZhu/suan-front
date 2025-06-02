@@ -1,17 +1,8 @@
+import { get } from '../../utils/request'; 
 Page({
     data: {
       currentCategory: 'all', // 当前选中的分类（默认全选）
-      allQuestions: [
-        { id: 1, question: '58 + 68 = ?', category: '加法', errors: 3, date: '2025-04-19', correctAnswer: 126 },
-        { id: 2, question: '47 + 10 = ?', category: '加法', errors: 3, date: '2025-04-14', correctAnswer: 57 },
-        { id: 3, question: '95 - 36 = ?', category: '减法', errors: 2, date: '2025-04-13', correctAnswer: 59 },
-        { id: 4, question: '82 - 15 = ?', category: '减法', errors: 3, date: '2025-04-08', correctAnswer: 67 },
-        { id: 5, question: '16 × 4 = ?', category: '乘法', errors: 1, date: '2025-04-19', correctAnswer: 64 },
-        { id: 6, question: '27 × 3 = ?', category: '乘法', errors: 2, date: '2025-04-10', correctAnswer: 81 },
-        { id: 7, question: '84 ÷ 6 = ?', category: '除法', errors: 3, date: '2025-04-15', correctAnswer: 14 },
-        { id: 8, question: '96 ÷ 8 = ?', category: '除法', errors: 1, date: '2025-04-20', correctAnswer: 12 },
-        { id: 9, question: '18 + 5 × 3 = ?', category: '混合运算', errors: 4, date: '2025-04-05', correctAnswer: 33 },
-        { id: 10, question: '50 - 24 ÷ 3 = ?', category: '混合运算', errors: 2, date: '2025-04-09', correctAnswer: 38 }],
+      allQuestions: [],
         categoryColor: [
             { category: '加法', color: '#1677ff' },
             { category: '减法', color: '#52c41a' },
@@ -43,6 +34,8 @@ Page({
     },
   
     onLoad() {
+        // 调用方法获取错题历史数据
+    this.fetchMistakeHistory();
       this.updateSelectedStatus();
       //题目类型map
       const colorMap = this.data.categoryColor.reduce((acc, item) => {
@@ -312,5 +305,79 @@ handleQuestionClick(event) {
       url: '/pages/practice/practice' // 当前页面路径
     });
   },
+
+  // 获取错题历史数据的方法
+  fetchMistakeHistory() {
+    // 使用封装的get请求获取错题历史
+    get('/api/v1/wrongQuestionTraining/getMistakeHistoryByUserId')
+      .then(res => {
+        if (res.code === 200) {
+          // 处理返回的数据
+          const mistakeHistory = res.data;
+          // 将获取的数据转换为allQuestions期望的格式
+          const processedQuestions = mistakeHistory.map(item => {
+            return {
+              id: item.id,
+              question: item.question,
+              // 根据type转换为对应的分类
+              category: this.convertTypeToCategory(item.type),
+              // 保留年月日
+              date: item.dateTime.split(' ')[0],
+              // 记录错误次数
+              errors: item.errorNums,
+              // 正确答案
+              correctAnswer: parseInt(item.successAnswer, 10)
+            };
+          });
+          // 更新allQuestions数据
+          this.setData({
+            allQuestions: processedQuestions
+          });
+          // 初始化题目列表（可以调用你已有的逻辑）
+          this.initQuestions();
+        } else {
+          // 处理错误情况
+          wx.showToast({
+            title: res.msg || '获取错题历史失败',
+            icon: 'none'
+          });
+        }
+      })
+      .catch(err => {
+        wx.showToast({
+          title: '网络请求失败',
+          icon: 'none'
+        });
+        console.error('请求失败', err);
+      });
+  },
+
+  // 根据type转换为对应的分类
+  convertTypeToCategory(type) {
+    const typeMap = {
+      '1': '加法',
+      '2': '减法',
+      '3': '乘法',
+      '4': '除法',
+      '5': '混合运算'
+    };
+    return typeMap[type] || '未知分类'; // 默认为未知分类
+  },
+
+  // 初始化题目列表的方法
+  initQuestions() {
+    const colorMap = this.data.categoryColor.reduce((acc, item) => {
+      acc[item.category] = item.color;
+      return acc;
+    }, {});
+
+    this.setData({
+      questions: this.data.allQuestions,
+      categoryColorMap: colorMap
+    });
+    // 调用其他初始化逻辑
+    this.updateSelectedStatus();
+  },
+
 
   });

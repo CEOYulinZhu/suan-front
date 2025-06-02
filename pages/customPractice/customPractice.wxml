@@ -1,79 +1,66 @@
-<!--pages/customPractice/customPractice.wxml-->
 <view class="container">
     <!-- 练习部分 -->
-    <view wx:if="{{practice}}" class="test-container">
+    <view wx:if="{{isPracticeStarted}}" class="test-container">
         <view class="progress-bar">
-            <view class="progress-fill" style="width: {{currentQuestionIndex%count*10}}%"></view>
+            <view class="progress-fill" style="width: {{currentQuestionIndex / count * 100}}%"></view>
         </view>
         <view class="test">
-                <view class="test-text" wx:if="{{currentQuestionIndex!=count}}">第{{currentQuestionIndex+1}}题/剩余{{count-currentQuestionIndex-1}}题</view>
-
-            
-            <view class="current-question" wx:if="{{MultipleAdditions && currentQuestionIndex < count}}">
-                <text class="question-text">{{currentQuestion.num1}} {{currentQuestion.operator}} {{currentQuestion.num2}} {{currentQuestion.operator2}} {{currentQuestion.num3}}= </text>
+            <view class="test-text" wx:if="{{!isComplete}}">
+                第{{currentQuestionIndex + 1}}题/共{{count}}题
+            </view>
+            <view class="current-question" wx:if="{{!isComplete}}">
+                <text class="question-text">{{currentQuestion.question}}</text>
                 <input 
-                class="answer-input" 
-                type="number" 
-                placeholder="请输入答案" 
-                value="{{currentQuestion.userAnswer}}" 
-                bindinput="onAnswerInput"
+                    class="answer-input" 
+                    type="number" 
+                    placeholder="请输入答案" 
+                    value="{{userAnswers[currentQuestion.id] || ''}}" 
+                    bindinput="onAnswerInput"
                 />
             </view>
-
-        <view class="result-tip" wx:if="{{showResult}}">
-            <text class="{{resultType}}">{{resultMessage}}</text>
-            <text wx:if="{{!isComplete}}">正确答案：{{currentQuestion.correctAnswer}}</text>
-        </view>
-               
-                <view wx:if="{{isComplete}}" class="complete-tip">
-                    <text>全部题目完成！</text>
-                    
-                </view>
-            <view class="button-group">
-                <button 
-                class="next-btn" 
-                wx:if="{{!isComplete}}" 
-                bindtap="checkAnswer"
-                >
-                {{isChecking ? '出题...' : '提交答案'}}
-                </button>
-
-                
-                 <view class="next-time" bindtap="nextTime"  wx:if="{{currentQuestionIndex!=count}}">
-                    暂时离开
-                </view>
-                <view class="next-day" bindtap="nextTime"  wx:if="{{currentQuestionIndex===count}}">
-                    返回
-                </view>
+            <view wx:if="{{isComplete}}" class="container-Outlin">
+                <image class="isCompleteOutlin" src="/assets/icons/isCompleteOutline_32px.svg"></image>
             </view>
-        </view>        
+            
+            <view class="result-tip" wx:if="{{showResult}}">
+                <text class="{{resultType}}">{{resultMessage}}</text>
+                <text wx:if="{{!isComplete}}">正确答案：{{currentQuestion.correctAnswer}}</text>
+            </view>
+
+            <view wx:if="{{isComplete}}" class="complete-tip">
+                <text>你已经完成了{{count}}道题目的练习，正确率达{{correctCount / count * 100}}%</text>
+            </view>
+
+            <view class="button-group" wx:if="{{!isComplete}}">
+                <view class="next-btn" bindtap="checkAnswer">
+                    {{isChecking ? '出题...' : '提交答案'}}
+                </view>
+                <view class="end-practice-button" bindtap="showEndModal">结束训练</view>
+            </view>
+        </view>       
         <view class="test-detail">
             <view class="test-detai2">
                 <view class="detail-title">
-                <text >练习统计</text>
+                    <text>练习统计</text>
                 </view>
                 <view class="detail-label">
-                <text lass="detail-sum">总进度</text>
-                <text >{{currentQuestionIndex}}/{{count}}</text>
+                    <text>总进度</text>
+                    <text>{{currentQuestionIndex}}/{{count}}</text>
                 </view>
                 <view class="detail-label">
-                <text>本次正确</text>
-                <text class="detail-value">{{correctCount}}题</text>
+                    <text>本次正确</text>
+                    <text class="detail-value">{{correctCount}}题</text>
                 </view>
                 <view class="detail-label">
-                <text>本次错误</text>
-                <text class="detail-value">{{errorCount}}题</text>
-            
+                    <text>本次错误</text>
+                    <text class="detail-value">{{errorCount}}题</text>
                 </view>
             </view>
-            
         </view>
-
-        
     </view>
     
     <!-- 自定义部分 -->
-    <view class="custom" wx:if="{{!practice}}">
+    <view class="custom" wx:if="{{!isPracticeStarted}}">
         <view class="title">
             <image src="../../assets/icons/SetOutline_32px.svg" class="function-icon" style="color: #87ceeb;"></image>
             <view class="function-label">练习设置</view>
@@ -82,26 +69,21 @@
         <view class="setting-item">
             <view class="item-label">运算类型</view>
             <checkbox-group class="operation-type" bindchange="selectTypes">
-            <!-- 加法 -->
-            <label class="op-btn {{defaultAdd ? 'active' : ''}}">
-            <checkbox value="add" checked="{{defaultAdd}}" hidden/>加法
-            </label>
-            <!-- 减法 -->
-            <label class="op-btn {{defaultSubtract? 'active' : ''}}">
-            <checkbox value="subtract" checked="{{defaultSubtract}}" hidden/>减法
-            </label>
-            <!-- 乘法 -->
-            <label class="op-btn {{defaultMultiply ? 'active' : ''}}">
-            <checkbox value="multiply" hidden/>乘法
-            </label>
-            <!-- 除法 -->
-            <label class="op-btn {{defaultDivide ? 'active' : ''}}">
-            <checkbox value="divide" hidden/>除法
-            </label>
-            <!-- 混合加减 -->
-            <label class="op-btn {{defaultMix ? 'active' : ''}}">
-            <checkbox value="mix" hidden/>混合加减
-            </label>
+                <label class="op-btn {{defaultAdd ? 'active' : ''}}">
+                    <checkbox value="add" checked="{{defaultAdd}}" hidden/>加法
+                </label>
+                <label class="op-btn {{defaultSubtract ? 'active' : ''}}">
+                    <checkbox value="subtract" checked="{{defaultSubtract}}" hidden/>减法
+                </label>
+                <label class="op-btn {{defaultMultiply ? 'active' : ''}}">
+                    <checkbox value="multiply" hidden/>乘法
+                </label>
+                <label class="op-btn {{defaultDivide ? 'active' : ''}}">
+                    <checkbox value="divide" hidden/>除法
+                </label>
+                <label class="op-btn {{defaultMix ? 'active' : ''}}">
+                    <checkbox value="mix" hidden/>混合加减
+                </label>
             </checkbox-group>
         </view>
         <!-- 题目数量选择 -->
@@ -115,15 +97,15 @@
         <!-- 位数选择 -->
         <text class="counterTitile">数字范围</text>
         <view class="digit-select">
-            <radio-group bindchange="handlDeigitChange" value="1-10">
+            <radio-group bindchange="handleDigitChange">
                 <label class="radio-label">
-                    <radio color="blue" value="1-10" /> 个位数 (1-10)
+                    <radio color="blue" value="singleDigit" /> 个位数 (1-10)
                 </label>
                 <label class="radio-label">
-                    <radio  color="blue" value="1-100" /> 两位数 (1-100)
+                    <radio color="blue" value="doubleDigit" /> 两位数 (1-100)
                 </label>
                 <label class="radio-label">
-                    <radio  color="blue" value="1-1000" /> 三位数 (1-1000)
+                    <radio color="blue" value="tripleDigit" /> 三位数 (1-1000)
                 </label>
             </radio-group>
         </view>
@@ -132,26 +114,22 @@
         <view class="moreCustom">
             <view class="switch-item">
                 <text>允许负数结果</text>
-                <switch checked="{{allowNegative}}"></switch>
+                <switch color="blue" checked="{{allowNegative}}" bindchange="toggleNegative"></switch>
             </view>
             <view class="switch-item">
                 <text>启用计时器</text>
-                <switch checked="{{enableTimer}}" bindchange="handleTimerSwitch"></switch>
+                <switch color="blue" checked="{{enableTimer}}" bindchange="toggleTimer"></switch>
             </view>
             <view class="counter" wx:if="{{enableTimer}}">
                 <button bindtap="addTime" class="change-button">-</button>
-            <text class="counterSelect">{{setTime}}</text>
-            <button bindtap="incTime" class="change-button">+</button>
+                <text class="counterSelect">{{setTime}}</text>
+                <button bindtap="incTime" class="change-button">+</button>
+            </view>
         </view>
-        </view>
-
-
-
-
     </view>
 
     <!-- 底部按钮 -->
-    <view wx:if="{{!practice}}">
-        <view class="start-practice" bindtap="practice">开始练习</view>
+    <view wx:if="{{!isPracticeStarted}}">
+        <view class="start-practice" bindtap="startPractice">开始练习</view>
     </view>    
 </view>

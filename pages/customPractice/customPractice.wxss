@@ -216,15 +216,7 @@
      flex-direction: center;
      margin-bottom: 20px;
   }
-  .next-btn {
-    max-width: 40%;
-    height: 80rpx;
-    background-color: #409eff;
-    color: white;
-    font-size: 32rpx;
-    border-radius: 40rpx;
-    transition: opacity 0.3s ease;
-  }
+
   .next-time{
     min-width: 40%;
     height: 80rpx;
@@ -289,5 +281,36 @@
   .detail-value {
     color: #333;
   }
+  .button-group{
+    display: flex;
+    justify-content: center;
+}
+  .next-btn{
+    width: 200rpx;
+    height: 80rpx;
+    border-radius: 48rpx;
+    background-color:#FF9800;
+    display: flex;
+    justify-content: center;
+      align-items: center;
+    color: #FFFFFF	;
+}
+.end-practice-button{
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+}
+
+.isCompleteOutlin{
+    max-width: 100rpx;
+    max-height: 100rpx;
+}
+.container-Outlin{
+    padding:  40rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   
